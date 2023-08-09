@@ -436,9 +436,9 @@
         // let configButton = makeButton('Config', '!beyond --config', buttonStyle+' margin: auto; width: 90%; display: block; float: none;');
 
         let listItems = [
-            '<span style="text-decoration: underline; font-size: 90%;">!beyond --help</span><br />Shows this menu.',
-            '<span style="text-decoration: underline; font-size: 90%;">!beyond --config</span><br />Shows the configuration menu. (GM only)',
-            '<span style="text-decoration: underline; font-size: 90%;">!beyond --import [CHARACTER JSON]</span><br />Imports a character from <a href="https://osrplus.com" target="_blank">OSR+</a>.',
+            '<span style="text-decoration: underline; font-size: 90%;">!osrplus --help</span><br />Shows this menu.',
+            '<span style="text-decoration: underline; font-size: 90%;">!osrplus --config</span><br />Shows the configuration menu. (GM only)',
+            '<span style="text-decoration: underline; font-size: 90%;">!osrplus --import [CHARACTER JSON]</span><br />Imports a character from <a href="https://osrplus.com" target="_blank">OSR+</a>.',
         ];
 
         let command_list = makeList(listItems, 'list-style: none; padding: 0; margin: 0;');
@@ -446,7 +446,7 @@
         let text = '<div style="'+style+'">';
         text += makeTitle(script_name + ' Help');
         text += '<p>Open your character on <a href="https://osrplus.com" target="_blank">OSR+</a>, and ask DQ or Kris how to obtain the character ID.  Add this ID to the following link:  https://osrplus.com/api/roll20/?id=[CHARACTER_ID]. Copy the full contents of this page and paste it behind the command `!osrplus --import`.</p>';
-        text += '<p>For more information take a look at my <a style="text-decoration: underline" href="https://github.com/sillvva/Roll20-API-Scripts/blob/master/5eOGL-DND-Beyond-Importer/BeyondImporter.js" target="_blank">Github</a> repository.</p>';
+        text += '<p>For more information take a look at my <a style="text-decoration: underline" href="https://github.com/ShamanGreeny/OSRPlusImporter/blob/main/OSRPlusImporter.js" target="_blank">Github</a> repository.</p>';
         text += '<hr>';
         text += '<b>Commands:</b>'+command_list;
         // text += '<hr>';
