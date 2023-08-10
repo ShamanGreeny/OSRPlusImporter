@@ -1,5 +1,5 @@
 /*
- * Version 0.0.1
+ * Version 0.0.2
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -34,7 +34,7 @@
     const script_name = 'OSRPlusImporter';
     const state_name = 'OSRPLUSIMPORTER';
     const debug = true;
-    //var spellTargetInAttacks = true;
+    var spellTargetInAttacks = true;
   
     // Roll 20 specific actions - chat functions
     on('ready', function() {
@@ -125,8 +125,8 @@
         }
   
         let json = importData;
-        let character = JSON.parse(json).character;
-        
+        let character = JSON.parse(json).data;
+        if(debug) { sendChat(script_name, script_name + ' Past JSON import!', null, {noarchive:true}); }
         //Roll20 specific function - report to chat
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is starting.</div>', null, {noarchive:true});
 
@@ -139,7 +139,7 @@
         // these are written in one large write once everything else is written
         // NOTE: changing any stats after all these are imported would create a lot of updates, so it is
         // good that we write these when all the stats are done
-        //let repeating_attributes = {};
+        let repeating_attributes = {};
 
         object = null;
   
@@ -168,14 +168,14 @@
         }
 
         // base class, if set
-        if (character.classes && (character.classes.length > 0)) {
+        if (character.object_class && (character.object_class.length > 0)) {
             Object.assign(single_attributes, {
-                'class': character.classes[0].definition.name,
-                'subclass': character.classes[0].subclassDefinition == null ? '' : character.classes[0].subclassDefinition.name,
-                'base_level': character.classes[0].level
+                'class': character.object_class.post_title
             });
         }
   
+        let total_level = character.level;
+      
         //TODO: Need to validate this against OSR+ exploding dice rules
         //let weapon_critical_range = 20;
         //let critical_range = 20;
@@ -189,10 +189,9 @@
 
           let other_attributes = {
             // Base Info
-            'level': character.level,
-            'origin':character.object_origin.post_title,
-            'class':character.object_class.post_title,
-            'kit':character.object_class.post_title,
+            'attr_origin':character.object_origin.post_title,
+            'attr_class':character.object_class.post_title,
+            'attr_kit':character.object_kit.post_title,
             'ethos': character.object_ethos.post_title,
             'culture':character.object_culture.post_title,
             'faction':character.object_faction.post_title,
@@ -207,15 +206,14 @@
             'hair': (character.hair || ''),
             'skin': (character.skin || ''),
             'character_appearance': (character.traits.appearance || ''),
-
+            */
+            
             // Ability Scores
-            'strength_base': getTotalAbilityScore(character, 1),
-            'dexterity_base': getTotalAbilityScore(character, 2),
-            'constitution_base': getTotalAbilityScore(character, 3),
-            'intelligence_base': getTotalAbilityScore(character, 4),
-            'wisdom_base': getTotalAbilityScore(character, 5),
-            'charisma_base': getTotalAbilityScore(character, 6),
-
+            //'might_base': getTotalAbilityScore(character, 1),
+            //'deft_base': getTotalAbilityScore(character, 2),
+            //'smart_base': getTotalAbilityScore(character, 3)
+            
+            /*
             // Traits
             'personality_traits': character.traits.personalityTraits,
             'options-flag-personality': '0',
@@ -272,7 +270,7 @@
                 illegal.push(scan);
             }
         }
-        for (scan in repeating_attributes) {
+       for (scan in repeating_attributes) {
             if ((repeating_attributes[scan] === undefined) || (repeating_attributes[scan] === null)) {
                 repeating_attributes[scan] = '';
                 illegal.push(scan);
@@ -289,6 +287,90 @@
 // End of on chat-msg process
 
 // Begin remaining const declarations
+    const createSingleWriteQueue = (attributes) => {
+        // this is the list of trigger attributes that will trigger class recalculation, as of 5e OGL 2.5 October 2018
+        // (see on... handler that calls update_class in sheet html)
+        // these are written first and individually, since they trigger a lot of changes
+        let class_update_triggers = [
+            'class', // NOTE: MUST be first because of shift below
+            'custom_class', 
+            'cust_classname', 
+            'cust_hitdietype', 
+            'cust_spellcasting_ability', 
+            'cust_spellslots', 
+            'cust_strength_save_prof', 
+            'cust_dexterity_save_prof', 
+            'cust_constitution_save_prof', 
+            'cust_intelligence_save_prof', 
+            'cust_wisdom_save_prof', 
+            'cust_charisma_save_prof', 
+            'subclass', 
+            'multiclass1', 
+            'multiclass1_subclass', 
+            'multiclass2', 
+            'multiclass2_subclass', 
+            'multiclass3', 
+            'multiclass3_subclass'];
+
+        // set class first, everything else is alphabetical
+        let classAttribute = class_update_triggers.shift();
+        class_update_triggers.sort();
+        class_update_triggers.unshift(classAttribute);
+
+        // write in deterministic order (class first, then alphabetical)
+        let items = [];
+        for (trigger of class_update_triggers) {
+            let value = attributes[trigger];
+            if ((value === undefined) || (value === null)) {
+                continue;
+            }
+            items.push([trigger, value]);
+            log('beyond: trigger attribute ' + trigger);
+            delete attributes[trigger];
+        }
+        return items;
+    }
+
+    const processItem = (character, items, single_attributes, repeating_attributes, total_level) => {
+        let nextItem = items.shift();
+
+        // check if the write queue was empty
+        if (nextItem === undefined) {
+            // do one giant write for all the single attributes, before we create a bunch of attacks 
+            // and other things that depend on stat changes
+            setAttrs(object.id, single_attributes);
+
+            // do one giant write for all the repeating attributes
+            setAttrs(object.id, repeating_attributes);
+
+            // configure HP, because we now know our CON score
+            //loadHitPoints(character, total_level);
+
+            if(class_spells.length > 0 && state[state_name][beyond_caller.id].config.imports.class_spells) {
+                sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is almost ready.<br />Class spells are being imported over time.</div>', null, {noarchive:true});
+
+                // this is really just artificially asynchronous, we are not currently using a worker, so it will happen as soon as we return
+                onSheetWorkerCompleted(() => {
+                    importSpells(character, class_spells);
+                })
+            } else {
+                reportReady(character);
+            }
+            return
+        }
+
+        // create empty attribute if not already there
+        let nextAttribute = findObjs({ type: 'attribute', characterid: object.id, name: nextItem[0] })[0];
+        nextAttribute = nextAttribute || createObj('attribute', { name: nextItem[0], characterid: object.id });
+
+        // async load next item
+        onSheetWorkerCompleted(function() {
+            processItem(character, items, single_attributes, repeating_attributes, total_level);
+        });
+        log('osrplus: ' + nextItem[0] + " = " + String(nextItem[1]));
+        nextAttribute.setWithWorker({ current: nextItem[1] });
+    }
+    
     const calculateInitiativeStyle = (character) => {
         let init_mods = getObjects(character.modifiers, 'subType', 'initiative');
         let initadv = init_mods.some(im => im.type == 'advantage');
@@ -363,11 +445,11 @@
     const sendConfigMenu = (player, first) => {
         let playerid = player.id;
         let prefix = (state[state_name][playerid].config.prefix !== '') ? state[state_name][playerid].config.prefix : '[NONE]';
-        let prefixButton = makeButton(prefix, '!beyond --config prefix|?{Prefix}', buttonStyle);
+        let prefixButton = makeButton(prefix, '!osrplus --config prefix|?{Prefix}', buttonStyle);
         let suffix = (state[state_name][playerid].config.suffix !== '') ? state[state_name][playerid].config.suffix : '[NONE]';
-        let suffixButton = makeButton(suffix, '!beyond --config suffix|?{Suffix}', buttonStyle);
-        let overwriteButton = makeButton(state[state_name][playerid].config.overwrite, '!beyond --config overwrite|'+!state[state_name][playerid].config.overwrite, buttonStyle);
-        let debugButton = makeButton(state[state_name][playerid].config.debug, '!beyond --config debug|'+!state[state_name][playerid].config.debug, buttonStyle);
+        let suffixButton = makeButton(suffix, '!osrplus --config suffix|?{Suffix}', buttonStyle);
+        let overwriteButton = makeButton(state[state_name][playerid].config.overwrite, '!osrplus --config overwrite|'+!state[state_name][playerid].config.overwrite, buttonStyle);
+        let debugButton = makeButton(state[state_name][playerid].config.debug, '!osrplus --config debug|'+!state[state_name][playerid].config.debug, buttonStyle);
         // let silentSpellsButton = makeButton(state[state_name][playerid].config.silentSpells, '!beyond --config silentSpells|'+!state[state_name][playerid].config.silentSpells, buttonStyle);
 
         let listItems = [
@@ -380,9 +462,9 @@
 
         let list = '<b>Importer</b>'+makeList(listItems, 'overflow: hidden; list-style: none; padding: 0; margin: 0;', 'overflow: hidden; margin-top: 5px;');
 
-        let languageGroupingButton = makeButton(state[state_name][playerid].config.languageGrouping, '!beyond --config languageGrouping|'+!state[state_name][playerid].config.languageGrouping, buttonStyle);
-        let initTieBreakerButton = makeButton(state[state_name][playerid].config.initTieBreaker, '!beyond --config initTieBreaker|'+!state[state_name][playerid].config.initTieBreaker, buttonStyle);
-        let spellTargetInAttacksButton = makeButton(state[state_name][playerid].config.spellTargetInAttacks, '!beyond --config spellTargetInAttacks|'+!state[state_name][playerid].config.spellTargetInAttacks, buttonStyle);
+        let languageGroupingButton = makeButton(state[state_name][playerid].config.languageGrouping, '!osrplus --config languageGrouping|'+!state[state_name][playerid].config.languageGrouping, buttonStyle);
+        let initTieBreakerButton = makeButton(state[state_name][playerid].config.initTieBreaker, '!osrplus --config initTieBreaker|'+!state[state_name][playerid].config.initTieBreaker, buttonStyle);
+        let spellTargetInAttacksButton = makeButton(state[state_name][playerid].config.spellTargetInAttacks, '!osrplus --config spellTargetInAttacks|'+!state[state_name][playerid].config.spellTargetInAttacks, buttonStyle);
 
         let inPlayerJournalsButton = makeButton(player.get('displayname'), '', buttonStyle);
         let controlledByButton = makeButton(player.get('displayname'), '', buttonStyle);
@@ -397,10 +479,10 @@
 
             let ipj = state[state_name][playerid].config.inplayerjournals == '' ? '[NONE]' : state[state_name][playerid].config.inplayerjournals;
             if(ipj != '[NONE]' && ipj != 'all') ipj = getObj('player', ipj).get('displayname');
-            inPlayerJournalsButton = makeButton(ipj, '!beyond --config inplayerjournals|?{Player|None,[NONE]|All Players,all'+players+'}', buttonStyle);
+            inPlayerJournalsButton = makeButton(ipj, '!osrplus --config inplayerjournals|?{Player|None,[NONE]|All Players,all'+players+'}', buttonStyle);
             let cb = state[state_name][playerid].config.controlledby == '' ? '[NONE]' : state[state_name][playerid].config.controlledby;
             if(cb != '[NONE]' && cb != 'all') cb = getObj('player', cb).get('displayname');
-            controlledByButton = makeButton(cb, '!beyond --config controlledby|?{Player|None,[NONE]|All Players,all'+players+'}', buttonStyle);
+            controlledByButton = makeButton(cb, '!osrplus --config controlledby|?{Player|None,[NONE]|All Players,all'+players+'}', buttonStyle);
         }
 
         let sheetListItems = [
@@ -417,14 +499,14 @@
         if(state[state_name][playerid].config.debug){
             let debugListItems = [];
             for(let importItemName in state[state_name][playerid].config.imports){
-                let button = makeButton(state[state_name][playerid].config.imports[importItemName], '!beyond --imports '+importItemName+'|'+!state[state_name][playerid].config.imports[importItemName], buttonStyle);
+                let button = makeButton(state[state_name][playerid].config.imports[importItemName], '!osrplus --imports '+importItemName+'|'+!state[state_name][playerid].config.imports[importItemName], buttonStyle);
                 debugListItems.push('<span style="float: left">'+importItemName+':</span> '+button)
             }
 
             debug += '<hr><b>Imports</b>'+makeList(debugListItems, 'overflow: hidden; list-style: none; padding: 0; margin: 0;', 'overflow: hidden; margin-top: 5px;');
         }
 
-        let resetButton = makeButton('Reset', '!beyond --reset', buttonStyle + ' margin: auto; width: 90%; display: block; float: none;');
+        let resetButton = makeButton('Reset', '!osrplus --reset', buttonStyle + ' margin: auto; width: 90%; display: block; float: none;');
 
         let title_text = (first) ? script_name + ' First Time Setup' : script_name + ' Config';
         let text = '<div style="'+style+'">'+makeTitle(title_text)+list+sheetList+debug+'<hr>'+resetButton+'</div>';
