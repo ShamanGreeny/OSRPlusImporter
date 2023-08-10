@@ -1,0 +1,110 @@
+<main>
+  <section class="header f-center">
+    <label>Name: <input name="attr_character_name" type="text"></label>
+    <label>Quote: <input name="attr_character_quote" type="text"></label>
+  </section>
+
+  <section class="common">
+    <label>Origin: <input name="attr_origin" type="text"></label>
+    <label>Class: <input name="attr_class" type="text" ></label>
+    <label>Kit: <input name="attr_kit" type="text" ></label>
+    <label>Culture: <input name="culture" type="text"></label>
+    <label>Faction: <input name="faction" type="text" ></label>
+    <label>Ethos: <input name="ethos" type="text" ></label>
+  </section>
+
+  <section class="skill f-col nowrap">
+    <h3>Attributes</h3>
+    <div class="f-row nowrap">
+      <label>Might</label>
+      <input type="number" name="attr_might" value="3">
+      <button type="roll" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
+    </div>
+    <div class="f-row nowrap">
+      <label>Deft</label>
+      <input type="number" name="attr_deft" value="3">
+      <button type="roll" name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
+    </div>
+    <div class="f-row nowrap">
+      <label>Smart</label>
+      <input type="number" name="attr_smart" value="3">
+      <button type="roll" name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
+    </div>
+
+    <h3>Skills</h3>
+    <div class="f-col nowrap">
+      <label>Initiative </label>
+      <div class="f-row nowrap">
+        <input type="number" name="attr_init" value="0">
+        <button type="roll" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
+      </div>
+    </div>
+    <div class="f-col nowrap">
+      <label>Defense </label>
+      <div class="f-row nowrap">
+        <input type="number" name="attr_defense" value="0">
+        <button type="roll" name="roll_defense" value="&{template:rolls} {{title=defense}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{defense}[defense]) ]]}}"> </button>
+      </div>
+    </div>
+    <div class="f-col nowrap">
+      <label>Soak </label>
+      <div class="f-row nowrap">
+        <input type="number" name="attr_soak" value="0">
+        <button type="roll" name="roll_soak" value="&{template:rolls} {{title=soak}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{body}[body])+(@{soak}[soak]) ]]}}"> </button>
+      </div>
+    </div>   
+  </section>
+
+  <section class="power f-col">
+    <h3>Powers</h3>
+    <fieldset class="repeating_power">
+        <input name="attr_power" type="text" >
+    </fieldset>
+  </section>
+
+  <section class="attack">
+    <h3>Attacks</h3>
+    <textarea name="attr_attacks"></textarea>
+  </section>
+
+  <section class="inv">
+    <h3>Inventory</h3>
+    <textarea name="attr_inventory"></textarea>
+  </section>
+
+  <section class="misc">
+    <h3>Physical Description</h3>
+    <textarea name="attr_description"></textarea>
+  </section>
+
+  <footer class="f-col f-center">
+    <span>Generic copyright disclaimer</span>
+  </footer>
+</main>
+
+<!-- Datalists & thing that don't show directly on sheet -->
+
+<datalist id="class">
+    <option value="Fighter">Fighter</option>
+    <option value="Mage">Mage</option>
+    <option value="Expert">Expert</option>
+</datalist>
+
+<!-- roll template -->
+
+<rolltemplate class="sheet-rolltemplate-rolls">
+  <div class="sheet-container">
+    <div class="sheet-header">
+      {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
+      {{#name}}<div class="sheet-name">{{name}}</div>{{/name}}
+      {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
+    </div>
+    <div class="sheet-content">
+      {{#allprops() title name subtitle desc}}
+      <div class="sheet-key">{{key}}</div>
+      <div class="sheet-value">{{value}}</div>
+      {{/allprops() title name subtitle desc}}
+      {{#desc}}<div class="sheet-desc">{{desc}}</div>{{/desc}}
+    </div>
+  </div>
+</rolltemplate>
