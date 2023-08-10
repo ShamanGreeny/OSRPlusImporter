@@ -189,9 +189,10 @@
 
           let other_attributes = {
             // Base Info
-            'attr_origin':character.object_origin.post_title,
-            'attr_class':character.object_class.post_title,
-            'attr_kit':character.object_kit.post_title,
+            'character_quote':character.catchphrase,
+            'origin':character.object_origin.post_title,
+            'class':character.object_class.post_title,
+            'kit':character.object_kit.post_title,
             'ethos': character.object_ethos.post_title,
             'culture':character.object_culture.post_title,
             'faction':character.object_faction.post_title,
