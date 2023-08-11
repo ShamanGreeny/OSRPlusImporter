@@ -14,7 +14,7 @@ input[type=number]
     font-size:100%; 
     text-align: center;
     border-bottom: .1em solid black;
-    -moz-appearance:textfield;
+
 }
 
 input[type=text]
@@ -158,11 +158,6 @@ div.sheet-am1, div.sheet-am2, div.sheet-am3, div.sheet-am4, div.sheet-am5, input
     letter-spacing:-.1em
 }
 
-input[type=text].sheet-am1, input[type=text].sheet-am2, input[type=text].sheet-am3, input[type=text].sheet-am4, 
-    input[type=text].sheet-am5
-{
-
-}
 div.sheet-am1, div.sheet-am2, div.sheet-am3, div.sheet-am4, div.sheet-am5
 {
     border-bottom: .1em solid transparent;
@@ -294,7 +289,7 @@ input[type=text].sheet-es1
     text-align:center;
 }
 
-div.sheet-pts1, div.sheet-pts2, input[type=number].sheet-pts2
+div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=number].sheet-pts2
 {
     margin-bottom: .5em;
     font-size:100%;
@@ -306,11 +301,12 @@ div.sheet-pts1, div.sheet-pts2
     border-top: .1em solid transparent;
 }
 
-div.sheet-pts1
+div.sheet-pts1, input[type=text].sheet-pts1
 {
     float:left; 
     width:60%;
     text-align:left;
+    border-bottom: .1em solid transparent;
 }
 
 div.sheet-pts2, input[type=number].sheet-pts2
@@ -518,13 +514,13 @@ div.sheet-mv3, input[type=text].sheet-mv3
     text-align:center;
 }
 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3, input[type=number].sheet-sk4
 {
     margin-bottom: -.14em;
     font-size:100%;
 }
 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4
 {
     border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
@@ -533,23 +529,31 @@ div.sheet-sk1, div.sheet-sk2, div.sheet-sk3
 div.sheet-sk1, input[type=number].sheet-sk1
 {
     float:left; 
-    width:14%;
+    width:15%;
     text-align:center;
 }
 
 div.sheet-sk2, input[type=text].sheet-sk2
 {
     float:left; 
-    width:72%;
+    width:50%;
     text-align:left;
 }
 
 div.sheet-sk3, input[type=text].sheet-sk3
 {
     float:left; 
-    width:14%;
+    width:20%;
     text-align:center;
 }
+
+div.sheet-sk4, input[type=number].sheet-sk4
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+}
+
 
 div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4, input[type=number].sheet-pow1, input[type=text].sheet-pow2, 
     input[type=text].sheet-pow3, input[type=text].sheet-pow4

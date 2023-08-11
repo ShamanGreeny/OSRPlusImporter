@@ -1,5 +1,5 @@
 /*
- * Version 0.0.2
+ * Version 0.0.3
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -196,7 +196,34 @@
             'ethos': character.object_ethos.post_title,
             'culture':character.object_culture.post_title,
             'faction':character.object_faction.post_title,
-            'archetype':character.object_archetype.post_title
+            'archetype':character.object_archetype.post_title,
+            
+            // Ability Scores
+            'might': character.might_modified_sheet,
+            
+            'deft': character.deft_modified_sheet,
+            'smart': character.smart_modified_sheet,
+            
+            // Modifiers
+            'init': character.modifier_initiative,
+            'defense': character.defense,
+            'soak': character.soak,
+            
+            // Current Status
+            'hp': character.hp,
+            'hp_current': character.hp_current,
+            'ap': character.ap,
+            'ap_current': character.ap_current,
+            'mp': character.mp,
+            'mp_current': character.mp_current,
+            'fp': character.fp,
+            'fp_current':character.fp_current,
+            
+            // Conflict and Flaw Types and Descritptions
+            'conflict': character.object_conflict.post_title,
+            'conflict_detail': character.object_conflict.post_content,
+            'flaw': character.object_flaw.post_title,
+            'flaw_detail':character.object_flaw.post_content
             /*
             // Bio Info
             'age': (character.age || ''),
@@ -209,10 +236,7 @@
             'character_appearance': (character.traits.appearance || ''),
             */
             
-            // Ability Scores
-            //'might_base': getTotalAbilityScore(character, 1),
-            //'deft_base': getTotalAbilityScore(character, 2),
-            //'smart_base': getTotalAbilityScore(character, 3)
+
             
             /*
             // Traits
@@ -703,7 +727,7 @@
 
     const setDefaults = (reset) => {
         const defaults = {
-            overwrite: false,
+            overwrite: true,
             debug: false,
             prefix: '',
             suffix: '',
