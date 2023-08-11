@@ -6,6 +6,10 @@
  * Github: 
  * Paypal.me: https://www.paypal.me/kristianparsons
  *
+ *  Fodel: https://osrplus.com/api/roll20/?id=10350
+ *  Englebert: https://osrplus.com/api/roll20/?id=16693
+ *  Barbara: https://osrplus.com/api/roll20/?id=17806
+ * 
  */
 
 (function() {
