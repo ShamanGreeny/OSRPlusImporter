@@ -1,5 +1,5 @@
 <main>
-  <section class="header f-center">
+  <section class="header f-col">
     <label>Name: <input name="attr_character_name" type="text"></label>
     <label>Quote: <input name="attr_character_quote" type="text"></label>
   </section>
@@ -32,25 +32,23 @@
     </div>
 
     <h3>Skills</h3>
-    <div class="f-col nowrap">
+    <div class="f-row nowrap">
       <label>Initiative </label>
       <div class="f-row nowrap">
         <input type="number" name="attr_init" value="0">
         <button type="roll" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
       </div>
     </div>
-    <div class="f-col nowrap">
+    <div class="f-row nowrap">
       <label>Defense </label>
       <div class="f-row nowrap">
         <input type="number" name="attr_defense" value="0">
-        <button type="roll" name="roll_defense" value="&{template:rolls} {{title=defense}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{defense}[defense]) ]]}}"> </button>
-      </div>
+              </div>
     </div>
-    <div class="f-col nowrap">
+    <div class="f-row nowrap">
       <label>Soak </label>
       <div class="f-row nowrap">
         <input type="number" name="attr_soak" value="0">
-        <button type="roll" name="roll_soak" value="&{template:rolls} {{title=soak}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{body}[body])+(@{soak}[soak]) ]]}}"> </button>
       </div>
     </div>   
   </section>

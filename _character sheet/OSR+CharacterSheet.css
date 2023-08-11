@@ -64,11 +64,24 @@ section {
 }
 .charsheet label{
   margin: 3px;
-  padding: 3px 0 0 0;
+  padding: 10px 0 0 0;
+  display: inline-block;
 }
 
-.charsheet input[type="text"], input[type="number"]{
+.charsheet input[type="text"]{
   margin: 2px 4px;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  color: black;
+  width: 60%;
+ }
+
+.charsheet input[type="number"]{
+  margin: 2px 4px;
+  padding: 0;
+  color: black;
 }
 
 .charsheet textarea {
@@ -81,7 +94,6 @@ section {
 .header {
   grid-area: header;
   background-color: tan;
-  flex-direction: column;
 }
 
 .skill {

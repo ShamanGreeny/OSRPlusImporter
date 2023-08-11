@@ -1,0 +1,18 @@
+include scaffold/_kpug.pug
+include mixins/_sheetmixins.pug
+- let templateName = 'thj2e';
++hidden({name:'template start',value:`@{whisper}&{template:${templateName}} {{character_name=@{character_name}}} {{character_id=@{character_id}}}`})
++hidden({name:'sheet state',value:'settings'})
++hidden({name:'collapsed',value:''})
+main#main
+  nav#main-nav.sheet-nav
+    each val in ['character','npc']
+      +action({name:`nav ${val}`,class:`sheet-nav__tab ${val}`,'data-i18n':`${val} sheet`,'data-i18n-title':`${val} sheet button title`,role:'heading','aria-level':5,trigger:{listenerFunc:'navigateSheet'}})
+    +action({name:'nav settings',class:'pictos active sheet-nav__tab settings','data-i18n-title':'open the settings page',role:'heading','aria-level':5,trigger:{listenerFunc:'navigateSheet'}})
+      |y
+  include articles/settings/_settings.pug
+  include articles/character/_character.pug
+  include articles/npc/_npc.pug
+include rolltemplates/_thj2etemplate.pug
++kscript
+  //- All additional javascript files should start here
