@@ -6,16 +6,16 @@
 <div style="width:64.52em; padding-left:1em; min-height:5em;">
     <div style="width:66%; float:left; min-height:5em;">
         <div class="line">
-            <div class="head1" style="width:18%;">Character Name:</div>
-            <input type="text" class="head1" name="attr_attr_character_name" value="" style="width:77%;"/>
+            <div class="head1" style="width:20%;">Character Name:</div>
+            <input type="text" class="head1" name="attr_character_name" value="" style="width:70%;"/>
         </div>
         <div class="line">
-            <div class="head1" style="width:21%">Quote:</div>
-            <input type="text" class="head1" name="attr_character_quote" value="" style="width:74%"/>
+            <div class="head1" style="width:20%">Quote:</div>
+            <input type="text" class="head1" name="attr_character_quote" value="" style="width:70%"/>
         </div>
     </div>
     <div style="width:33%; float:left; text-align:center; vertical-align:middle">
-        <img src="https://osrplus.com/wp-content/themes/osrplus/assets/images/logo-rectangle.png" style="width:144px;height:81px;">
+        <img src="https://github.com/ShamanGreeny/OSRPlusImporter/blob/234d1372837446b9b3b958877cfab04ee808aaa3/_character%20sheet/logo-rectangle.png" style="width:144px;height:81px;">
 
     </div>
 </div>
@@ -27,22 +27,22 @@
                 <div class="line">
                     <div class="cha1" style="font-weight: bold">Val</div>
                     <div class="cha2" style="font-weight: bold">Char</div>
-                    <div class="cha4" style="font-weight: bold">Roll</div>
+                    <div class="cha3" style="font-weight: bold">Roll</div>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_might" value="3">
                     <div class="cha2">Might</div>
-                    <button type="roll" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
+                    <button type="roll" class="cha3" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_deft" value="10" >
                     <div class="cha2">Deft</div>
-                    <button type="roll" name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
+                    <button type="roll" class="cha3" name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_smart" value="10">
                     <div class="cha2">Smart</div>
-                    <button type="roll" name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
+                    <button type="roll" class="cha3"name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
                 </div>
             </div>
         </div>
