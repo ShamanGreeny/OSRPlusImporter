@@ -4,6 +4,8 @@
 /* 1.4 added css for the hit location template */
 /* 1.41 adjusted mv2 to be number input */
 
+@import url('https://fonts.googleapis.com/css?family=Eczar:700|Merriweather&display=swap');
+
 input[type=number]
 {
     padding: 0;
@@ -27,6 +29,7 @@ input[type=text]
     font-size:100%; 
     text-align: center;
     border-bottom:.1em solid black;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
 }
 textarea
 {
@@ -35,6 +38,7 @@ textarea
     box-sizing: border-box;
     font-size: 9px;
     resize: none;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
 
 }
 input[type=number]::-webkit-inner-spin-button, 
@@ -74,6 +78,8 @@ div.sheet-section-title {
     width: 100%;
     border-bottom: .2em solid black;
     margin-bottom: 1em;
+    font-family: 'Eczar', Arial, Helvetica, sans-serif;
+
 }
 
 div.sheet-line
@@ -82,6 +88,7 @@ div.sheet-line
     padding:0; 
     clear: left;
     margin-top: -.5em;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
 }
 
 .sheet-head1, .input[type=text].sheet-head1
@@ -90,6 +97,8 @@ div.sheet-line
     border-top: .1em solid transparent;
     margin-bottom: .175em;
     font-size:100%;
+    font-weight: 700;
+    
 }
 
 div.sheet-head1, input[type=text].sheet-head1
@@ -205,7 +214,7 @@ div.sheet-cs1, div.sheet-cs2,  input[type=text].sheet-cs2
     font-size:100%;
 }
 
-div.sheet-cs1, div.sheet-cs2
+div.sheet-cs1, div.sheet-cs2, div.sheet-cs3
 {
     border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
@@ -214,16 +223,24 @@ div.sheet-cs1, div.sheet-cs2
 div.sheet-cs1
 {
     float:left; 
-    width:22%;
+    width:40%;
     text-align:left;
 }
 
 div.sheet-cs2, input[type=number].sheet-cs2
 {
     float:left; 
-    width:39%;
+    width:30%;
     text-align:center;
 }
+
+div.sheet-cs3, input[type=number].sheet-cs3
+{
+    float:left; 
+    width:30%;
+    text-align:center;
+}
+
 
 div.sheet-vs1, input[type=text].sheet-vs1
 {
@@ -526,11 +543,12 @@ div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4
     border-top: .1em solid transparent;
 }
 
-div.sheet-sk1, input[type=number].sheet-sk1
+div.sheet-sk1, input[type=checkbox].sheet-sk1
 {
     float:left; 
     width:15%;
     text-align:center;
+    
 }
 
 div.sheet-sk2, input[type=text].sheet-sk2
@@ -538,6 +556,9 @@ div.sheet-sk2, input[type=text].sheet-sk2
     float:left; 
     width:50%;
     text-align:left;
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+    font-size: 95%;
 }
 
 div.sheet-sk3, input[type=text].sheet-sk3
