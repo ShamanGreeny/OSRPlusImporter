@@ -28,7 +28,15 @@ input[type=text]
     text-align: center;
     border-bottom:.1em solid black;
 }
+textarea
+{
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    font-size: 9px;
+    resize: none;
 
+}
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button 
 { 
@@ -108,14 +116,14 @@ div.sheet-head1, input[type=text].sheet-head1
 div.sheet-cha1, input[type=number].sheet-cha1
 {
     float:left; 
-    width: 25%;
+    width: 33%;
     text-align:center;
 }
 
 div.sheet-cha2
 {
     float:left; 
-    width: 20%;
+    width: 33%;
     text-align:left;
     font-weight:bold;
 }
@@ -130,8 +138,8 @@ div.sheet-cha3, input[type=number].sheet-cha3
 div.sheet-cha4
 {
     float:left; 
-    width:35%;
-    text-align:center;
+    width:33%;
+    text-align:left;
 }
 
 input[type=number].sheet-cha4
@@ -615,7 +623,7 @@ div.sheet-disad2, input[type=text].sheet-disad2
 /*    ROLL TEMPLATE(S)                                     */
 /*                                                         */
 /* ------------------------------------------------------- */
-
+/*
 .sheet-rolltemplate-hero6template div.sheet-rt-main-wrap
 {
 	padding-top: 16px;
@@ -669,5 +677,52 @@ div.sheet-disad2, input[type=text].sheet-disad2
 
 .sheet-rolltemplate-hero6template div.sheet-rt-divider
 {
-	border-bottom: solid #DDD 1px; /* yeah, it's not rem */
+	border-bottom: solid #DDD 1px; yeah, it's not rem 
 }
+*/
+.sheet-rolltemplate-rolls {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  .sheet-rolltemplate-rolls .sheet-container {
+    border: 3px solid black;
+    border-radius: 3px;
+  }
+  .sheet-rolltemplate-rolls .sheet-header {
+    background-color: var(--header-bg-color, #a83521);
+    color: var(--header-text-color, #FFF);
+    text-align: left;
+    text-transform: capitalize;
+    padding: 5px;
+    border-bottom: 2px solid black;
+  }
+  .sheet-rolltemplate-rolls .sheet-title,
+  .sheet-rolltemplate-rolls .sheet-name {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .sheet-rolltemplate-rolls .sheet-subtitle {
+    font-size: 1em;
+  }
+  .sheet-rolltemplate-rolls .sheet-container {
+    --header-bg-color: #a83521;
+    --header-text-color: #FFF;
+  }
+  
+  .sheet-rolltemplate-rolls .sheet-content {
+    display: grid;
+    background: #FFF;
+    grid-template-columns: auto auto;
+    line-height: 1.4em;
+  }
+  .sheet-rolltemplate-rolls .sheet-content > div {
+    padding: 5px;
+  }
+  .sheet-rolltemplate-rolls .sheet-content .sheet-key {
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: right;
+  }
+  .sheet-rolltemplate-rolls .sheet-content :nth-child(4n+3),
+  .sheet-rolltemplate-rolls .sheet-content :nth-child(4n) {
+    background: #EEE;
+  }

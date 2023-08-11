@@ -15,179 +15,55 @@
         </div>
     </div>
     <div style="width:33%; float:left; text-align:center; vertical-align:middle">
-        <img src="https://github.com/ShamanGreeny/OSRPlusImporter/blob/234d1372837446b9b3b958877cfab04ee808aaa3/_character%20sheet/logo-rectangle.png" style="width:144px;height:81px;">
+        <img src="https://raw.githubusercontent.com/ShamanGreeny/OSRPlusImporter/main/_character%20sheet/logo-rectangle.jpg" style="width:180px;height:81px;">
 
     </div>
 </div>
 <div style="clear:left; width:64.52em;">
     <div class="single-col">
-        <div class="section" style="min-height:31em;">
+        <div class="section" style="min-height:16em;">
             <div class="section-title">Statistics</div>
             <div class="subsection">
                 <div class="line">
                     <div class="cha1" style="font-weight: bold">Val</div>
                     <div class="cha2" style="font-weight: bold">Char</div>
-                    <div class="cha3" style="font-weight: bold">Roll</div>
+                    <div class="cha4" style="font-weight: bold">Roll</div>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_might" value="3">
                     <div class="cha2">Might</div>
-                    <button type="roll" class="cha3" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
+                    <button type="roll" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_deft" value="10" >
                     <div class="cha2">Deft</div>
-                    <button type="roll" class="cha3" name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
+                    <button type="roll"  name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_smart" value="10">
                     <div class="cha2">Smart</div>
-                    <button type="roll" class="cha3"name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
+                    <button type="roll" name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
                 </div>
-            </div>
-        </div>
-        <div class="section" style="min-height:26em;">
-            <div class="section-title">Attacks & Maneuvers</div>
-            <div class="subsection">
+                <div class="line"><br></div>
                 <div class="line">
-                    <div class="am1" style="font-weight: bold">Maneuver</div>
-                    <div class="am2" style="font-weight: bold">Phase</div>
-                    <div class="am3" style="font-weight: bold">OCV</div>
-                    <div class="am4" style="font-weight: bold">DCV</div>
-                    <div class="am5" style="font-weight: bold">Effects</div>
-                </div>
+                    <input type="number" class="cha1" name="attr_init" value="0">
+                    <div class="cha2">Initiative</div>
+                    <button type="roll" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
+                </div>    
                 <div class="line">
-                    <div class="am1">Block</div>
-                    <div class="am2">&#189;</div>
-                    <div class="am3">+0</div>
-                    <div class="am4">+0</div>
-                    <div class="am5">Block, Abort</div>
-                </div>
+                    <input type="number" class="cha1" name="attr_defense" value="10">
+                    <div class="cha2">Defense</div>
+                </div>  
                 <div class="line">
-                    <div class="am1">Brace</div>
-                    <div class="am2">0</div>
-                    <div class="am3">+2</div>
-                    <div class="am4">&#189;</div>
-                    <div class="am5">+2 OCV vs. R. Mod</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Disarm</div>
-                    <div class="am2">&#189;</div>
-                    <div class="am3">-2</div>
-                    <div class="am4">+0</div>
-                    <div class="am5">Disarm, STR v. STR</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Dodge</div>
-                    <div class="am2">&#189;</div>
-                    <div class="am3">+0</div>
-                    <div class="am4">+3</div>
-                    <div class="am5">Abort, vs. all attacks</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Grab</div>
-                    <div class="am2">&#189;</div>
-                    <div class="am3">-1</div>
-                    <div class="am4">-1</div>
-                    <div class="am5">Grab 2 limbs</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Grab By</div>
-                    <div class="am2">&#189; &#8224;</div>
-                    <div class="am3">-3</div>
-                    <div class="am4">-4</div>
-                    <div class="am5">Move & Grab; +(v/10) to STR</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Haymaker</div>
-                    <div class="am2">&#189;*</div>
-                    <div class="am3">+0</div>
-                    <div class="am4">-5</div>
-                    <div class="am5">+4 DCs to attack</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Move By</div>
-                    <div class="am2">&#189; &#8224;</div>
-                    <div class="am3">-2</div>
-                    <div class="am4">-2</div>
-                    <div class="am5">STR/2 + v/10; you take &#8531;</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Move Through</div>
-                    <div class="am2">&#189; &#8224;</div>
-                    <div class="am3">-v/10</div>
-                    <div class="am4">-3</div>
-                    <div class="am5">STR + v/6; you take &#189; or full</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Set</div>
-                    <div class="am2">1</div>
-                    <div class="am3">+1</div>
-                    <div class="am4">+0</div>
-                    <div class="am5">Ranged attacks only</div>
-                </div>
-                <div class="line">
-                    <div class="am1">Strike</div>
-                    <div class="am2">&#189;</div>
-                    <div class="am3">+0</div>
-                    <div class="am4">+0</div>
-                    <div class="am5">Normal HTH Attack</div>
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man1" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase1" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV1" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV1" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff1" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man2" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase2" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV2" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV2" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff2" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man3" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase3" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV3" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV3" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff3" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man4" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase4" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV4" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV4" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff4" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man5" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase5" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV5" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV5" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff5" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man6" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase6" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV6" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV6" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff6" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="am1" name="attr_MA_Man7" value="" />
-                    <input type="text" class="am2" name="attr_MA_Phase7" value="" />
-                    <input type="text" class="am3" name="attr_MA_OCV7" value="" />
-                    <input type="text" class="am4" name="attr_MA_DCV7" value="" />
-                    <input type="text" class="am5" name="attr_MA_Eff7" value="" />
-                </div>
+                    <input type="number" class="cha1" name="attr_soak" value="10">
+                    <div class="cha2">Soak</div>
+                </div>            
             </div>
         </div>
     <div style="clear:left; width:64.52em; padding-right:none">
         <div class="single-col">
             <div class="section" style="min-height:53em;">
-            <div class="section-title">Skills, Perks, & Talents</div>
+            <div class="section-title">Skills</div>
             <div class="subsection">
                 <div class="line">
                     <div class="sk1" style="font-weight:bold">Cost</div>
@@ -366,45 +242,42 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div class="sheet-section" style="min-height:22.4em;">
-           
-        </div>
-        <div class="sheet-section" style="min-height:14.9em;">
-
-        </div>
-        -->
     </div>
 </div>
 </div>
     <div class="single-col">
-        <div class="sheet-section" style="min-height:10em;">
+        <div class="sheet-section" style="min-height:12em;">
             <div class="sheet-section-title">Current Status</div>
             <div class="sheet-subsection">
                 <div class="line">
                     <div class="cs1">&nbsp;</div>
-                    <div class="cs2" style="font-weight:bold">Maximum</div>
                     <div class="cs2" style="font-weight:bold">Current</div>
+                    <div class="cs2" style="font-weight:bold">Maximum</div>
                 </div>
                 <div class="line">
-                    <div class="cs1">END</div>
-                    <input type="number" class="cs2" style="font-weight:bold" name="attr_END_max_show" disabled="true" value="@{ENDMAX}" />
-                    <input type="number" class="cs2" name="attr_END_show" disabled="true"  value="" />
+                    <div class="cs1">HP</div>
+                    <input type="number" class="cs2" name="attr_hp_current" value="0" />
+                    <input type="number" class="cs2" style="font-weight:bold" name="attr_hp" disabled="true"  value="" />
                 </div>
                 <div class="line">
-                    <div class="cs1">BODY</div>
-                    <input type="number" class="cs2" style="font-weight:bold" name="attr_BODY_max_show" disabled="true" value="@{BODYMAX}" />
-                    <input type="number" class="cs2" name="attr_BODY_show" disabled="true"  value="" />
+                    <div class="cs1">AP</div>
+                    <input type="number" class="cs2" name="attr_ap_current" value="0" />
+                    <input type="number" class="cs2" style="font-weight:bold" name="attr_ap" disabled="true"  value="" />
                 </div>
                 <div class="line">
-                    <div class="cs1">STUN</div>
-                    <input type="number" class="cs2" style="font-weight:bold" name="attr_STUN_max_show" disabled="true" value="@{STUNMAX}" />
-                    <input type="number" class="cs2" name="attr_STUN_show" disabled="true"  value="" />
+                    <div class="cs1">MP</div>
+                    <input type="number" class="cs2" name="attr_mp_current" value="0" />
+                    <input type="number" class="cs2" style="font-weight:bold" name="attr_mp" disabled="true"  value="" />
+                </div>
+                <div class="line">
+                    <div class="cs1">FP</div>
+                    <input type="number" class="cs2" name="attr_fp_current" value="0" />
+                    <input type="number" class="cs2" style="font-weight:bold" name="attr_fp" disabled="true"  value="3" />
                 </div>
             </div>
         </div>
         <div class="sheet-section" style="min-height:30.3em;">
-            <div class="sheet-section-title">Combat Information</div>
+            <div class="sheet-section-title">Equipment</div>
              <div class="sheet-subsection">
                 <div class="line">
                     <div class="vs1" style="width:14%; font-weight:bold">Phase</div>
@@ -578,7 +451,7 @@
         </div>
         </div>
         <div class="sheet-section" style="min-height:13em;">
-            <div class="sheet-section-title">Senses</div>
+            <div class="sheet-section-title">Maleficence</div>
             <div class="sheet-subsection">
                 <div class="line">
                     <div class="es1" style="width:59%"><span style="font-weight:bold">Perception Roll</span> (9+INT/5)</div> 
@@ -611,16 +484,14 @@
     </div>
     </div>
     <div class="single-col">
-        <div class="sheet-section" style="min-height:11.1em;">
-            <div class="sheet-section-title">Experience Points</div>
+        <div class="sheet-section" style="min-height:12em;">
+            <div class="sheet-section-title">Conflict Tags</div>
             <div class="sheet-subsection">
                 <div class="line">
-                    <div class="pts1" style="font-weight:bold">Total Points</div>
-                    <input type="number" class="pts2" name="attr_Total_Points" value=""/>
+                    <div class="pts1" style="font-weight:bold" name="attr_conflict">The Reculse</div>
                 </div>
-                <div class="line">
-                    <div class="pts1" style="font-weight:bold">Total Experience Points</div>
-                    <input type="number" class="pts2" name="attr_XP_Total"  value="" />
+                <div class="input">
+                    <textarea name="attr_conflict_detail" value="The Recluse"></textarea>
                 </div>
                 <div class="line">
                     <div class="pts1">Experience Spent</div>
@@ -633,7 +504,7 @@
             </div>
         </div>
                 <div class="sheet-section" style="min-height:23em;">
-             <div class="sheet-section-title">Defenses</div>
+             <div class="sheet-section-title">Flaw Tags</div>
             <div class="sheet-subsection">
                <div class="line">
                     <div class="def1" style=" text-align:center">Type</div>
@@ -682,7 +553,7 @@
             </div>
         </div>
         <div class="sheet-section" style="min-height:19em;">
-            <div class="sheet-section-title">Movement</div>
+            <div class="sheet-section-title">Kit</div>
             <div class="sheet-subsection">
                 <div class="line">
                     <div class="mv1" style="font-weight:bold">Type</div>
@@ -741,7 +612,7 @@
 </div>
     <div style="width:66%; float:left">
         <div class="sheet-section" style="min-height:56em; margin-right:0; margin-bottom:1.em">
-            <div class="sheet-section-title">Powers & Equipment</div>
+            <div class="sheet-section-title">Spells</div>
             <div class="sheet-subsection">
                 <div class="line">
                     <div class="pow1" style="font-weight:bold">Cost</div>
@@ -967,77 +838,8 @@
                 </div>
             </div>
         </div>
-          <!--
-         <div class="sheet-section" style="min-height:14.25em;">
-            
-        </div>
-        -->
 </div>
-    <div style="width:100%; float:left">
-        <div class="sheet-section" style="min-height:23em;  margin-right:1; margin-bottom:1.em">
-            <div class="sheet-section-title">Disadvantages</div>
-            <div class="sheet-subsection">
-                <div class="line">
-                    <div class="disad1" style="font-weight:bold">Cost</div>
-                    <div class="disad2" style="font-weight:bold; text-align:center">Disadvantage</div>
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost1" value="" />
-                    <input class="disad2" type="text" name="attr_Disad1" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost2" value="" />
-                    <input class="disad2" type="text" name="attr_Disad2" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost3" value="" />
-                    <input class="disad2" type="text" name="attr_Disad3" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost4" value="" />
-                    <input class="disad2" type="text" name="attr_Disad4" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost5" value="" />
-                    <input class="disad2" type="text" name="attr_Disad5" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost6" value="" />
-                    <input class="disad2" type="text" name="attr_Disad6" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost7" value="" />
-                    <input class="disad2" type="text" name="attr_Disad7" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost8" value="" />
-                    <input class="disad2" type="text" name="attr_Disad8" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost9" value="" />
-                    <input class="disad2" type="text" name="attr_Disad9" value="" />
-                </div>
-                 <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost10" value="" />
-                    <input class="disad2" type="text" name="attr_Disad10" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost11" value="" />
-                    <input class="disad2" type="text" name="attr_Disad11" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost12" value="" />
-                    <input class="disad2" type="text" name="attr_Disad12" value="" />
-                </div>
-                <div class="line">
-                    <input class="disad1" type="number" name="attr_Disad_Cost13" value="" />
-                    <input class="disad2" type="text" name="attr_Disad13" value="" />
-                </div>
 
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- ------------------------- -->
