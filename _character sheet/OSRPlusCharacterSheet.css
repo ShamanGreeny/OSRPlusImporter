@@ -4,7 +4,12 @@
 /* 1.4 added css for the hit location template */
 /* 1.41 adjusted mv2 to be number input */
 
-@import url('https://fonts.googleapis.com/css?family=Eczar:700|Merriweather&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
+
+button[type=roll].sheet-d6-dice::before {
+    font-family: 'dicefontd6';
+    content: 'F ';
+}
 
 input[type=number]
 {
@@ -16,6 +21,8 @@ input[type=number]
     font-size:100%; 
     text-align: center;
     border-bottom: .1em solid black;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 
 }
 
@@ -30,6 +37,7 @@ input[type=text]
     text-align: center;
     border-bottom:.1em solid black;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
 textarea
 {
@@ -39,6 +47,7 @@ textarea
     font-size: 9px;
     resize: none;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 
 }
 input[type=number]::-webkit-inner-spin-button, 
@@ -74,7 +83,7 @@ div.sheet-subsection {
 
 div.sheet-section-title {
     text-align: center;
-    font-weight: bold;
+    font-weight: 800;
     width: 100%;
     border-bottom: .2em solid black;
     margin-bottom: 1em;
@@ -89,6 +98,7 @@ div.sheet-line
     clear: left;
     margin-top: -.5em;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
 
 .sheet-head1, .input[type=text].sheet-head1
@@ -109,14 +119,16 @@ div.sheet-head1, input[type=text].sheet-head1
     text-align:left;
 }
 
+/* Statistics section */
 .sheet-cha1, .sheet-cha2, .sheet-cha3, .sheet-cha4, input[type=number].sheet-cha1, input[type=number].sheet-cha3,
     input[type=number].sheet-cha4
 {
     margin-bottom: .175em;
+    margin-right: 1em;
     font-size:100%;
 }
 
-.sheet-cha1, .sheet-cha2, .sheet-cha3, .sheet-cha4
+.sheet-cha1, .sheet-cha2, .sheet-cha3
 {
     border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
@@ -125,39 +137,27 @@ div.sheet-head1, input[type=text].sheet-head1
 div.sheet-cha1, input[type=number].sheet-cha1
 {
     float:left; 
-    width: 33%;
+    width: 20%;
     text-align:center;
 }
 
 div.sheet-cha2
 {
     float:left; 
-    width: 33%;
+    width: 40%;
     text-align:left;
     font-weight:bold;
 }
 
-div.sheet-cha3, input[type=number].sheet-cha3
+div.sheet-cha3
 {
     float:left; 
     width:20%; 
-    text-align:center;
-}
-
-div.sheet-cha4
-{
-    float:left; 
-    width:33%;
     text-align:left;
 }
 
-input[type=number].sheet-cha4
-{
-    width:20%;
-    text-align:center;
-    font-size:100%;
-}
 
+/* */
 div.sheet-am1, div.sheet-am2, div.sheet-am3, div.sheet-am4, div.sheet-am5, input[type=text].sheet-am1, 
     input[type=text].sheet-am2, input[type=text].sheet-am3, input[type=text].sheet-am4, 
     input[type=text].sheet-am5

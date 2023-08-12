@@ -27,28 +27,28 @@
                 <div class="line">
                     <div class="cha1" style="font-weight: bold">Val</div>
                     <div class="cha2" style="font-weight: bold">Char</div>
-                    <div class="cha4" style="font-weight: bold">Roll</div>
+                    <div class="cha3" style="font-weight: bold">Roll</div>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_might" value="3">
                     <div class="cha2">Might</div>
-                    <button type="roll" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_deft" value="10" >
                     <div class="cha2">Deft</div>
-                    <button type="roll"  name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
+                    <button type="roll"  class="sheet-d6-dice" name="roll_deft" value="&{template:rolls} {{title=Deft}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[deft] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_smart" value="10">
                     <div class="cha2">Smart</div>
-                    <button type="roll" name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_smart" value="&{template:rolls} {{title=Smart}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
                 </div>
                 <div class="line"><br></div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_init" value="0">
                     <div class="cha2">Initiative</div>
-                    <button type="roll" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
                 </div>    
                 <div class="line">
                     <input type="number" class="cha1" name="attr_defense" value="10">
