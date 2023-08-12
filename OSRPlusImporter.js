@@ -400,19 +400,6 @@
         nextAttribute.setWithWorker({ current: nextItem[1] });
     }
     
-    const calculateInitiativeStyle = (character) => {
-        let init_mods = getObjects(character.modifiers, 'subType', 'initiative');
-        let initadv = init_mods.some(im => im.type == 'advantage');
-        let initdis = init_mods.some(im => im.type == 'disadvantage');
-        if(initadv && !initdis) {
-            return '{@{d6},@{d6}}kh1';
-        }
-        if(!initadv && initdis) {
-            return '{@{d6},@{d6}}kl1';
-        }
-        return '@{d6}';
-    }
-
     const reportReady = (character) => {
         // TODO this is nonsense.  we aren't actually done importing, because notifications in the character sheet are firing for quite a while
         // after we finish changing things (especially on first import) and we have no way (?) to wait for it to be done.   These are not sheet workers
@@ -420,21 +407,6 @@
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
     }
     
-    const getFeatureSpells = (character, traitId, featureType) => {
-        let spellsArr = [];
-        if(character.spells[featureType] == null) return spellsArr;
-        if(character.spells[featureType].length > 0) {
-            let options = getObjects(character.options[featureType], 'componentId', traitId);
-            for(let i = 0; i < options.length; i++) {
-                let spells = getObjects(character.spells[featureType], 'componentId', options[i].definition.id);
-                for(let j = 0; j < spells.length; j++) {
-                    spellsArr.push(spells[j])
-                }
-            }
-        }
-        return spellsArr;
-    };
-  
     const importSpells = (character, spells) => {
         // set this to whatever number of items you can process at once
         // return attributes;
@@ -461,15 +433,6 @@
         }
         doChunk();
     };  
-
-    const blankIfNull = (input) => {
-        return (input === null)?"":input;
-    }
-
-    const ucFirst = (string) => {
-        if(string == null) return string;
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    };
 
     const sendConfigMenu = (player, first) => {
         let playerid = player.id;
@@ -612,28 +575,7 @@
         else return ids[index] == null && index >= 0 ? generateRowID() : ids[index];
     }
 
-    const getTotalAbilityScore = (character, scoreId) => {
-        let index = scoreId-1;
-        let base = (character.stats[index].value == null ? 10 : character.stats[index].value),
-            bonus = (character.bonusStats[index].value == null ? 0 : character.bonusStats[index].value),
-            override = (character.overrideStats[index].value == null ? 0 : character.overrideStats[index].value),
-            total = base + bonus,
-            modifiers = getObjects(character, '', _ABILITY[_ABILITIES[scoreId]] + "-score");
-        if(override > 0) total = override;
-        if(modifiers.length > 0) {
-            let used_ids = [];
-            for(let i = 0; i < modifiers.length; i++){
-                if(modifiers[i].type == 'bonus' && used_ids.indexOf(modifiers[i].id) == -1) {
-                    total += modifiers[i].value;
-                    used_ids.push(modifiers[i].id);
-                }
-            }
-        }
-
-        return total;
-    };
-
-      //return an array of objects according to key, value, or key and value matching, optionally ignoring objects in array of names
+       //return an array of objects according to key, value, or key and value matching, optionally ignoring objects in array of names
     const getObjects = (obj, key, val, except) => {
         except = except || [];
         let objects = [];
@@ -656,27 +598,6 @@
             }
         }
         return objects;
-    };
-
-    // Find an existing repeatable item with the same name, or generate new row ID
-    const getOrMakeRowID = (character,repeatPrefix,name) => {
-        // Get list of all of the character's attributes
-        let attrObjs = findObjs({ _type: "attribute", _characterid: character.get("_id") });
-
-        let i = 0;
-        while (i < attrObjs.length)
-        {
-            // If this is a feat taken multiple times, strip the number of times it was taken from the name
-            /*let attrName = attrObjs[i].get("current").toString();
-             if (regexIndexOf(attrName, / x[0-9]+$/) !== -1)
-             attrName = attrName.replace(/ x[0-9]+/,"");
-
-             if (attrObjs[i].get("name").indexOf(repeatPrefix) !== -1 && attrObjs[i].get("name").indexOf("_name") !== -1 && attrName === name)
-             return attrObjs[i].get("name").substring(repeatPrefix.length,(attrObjs[i].get("name").indexOf("_name")));
-             i++;*/
-            i++;
-        }
-        return generateRowID();
     };
 
     const generateUUID = (function() {
@@ -714,12 +635,6 @@
     const regexIndexOf = (str, regex, startpos) => {
         let indexOf = str.substring(startpos || 0).search(regex);
         return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
-    };
-
-    const pre_log = (message) => {
-        log('---------------------------------------------------------------------------------------------');
-        log(message);
-        log('---------------------------------------------------------------------------------------------');
     };
 
     const checkInstall = function() {
@@ -784,33 +699,6 @@
                 state[state_name][player.id].config.firsttime = false;
             }
         });
-    };
-
-    const importClassOptions = (repeating_attributes, trait, current_class, class_options, repeat_index) => {
-        if(trait.requiredLevel > current_class.level) {
-            // not applied to this character, trait is available at higher levels
-            return repeat_index;
-        }
-
-        // search for selected options for the given trait
-        let selections = getObjects(class_options, 'componentId', trait.id);
-        if (selections.length < 1) {
-            // no selections, ignore trait
-            return repeat_index;
-        }
-
-        let index = repeat_index;
-        for (selection of selections) {
-            let text = replaceChars(`${selection.definition.description}`);
-            let trait_docs = {
-                name: selection.definition.name,
-                description: text,
-                source: 'Class',
-                source_type: current_class.definition.name
-            }        
-            Object.assign(repeating_attributes, createRepeatingTrait(object, trait_docs, index++));
-        }
-        return index;
     };
 
     const emitAttributesForModifiers = (single_attributes, repeating_attributes, modifiers, total_level) => {
