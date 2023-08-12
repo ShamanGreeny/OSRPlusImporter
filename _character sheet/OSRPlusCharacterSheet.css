@@ -531,9 +531,10 @@ div.sheet-mv3, input[type=text].sheet-mv3
     text-align:center;
 }
 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3, input[type=number].sheet-sk4
+/* Skills */ 
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3
 {
-    margin-bottom: -.14em;
+    margin-bottom: .5em;
     font-size:100%;
 }
 
@@ -564,11 +565,11 @@ div.sheet-sk2, input[type=text].sheet-sk2
 div.sheet-sk3, input[type=text].sheet-sk3
 {
     float:left; 
-    width:20%;
+    width:15%;
     text-align:center;
 }
 
-div.sheet-sk4, input[type=number].sheet-sk4
+div.sheet-sk4
 {
     float:left; 
     width:15%;
