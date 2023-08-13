@@ -181,41 +181,6 @@
  * Add Remaining OSR+ items 
  *
  */
-        // Languages
-        if(state[state_name][osrp_caller.id].config.imports.languages) {
-            
-            let languages = getObjects(character, 'type', 'language');
-            if(languageGrouping) {
-                let langs = [];
-                if(languages != null) {
-                    languages.forEach((language) => {
-                        langs.push(language.friendlySubtypeName);
-                    });
-                }
-
-                let row = getRepeatingRowIds('proficiencies', 'prof_type', 'LANGUAGE')[0];
-
-                let attributes = {};
-                attributes["repeating_proficiencies_"+row+"_name"] = langs.join(', ');
-                attributes["repeating_proficiencies_"+row+"_prof_type"] = 'LANGUAGE';
-                attributes["repeating_proficiencies_"+row+"_options-flag"] = '0';
-
-                Object.assign(repeating_attributes, attributes);
-            }
-            else {
-                if(languages != null) {
-                    languages.forEach((language) => {
-                        let row = getRepeatingRowIds('proficiencies', 'name', language.friendlySubtypeName)[0];
-                        let attributes = {};
-                        attributes["repeating_proficiencies_"+row+"_name"] = language.friendlySubtypeName;
-                        attributes["repeating_proficiencies_"+row+"_prof_type"] = 'LANGUAGE';
-                        attributes["repeating_proficiencies_"+row+"_options-flag"] = '0';
-
-                        Object.assign(repeating_attributes, attributes);
-                    });
-                }
-            }
-        }
 
         // Check for maleficence
         // TODO: Secondary Maleficence
