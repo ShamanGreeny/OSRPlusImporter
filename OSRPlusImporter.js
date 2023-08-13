@@ -1,5 +1,5 @@
 /*
- * Version 0.0.5
+ * Version 0.0.6
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -146,7 +146,7 @@
         let repeating_attributes = {};
 
         // First attempt to write items to the non-character sheet values of the object
-        let character_attributes = {};
+        // let character_attributes = {};
 
         object = null;
   
@@ -174,10 +174,6 @@
             });
         }
 
-  
-        //TODO: Need to validate this against OSR+ exploding dice rules
-        //let weapon_critical_range = 20;
-        //let critical_range = 20;
 
 /*
  * MISSING/INSERT HERE
@@ -185,7 +181,41 @@
  * Add Remaining OSR+ items 
  *
  */
+        // Languages
+        if(state[state_name][osrp_caller.id].config.imports.languages) {
+            
+            let languages = getObjects(character, 'type', 'language');
+            if(languageGrouping) {
+                let langs = [];
+                if(languages != null) {
+                    languages.forEach((language) => {
+                        langs.push(language.friendlySubtypeName);
+                    });
+                }
 
+                let row = getRepeatingRowIds('proficiencies', 'prof_type', 'LANGUAGE')[0];
+
+                let attributes = {};
+                attributes["repeating_proficiencies_"+row+"_name"] = langs.join(', ');
+                attributes["repeating_proficiencies_"+row+"_prof_type"] = 'LANGUAGE';
+                attributes["repeating_proficiencies_"+row+"_options-flag"] = '0';
+
+                Object.assign(repeating_attributes, attributes);
+            }
+            else {
+                if(languages != null) {
+                    languages.forEach((language) => {
+                        let row = getRepeatingRowIds('proficiencies', 'name', language.friendlySubtypeName)[0];
+                        let attributes = {};
+                        attributes["repeating_proficiencies_"+row+"_name"] = language.friendlySubtypeName;
+                        attributes["repeating_proficiencies_"+row+"_prof_type"] = 'LANGUAGE';
+                        attributes["repeating_proficiencies_"+row+"_options-flag"] = '0';
+
+                        Object.assign(repeating_attributes, attributes);
+                    });
+                }
+            }
+        }
 
         // Check for maleficence
         // TODO: Secondary Maleficence
@@ -235,58 +265,17 @@
             // Conflict and Flaw Types and Descritptions
             'conflict': character.object_conflict.post_title,
             'conflict_detail': character.object_conflict.post_content,
+            'conflict1': character.conflict_tags[0].name,
+            'conflict1desc': character.conflict_tags[0].desc,
+            'conflict2': character.conflict_tags[1].name,
+            'conflict2desc': character.conflict_tags[1].desc,
             'flaw': character.object_flaw.post_title,
             'flaw_detail':character.object_flaw.post_content,
+            'flaw1': character.flaw_tags[0].name,
+            'flaw1desc': character.flaw_tags[0].desc,
+            'flaw2': character.flaw_tags[1].name
+            'flaw2desc': character.flaw_tags[1].desc
 
-
-            /*
-            // Bio Info
-            'age': (character.age || ''),
-            'size': (character.size || ''),
-            'height': (character.height || ''),
-            'weight': (character.weight || ''),
-            'eyes': (character.eyes || ''),
-            'hair': (character.hair || ''),
-            'skin': (character.skin || ''),
-            'character_appearance': (character.traits.appearance || ''),
-            */
-            
-
-            
-            /*
-            // Traits
-            'personality_traits': character.traits.personalityTraits,
-            'options-flag-personality': '0',
-            'ideals': character.traits.ideals,
-            'options-flag-ideals': '0',
-            'bonds': character.traits.bonds,
-            'options-flag-bonds': '0',
-            'flaws': character.traits.flaws,
-            'options-flag-flaws': '0',
-
-            // currencies
-            'cp': character.currencies.cp,
-            'sp': character.currencies.sp,
-            'gp': character.currencies.gp,
-            'ep': character.currencies.ep,
-            'pp': character.currencies.pp,
-
-            // Notes/Bio
-            'character_backstory': character.notes.backstory,
-            'allies_and_organizations': contacts,
-            'additional_feature_and_traits': otherNotes,
-            'treasure': treasure,
-
-            'global_save_mod_flag': 1,
-            'global_skill_mod_flag': 1,
-            'global_attack_mod_flag': 1,
-            'global_damage_mod_flag': 1, 
-            'dtype': 'full',
-            'init_tiebreaker': initTiebreaker ? '@{dexterity}/100' : '',
-            'initiative_style': calculateInitiativeStyle(character),
-            'initmod': ('initiative' in modifiers)?modifiers.initiative.bonus:0,
-            'jack_of_all_trades': (jack_feature !== undefined)?'@{jack}':'0'
-        */
         };
 
         Object.assign(single_attributes, other_attributes);
