@@ -160,6 +160,59 @@ div.sheet-cha3
     text-align:left;
 }
 
+/* Skills */ 
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3
+{
+    margin-bottom: .5em;
+    font-size:100%;
+}
+
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.sheet-sk1, input[type=checkbox].sheet-sk1
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+    
+}
+
+div.sheet-sk2, input[type=text].sheet-sk2
+{
+    float:left; 
+    width:50%;
+    text-align:left;
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+    font-size: 95%;
+}
+
+div.sheet-sk3, input[type=text].sheet-sk3
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+}
+
+div.sheet-sk4
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+}
+
+
+div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4, input[type=number].sheet-pow1, input[type=text].sheet-pow2, 
+    input[type=text].sheet-pow3, input[type=text].sheet-pow4
+{
+    margin-bottom: -.14em;
+    font-size:100%;
+}
+
 
 /* */
 div.sheet-am1, div.sheet-am2, div.sheet-am3, div.sheet-am4, div.sheet-am5, input[type=text].sheet-am1, 
@@ -307,7 +360,7 @@ div.sheet-es1, input[type=text].sheet-es1
 
 
 /* Conflict Tags*/
-div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=number].sheet-pts2
+div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=checkbox].sheet-pts2
 {
     margin-bottom: .5em;
     font-size:100%;
@@ -327,12 +380,16 @@ div.sheet-pts1, input[type=text].sheet-pts1
     border-bottom: .1em solid transparent;
 }
 
-div.sheet-pts2, input[type=number].sheet-pts2
+div.sheet-pts2, input[type=checkbox].sheet-pts2
 {
     float:left; 
-    width:40%;
+    width:15%;
     text-align:center;
+    
 }
+
+
+/*  */
 
 div.sheet-hl1, div.sheet-hl2, div.sheet-hl3, div.sheet-hl4, div.sheet-hl5, div.sheet-hl6, div.sheet-hl7, div.sheet-hl8,
     div.sheet-hl9, div.sheet-hl10, div.sheet-hl11, div.sheet-hl12,
@@ -532,58 +589,7 @@ div.sheet-mv3, input[type=text].sheet-mv3
     text-align:center;
 }
 
-/* Skills */ 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3
-{
-    margin-bottom: .5em;
-    font-size:100%;
-}
 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4
-{
-    border-bottom: .1em solid transparent;
-    border-top: .1em solid transparent;
-}
-
-div.sheet-sk1, input[type=checkbox].sheet-sk1
-{
-    float:left; 
-    width:15%;
-    text-align:center;
-    
-}
-
-div.sheet-sk2, input[type=text].sheet-sk2
-{
-    float:left; 
-    width:50%;
-    text-align:left;
-    border-bottom: .1em solid transparent;
-    border-top: .1em solid transparent;
-    font-size: 95%;
-}
-
-div.sheet-sk3, input[type=text].sheet-sk3
-{
-    float:left; 
-    width:15%;
-    text-align:center;
-}
-
-div.sheet-sk4
-{
-    float:left; 
-    width:15%;
-    text-align:center;
-}
-
-
-div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4, input[type=number].sheet-pow1, input[type=text].sheet-pow2, 
-    input[type=text].sheet-pow3, input[type=text].sheet-pow4
-{
-    margin-bottom: -.14em;
-    font-size:100%;
-}
 
 div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4
 {

@@ -1,5 +1,5 @@
 /*
- * Version 0.0.6
+ * Version 0.0.65
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -228,6 +228,16 @@
             })
         }
 
+        // Skills loop
+        for (var i=0; i<character.object_skills.length; i++){
+            let attributes= {};
+            for (var key in character.object_skills[i]){
+                attributes["Skill_"+post_title];
+            }
+
+            Object.assign(attributes)
+        }
+
             let other_attributes = {
             // Base Info
             'character_quote':character.catchphrase,
@@ -273,7 +283,7 @@
             'flaw_detail':character.object_flaw.post_content,
             'flaw1': character.flaw_tags[0].name,
             'flaw1desc': character.flaw_tags[0].desc,
-            'flaw2': character.flaw_tags[1].name
+            'flaw2': character.flaw_tags[1].name,
             'flaw2desc': character.flaw_tags[1].desc
 
         };

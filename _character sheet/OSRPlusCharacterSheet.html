@@ -97,21 +97,21 @@
                     <div class="sk4" style="font-weight:bold">Roll</div>
                 </div>
                 <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Prof1" value="" />
-                    <input class="sk2" type="text" name="attr_Skill_Name1" value="Athletics" />
-                    <input class="sk3" type="text" name="attr_Skill_Mod1" value="M" />
+                    <input class="sk1" type="checkbox" name="attr_Skill_Athletics_Prof" value="" />
+                    <input class="sk2" type="text" name="attr_Skill_Athletics" value="Athletics" />
+                    <input class="sk3" type="text" name="attr_Skill_Athletics_Mod" value="M" />
                     <button type="roll" class="sheet-d6-dice" name="roll_athletics" value="&{template:rolls} {{title=Athletics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
                 </div>
                 <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Prof2" value="" />
-                    <input class="sk2" type="text" name="attr_Skill_Name2" value="Crafting" />
-                    <input class="sk3" type="text" name="attr_Skill_Mod2" value="S" />
+                    <input class="sk1" type="checkbox" name="attr_Skill_Crafting_Prof" value="" />
+                    <input class="sk2" type="text" name="attr_Skill_Crafting" value="Crafting" />
+                    <input class="sk3" type="text" name="attr_Skill_Crafting_Mod" value="S" />
                     <button type="roll" class="sheet-d6-dice" name="roll_crafting" value="&{template:rolls} {{title=Crafting}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
                 </div>
                 <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Prof3" value="" />
-                    <input class="sk2" type="text" name="attr_Skill_Name3" value="Culture" />
-                    <input class="sk3" type="text" name="attr_Skill_Mod3" value="D" />
+                    <input class="sk1" type="checkbox" name="attr_Skill_Culture_Prof" value="" />
+                    <input class="sk2" type="text" name="attr_Skill_Culture" value="Culture" />
+                    <input class="sk3" type="text" name="attr_Skill_Culture_Mod" value="D" />
                     <button type="roll" class="sheet-d6-dice" name="roll_culture" value="&{template:rolls} {{title=Culture}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[smart] ]]}}"> </button>
                 </div>
                 <div class="line">
@@ -237,6 +237,7 @@
                 <div class="line">
                     <div class="vs1" style="width:100%; font-weight:bold">Weapons</div>
                 </div>
+<!--
                 <div class="line">
                     <div class="vs1" style="width:13%; font-weight:bold">OCV</div>
                     <input type="text" class="vs1" name="attr_OCV_show" style="width:16%; text-align:center;" value="" />
@@ -401,7 +402,9 @@
 		        <div class="cm3" style="width:18%">x&#189;</div>
 		        <div class="cm3" style="width:18%">x&#189;</div>
 		        <div class="cm3" style="width:16%">-8</div>
-		    </div>		    
+		    </div>		
+
+        -->
         </div>
         </div>
         <div class="sheet-section" style="min-height:10em;">
@@ -418,7 +421,7 @@
     </div>
     </div>
     <div class="single-col">
-        <div class="sheet-section" style="min-height:20em;">
+        <div class="sheet-section" style="min-height:15em;">
             <div class="sheet-section-title">Conflict Tags</div>
             <div class="sheet-subsection">
                 <div class="line">
@@ -428,14 +431,16 @@
                     <textarea name="attr_conflict_detail" value="The Recluse"></textarea>
                 </div>
                 <div class="line">
-                    <input type="text" class="pts1" style="font-weight:bold" name="attr_conflict1" value="" />
+                    <input type="checkbox" class="pts2" name="attr_conflict1_used" value="" />
+                    <input type="text" class="pts1" name="attr_conflict1" value="" />
                 </div>
                 <div class="line">
-                    <input type="text" class="pts1" style="font-weight:bold" name="attr_conflict2" value="" />
+                    <input type="checkbox" class="pts2" name="attr_conflict2_used" value="" />
+                    <input type="text" class="pts1" name="attr_conflict2" value="" />
                 </div>
             </div>
         </div>
-        <div class="sheet-section" style="min-height:20em;">
+        <div class="sheet-section" style="min-height:15em;">
             <div class="sheet-section-title">Flaw Tags</div>
             <div class="sheet-subsection">
                 <div class="line">
@@ -445,10 +450,12 @@
                     <textarea name="attr_flaw_detail" value="The Recluse"></textarea>
                 </div>
                 <div class="line">
-                    <input type="text" class="pts1" style="font-weight:bold" name="attr_flaw1" value="" />
+                    <input type="checkbox" class="pts2" name="attr_flaw1_used" value="" />
+                    <input type="text" class="pts1" name="attr_flaw1" value="" />
                 </div>
                 <div class="line">
-                    <input type="text" class="pts1" style="font-weight:bold" name="attr_flaw2" value="" />
+                    <input type="checkbox" class="pts2" name="attr_flaw2_used" value="" />
+                    <input type="text" class="pts1" name="attr_flaw2" value="" />
                 </div>
             </div>
         </div>
