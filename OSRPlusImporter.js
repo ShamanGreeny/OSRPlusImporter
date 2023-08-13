@@ -227,7 +227,10 @@
             var row = i+1;
             attributes["spell"+row] = character.spellbook[i].post_title,
             attributes["spell"+row+"_desc"] = character.spellbook[i].post_content,
-            attributes["spell"+row+"_mod"] = character.spellbook[i].modifier
+            attributes["spell"+row+"_attribute_name"] = character.spellbook[i].attribute_name,
+            attributes["spell"+row+"_attribute_mod"] = character.spellbook[i].attribute_modifier,
+            attributes["spell"+row+"_proficiency_name"] = character.spellbook[i].spell_category.name,
+            attributes["spell"+row+"_proficiency_mod"] = character.spellbook[i].skill_modifier
             }
         }
 
