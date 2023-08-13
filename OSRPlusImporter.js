@@ -194,15 +194,17 @@
         }
 
         // Skills loop
+        let attributes = {};
         for (var i=0; i<character.object_skills.length; i++){
-            let attributes= {};
-            for (var key in character.object_skills[i]){
-                attributes["Skill_"+post_title];
-            }
-
-            Object.assign(attributes)
+            //sendChat(script_name, 'Skills length: '+character.object_skills.length, null, {noarchive:true});
+            for (var id in character.object_skills[i]){
+                attributes["Skill_"+character.object_skills[i].post_title+"_Prof"] = "yes"
+            }            
         }
+        //sendChat(script_name, 'Skills detail: '+toString(attributes), null, {noarchive:true});
+        Object.assign(single_attributes, attributes)
 
+        // Static or single value attributes
             let other_attributes = {
             // Base Info
             'character_quote':character.catchphrase,
