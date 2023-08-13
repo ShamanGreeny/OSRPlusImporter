@@ -55,9 +55,9 @@
                     <div class="cha3" style="font-weight: bold">Roll</div>
                 </div>
                 <div class="line">
-                    <input type="number" class="cha1" name="attr_might" value="3">
-                    <div class="cha2">Might</div>
-                    <button type="roll" class="sheet-d6-dice" name="roll_might" value="&{template:rolls} {{title=Might}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[might] ]]}}"> </button>
+                    <input type="number" class="cha1" name="attr_mighty" value="3">
+                    <div class="cha2">Mighty</div>
+                    <button type="roll" class="sheet-d6-dice" name="roll_mighty" value="&{template:rolls} {{title=mighty}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input type="number" class="cha1" name="attr_deft" value="10" >
@@ -100,7 +100,7 @@
                     <input class="sk1" type="checkbox" name="attr_Skill_Athletics_Prof" value="2" />
                     <input class="sk2" type="text" name="attr_Skill_Athletics" value="Athletics" />
                     <input class="sk3" type="text" name="attr_Skill_Athletics_Mod" value="M" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_athletics" value="&{template:rolls} {{title=Athletics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[Might]+@{Skill_Athletics_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_athletics" value="&{template:rolls} {{title=Athletics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Athletics_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="sk1" type="checkbox" name="attr_Skill_Crafting_Prof" value="2" />
@@ -124,7 +124,7 @@
                     <input class="sk1" type="checkbox" name="attr_Skill_Influence_Prof" value="2" />
                     <input class="sk2" type="text" name="attr_Skill_Influence" value="Influence" />
                     <input class="sk3" type="text" name="attr_Skill_Influence_Mod" value="M" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_influence" value="&{template:rolls} {{title=Influence}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[Might]+@{Skill_Influence_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_influence" value="&{template:rolls} {{title=Influence}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Influence_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="sk1" type="checkbox" name="attr_Skill_Lore_Prof" value="2" />
@@ -154,7 +154,7 @@
                     <input class="sk1" type="checkbox" name="attr_Skill_Psionics_Prof" value="2" />
                     <input class="sk2" type="text" name="attr_Skill_Psionics" value="Psionics" />
                     <input class="sk3" type="text" name="attr_Skill_Psionics_Mod" value="M" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_psionics" value="&{template:rolls} {{title=Psionics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[Might]+@{Skill_Psionics_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_psionics" value="&{template:rolls} {{title=Psionics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Psionics_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="sk1" type="checkbox" name="attr_Skill_Reflexes_Prof" value="2" />
@@ -172,7 +172,7 @@
                     <input class="sk1" type="checkbox" name="attr_Skill_Survival_Prof" value="2" />
                     <input class="sk2" type="text" name="attr_Skill_Survival" value="Survival" />
                     <input class="sk3" type="text" name="attr_Skill_Survival_Mod" value="M" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_survival" value="&{template:rolls} {{title=Survival}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[Might]+@{Skill_Survival_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_survival" value="&{template:rolls} {{title=Survival}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Survival_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="sk1" type="checkbox" name="attr_Skill_Thaumaturgy_Prof" value="2" />
@@ -184,7 +184,7 @@
                     <input class="sk1" type="checkbox" name="attr_Skill_Weapon_Prof" value="2" />
                     <input class="sk2" type="text" name="attr_Skill_Weapon" value="Weapon" />
                     <input class="sk3" type="text" name="attr_Skill_Weapon_Mod" value="M" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_weapon" value="&{template:rolls} {{title=Weapon}} {{subtitle=@{character_name} }} {{roll= [[d6+@{might}[Might]+@{Skill_Weapon_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_weapon" value="&{template:rolls} {{title=Weapon}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Weapon_Prof}[Proficiency] ]]}}"> </button>
                 </div>
             </div>
         </div>
@@ -484,224 +484,128 @@
                 <div class="line">
                     <div class="pow1" style="font-weight:bold">Cost</div>
                     <div class="pow2" style="font-weight:bold; text-align:center">Name</div>
-                    <div class="pow3" style="font-weight:bold; text-align:center">Powers/Equipment</div>
-                    <div class="pow4" style="font-weight:bold">END/WT</div>
+                    <div class="pow3" style="font-weight:bold; text-align:center">Description</div>
+                    <div class="pow4" style="font-weight:bold">Roll</div>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost1" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name1" value="" />
-                    <input class="pow3" type="text" name="attr_Pow1" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END1" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell1" value="" />
+                    <input class="pow3" type="text" name="attr_spell1_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell1" value="&{template:rolls} {{title=@{spell1}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost2" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name2" value="" />
-                    <input class="pow3" type="text" name="attr_Pow2" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END2" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell2" value="" />
+                    <input class="pow3" type="text" name="attr_spell2_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell2" value="&{template:rolls} {{title=@{spell2}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost3" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name3" value="" />
-                    <input class="pow3" type="text" name="attr_Pow3" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END3" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell3" value="" />
+                    <input class="pow3" type="text" name="attr_spell3_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell3" value="&{template:rolls} {{title=@{spell3}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost4" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name4" value="" />
-                    <input class="pow3" type="text" name="attr_Pow4" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END4" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell4" value="" />
+                    <input class="pow3" type="text" name="attr_spell4_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell4" value="&{template:rolls} {{title=@{spell4}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost5" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name5" value="" />
-                    <input class="pow3" type="text" name="attr_Pow5" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END5" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell5" value="" />
+                    <input class="pow3" type="text" name="attr_spell5_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell5" value="&{template:rolls} {{title=@{spell5}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost6" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name6" value="" />
-                    <input class="pow3" type="text" name="attr_Pow6" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END6" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell6" value="" />
+                    <input class="pow3" type="text" name="attr_spell6_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell6" value="&{template:rolls} {{title=@{spell6}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost7" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name7" value="" />
-                    <input class="pow3" type="text" name="attr_Pow7" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END7" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell7" value="" />
+                    <input class="pow3" type="text" name="attr_spell7_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell7" value="&{template:rolls} {{title=@{spell7}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost8" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name8" value="" />
-                    <input class="pow3" type="text" name="attr_Pow8" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END8" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell8" value="" />
+                    <input class="pow3" type="text" name="attr_spell8_desc" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell8" value="&{template:rolls} {{title=@{spell8}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost9" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name9" value="" />
-                    <input class="pow3" type="text" name="attr_Pow9" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell9" value="" />
+                    <input class="pow3" type="text" name="attr_spell9_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END9" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost10" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name10" value="" />
-                    <input class="pow3" type="text" name="attr_Pow10" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell10" value="" />
+                    <input class="pow3" type="text" name="attr_spell10_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END10" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost11" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name11" value="" />
-                    <input class="pow3" type="text" name="attr_Pow11" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell11" value="" />
+                    <input class="pow3" type="text" name="attr_spell11_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END11" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost12" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name12" value="" />
-                    <input class="pow3" type="text" name="attr_Pow12" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell12" value="" />
+                    <input class="pow3" type="text" name="attr_spell12_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END12" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost13" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name13" value="" />
-                    <input class="pow3" type="text" name="attr_Pow13" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell13" value="" />
+                    <input class="pow3" type="text" name="attr_spell13_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END13" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost14" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name14" value="" />
-                    <input class="pow3" type="text" name="attr_Pow14" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell14" value="" />
+                    <input class="pow3" type="text" name="attr_spell14_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END14" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost15" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name15" value="" />
-                    <input class="pow3" type="text" name="attr_Pow15" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell15" value="" />
+                    <input class="pow3" type="text" name="attr_spell15_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END15" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost16" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name16" value="" />
-                    <input class="pow3" type="text" name="attr_Pow16" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell16" value="" />
+                    <input class="pow3" type="text" name="attr_spell16_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END16" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost17" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name17" value="" />
-                    <input class="pow3" type="text" name="attr_Pow17" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell17" value="" />
+                    <input class="pow3" type="text" name="attr_spell17_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END17" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost18" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name18" value="" />
-                    <input class="pow3" type="text" name="attr_Pow18" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell18" value="" />
+                    <input class="pow3" type="text" name="attr_spell18_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END18" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost19" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name19" value="" />
-                    <input class="pow3" type="text" name="attr_Pow19" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell19" value="" />
+                    <input class="pow3" type="text" name="attr_spell19_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END19" value="" />
                 </div>
                 <div class="line">
                     <input class="pow1" type="number" name="attr_Pow_Cost20" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name20" value="" />
-                    <input class="pow3" type="text" name="attr_Pow20" value="" />
+                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell20" value="" />
+                    <input class="pow3" type="text" name="attr_spell20_desc" value="" />
                     <input class="pow4" type="text" name="attr_Pow_END20" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost21" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name21" value="" />
-                    <input class="pow3" type="text" name="attr_Pow21" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END21" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost22" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name22" value="" />
-                    <input class="pow3" type="text" name="attr_Pow22" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END22" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost23" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name23" value="" />
-                    <input class="pow3" type="text" name="attr_Pow23" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END23" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost24" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name24" value="" />
-                    <input class="pow3" type="text" name="attr_Pow24" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END24" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost25" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name25" value="" />
-                    <input class="pow3" type="text" name="attr_Pow25" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END25" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost26" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name26" value="" />
-                    <input class="pow3" type="text" name="attr_Pow26" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END26" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost27" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name27" value="" />
-                    <input class="pow3" type="text" name="attr_Pow27" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END27" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost28" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name28" value="" />
-                    <input class="pow3" type="text" name="attr_Pow28" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END28" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost29" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name29" value="" />
-                    <input class="pow3" type="text" name="attr_Pow29" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END29" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost30" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name30" value="" />
-                    <input class="pow3" type="text" name="attr_Pow30" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END30" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost31" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name31" value="" />
-                    <input class="pow3" type="text" name="attr_Pow31" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END31" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost32" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name32" value="" />
-                    <input class="pow3" type="text" name="attr_Pow32" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END32" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost33" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name33" value="" />
-                    <input class="pow3" type="text" name="attr_Pow33" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END33" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost34" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name34" value="" />
-                    <input class="pow3" type="text" name="attr_Pow34" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END34" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost35" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name35" value="" />
-                    <input class="pow3" type="text" name="attr_Pow35" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END35" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="number" name="attr_Pow_Cost36" value="" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_Pow_Name36" value="" />
-                    <input class="pow3" type="text" name="attr_Pow36" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END36" value="" />
                 </div>
             </div>
         </div>

@@ -596,7 +596,7 @@ div.sheet-mv3, input[type=text].sheet-mv3
 }
 
 
-
+/* Spells */
 div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4
 {
     border-bottom: .1em solid transparent;
@@ -624,12 +624,14 @@ div.sheet-pow3, input[type=text].sheet-pow3
     text-align:left;
 }
 
-div.sheet-pow4, input[type=text].sheet-pow4
+div.sheet-pow4, input[type=button].sheet-pow4
 {
     float:left; 
     width:10%;
     text-align:center;
 }
+
+
 
 div.sheet-disad1, div.sheet-disad2, input[type=number].sheet-disad1, input[type=text].sheet-disad2
 {

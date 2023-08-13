@@ -194,8 +194,7 @@
         }
 
         // Skills loop
-        let attributes = {};
-    
+        let attributes = {};   
         var skills = character.object_skills.length
         for (var i=0; i<skills; i++){
             //sendChat(script_name, 'Skills length: '+skills, null, {noarchive:true});
@@ -203,13 +202,12 @@
                 attributes["Skill_"+character.object_skills[i].post_title+"_Prof"] = "2"
             }            
         };
-        
-        
+
+        // Add bonus skills if they exist
         if (character.skills_bonus.skill_object){
                 attributes["Skill_"+character.skills_bonus.skill_object.post_title+"_Prof"] = "2"
         };
         
-        //Object.assign(single_attributes, attributes);
 
         // Equipped Weapons and Armor
         var Armor = character.object_equipped.Armor.length;
@@ -220,6 +218,17 @@
         for (var i=0; i<Weapon; i++){
             var row = i+1
             attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
+        }
+
+        // Spells
+        let spells = character.spellbook.length;
+        for (var i=0; i<spells; i++){
+            for (var id in character.spellbook[i]){
+            var row = i+1;
+            attributes["spell"+row] = character.spellbook[i].post_title,
+            attributes["spell"+row+"_desc"] = character.spellbook[i].post_content,
+            attributes["spell"+row+"_mod"] = character.spellbook[i].modifier
+            }
         }
 
         Object.assign(single_attributes, attributes);
@@ -243,7 +252,7 @@
             'level': character.level,
             
             // Ability Scores
-            'might': character.might_modified_sheet,
+            'mighty': character.mighty_modified_sheet,
             
             'deft': character.deft_modified_sheet,
             'smart': character.smart_modified_sheet,
