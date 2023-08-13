@@ -9,6 +9,7 @@
 button[type=roll].sheet-d6-dice::before {
     font-family: 'dicefontd6';
     content: 'F ';
+    text-align: right;
 }
 
 input[type=number]
@@ -39,10 +40,11 @@ input[type=text]
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     font-weight: 400;
 }
+
 textarea
 {
     width: 100%;
-    height: 30px;
+    height: 80px;
     box-sizing: border-box;
     font-size: 9px;
     resize: none;
@@ -50,6 +52,7 @@ textarea
     font-weight: 400;
 
 }
+
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button 
 { 
@@ -101,6 +104,7 @@ div.sheet-line
     font-weight: 400;
 }
 
+/* Main Character Information - Top of Page */
 .sheet-head1, .input[type=text].sheet-head1
 {
     border-bottom: .1em solid transparent;
@@ -208,6 +212,7 @@ div.sheet-am5, input[type=text].sheet-am5
     text-align:left;
 }
 
+/* Current Status */
 div.sheet-cs1, div.sheet-cs2,  input[type=text].sheet-cs2
 {
     margin-bottom: .4em;
@@ -241,7 +246,7 @@ div.sheet-cs3, input[type=number].sheet-cs3
     text-align:center;
 }
 
-
+/* Equipment */
 div.sheet-vs1, input[type=text].sheet-vs1
 {
     float:left;
@@ -283,29 +288,25 @@ div.sheet-def2, input[type=text].sheet-def2
     text-align:center;
 }
 
-div.sheet-es1, input[type=text].sheet-es1, input[type=text].sheet-es2
-{
-    float:left;
-    margin-bottom: .3em;
-    font-size:90%;
-}
 
-div.sheet-es1
+/* Maleficence */
+div.sheet-es1, input[type=text].sheet-es1
 {
+    margin-bottom: .5em;
+    font-size:100%;
     border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
 }
 
-div.sheet-es1
+div.sheet-es1, input[type=text].sheet-es1
 {
+    float:left; 
+    width:60%;
     text-align:left;
 }
 
-input[type=text].sheet-es1
-{
-    text-align:center;
-}
 
+/* Conflict Tags*/
 div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=number].sheet-pts2
 {
     margin-bottom: .5em;

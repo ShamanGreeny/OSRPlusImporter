@@ -3,6 +3,7 @@
 <!-- Based on Hero System 5R in roll20-character-sheets
 -->
 
+<!-- Header - Character Base Info -->
 <div style="width:64.52em; padding-left:1em; min-height:10em;">
     <div style="width:66%; float:left; min-height:5em;">
         <div class="line">
@@ -33,10 +34,16 @@
             <input type="text" class="head1" name="attr_ethos" value="" style="width:25%"/>
         </div>
     </div>
-    <div style="width:33%; float:left; text-align:center; vertical-align:middle">
-        <img src="https://raw.githubusercontent.com/ShamanGreeny/OSRPlusImporter/main/_character%20sheet/logo-rectangle.jpg" style="width:180px;height:81px;">
+    <div style="width:33%; float:left; text-align:middle; vertical-align:middle; min-height:10em;">
+        <img src="https://raw.githubusercontent.com/ShamanGreeny/OSRPlusImporter/main/_character%20sheet/logo-rectangle.jpg" style="width:180px;height:70px;">
+        <div><br</div>
+        <div class="line">
+            <div class="head1" style="width:15%">Level:</div>
+            <input type="text" class="head1" name="attr_level" value="" style="width:25%;  text-align: center"/> 
+        </div>
     </div>
 </div>
+<!-- First Column - Statistics, Skills  -->
 <div style="clear:left; width:64.52em;">
     <div class="single-col">
         <div class="section" style="min-height:16em;">
@@ -397,157 +404,63 @@
 		    </div>		    
         </div>
         </div>
-        <div class="sheet-section" style="min-height:13em;">
+        <div class="sheet-section" style="min-height:10em;">
             <div class="sheet-section-title">Maleficence</div>
             <div class="sheet-subsection">
                 <div class="line">
-                    <div class="es1" style="width:59%"><span style="font-weight:bold">Perception Roll</span> (9+INT/5)</div> 
-                    <input type="text" class="es1" name="attr_Per" style="width:41%;" value="" />
-                    </div>
-                <div class="line">
-                    <div class="es1" style="width:73%"><span style="font-weight:bold">Enhanced and Unusual Senses</span></div>
-                <div class="line">
-                    <input type="text" class="es1" name="attr_EnhancedSense1" style="width:100%; text-align:left;" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="es1" name="attr_EnhancedSense2" style="width:100%; text-align:left;" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="es1" name="attr_EnhancedSense3" style="width:100%; text-align:left;" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="es1" name="attr_EnhancedSense4" style="width:100%; text-align:left;" value="" />
+                    <input type="text" class="es1" style="font-weight:bold" name="attr_maleficence" value="" />
+                 </div>
+                <div class="input">
+                    <textarea name="attr_maleficence_description" value="The Recluse"></textarea>
                 </div>
             </div>
         </div>
-        <!--
-        <div class="sheet-section" style="min-height:22.4em;">
-           
-        </div>
-        <div class="sheet-section" style="min-height:14.9em;">
-
-        </div>
-        -->
     </div>
     </div>
     <div class="single-col">
-        <div class="sheet-section" style="min-height:12em;">
+        <div class="sheet-section" style="min-height:20em;">
             <div class="sheet-section-title">Conflict Tags</div>
             <div class="sheet-subsection">
                 <div class="line">
                     <input type="text" class="pts1" style="font-weight:bold" name="attr_conflict" value="" />
-                 </div>
+               </div>
                 <div class="input">
                     <textarea name="attr_conflict_detail" value="The Recluse"></textarea>
                 </div>
                 <div class="line">
-                    <div class="pts1">Experience Spent</div>
-                    <input type="number" class="pts2" name="attr_XP_Spent" value="" />
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_conflict1" value="" />
                 </div>
                 <div class="line">
-                    <div class="pts1">Experience Unspent</div>
-                    <input type="number" class="pts2" name="attr_XP_Unpent" value="" />
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_conflict2" value="" />
                 </div>
             </div>
         </div>
-                <div class="sheet-section" style="min-height:23em;">
-             <div class="sheet-section-title">Flaw Tags</div>
+        <div class="sheet-section" style="min-height:20em;">
+            <div class="sheet-section-title">Flaw Tags</div>
             <div class="sheet-subsection">
-               <div class="line">
-                    <div class="def1" style=" text-align:center">Type</div>
-                    <div class="def2" style="font-weight:bold">Amount/Effect</div>
+                <div class="line">
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_flaw" value="" />
+               </div>
+                <div class="input">
+                    <textarea name="attr_flaw_detail" value="The Recluse"></textarea>
                 </div>
                 <div class="line">
-                    <div class="def1">Normal PD</div>
-                    <input type="text" class="def2" name="attr_Normal_PD" value="" />
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_flaw1" value="" />
                 </div>
                 <div class="line">
-                    <div class="def1">Resistant PD</div>
-                    <input type="text" class="def2" name="attr_Resist_PD" value="" />
-                </div>
-                <div class="line">
-                    <div class="def1">Normal ED</div>
-                    <input type="text" class="def2" name="attr_Normal_ED" value="" />
-                </div>
-                <div class="line">
-                    <div class="def1">Resistant ED</div>
-                    <input type="text" class="def2" name="attr_Resist_ED" value="" />
-                </div>
-                <div class="line">
-                    <div class="def1">Mental Defense</div>
-                    <input type="text" class="def2" name="attr_MD" value="" />
-                </div>
-                <div class="line">
-                    <div class="def1">Power Defense</div>
-                    <input type="text" class="def2" name="attr_PowD" value="" />
-                </div>
-                <div class="line">
-                    <div class="def1">Flash Defense</div>
-                    <input type="text" class="def2" name="attr_FlashD" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="def1" name="attr_SpecDef1" value="" />
-                    <input type="text" class="def2" name="attr_SpecDef1D" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="def1" name="attr_SpecDef2" value="" />
-                    <input type="text" class="def2" name="attr_SpecDef2D" value="" />
-                </div>
-	 	<div class="line">
-                    <input type="text" class="def1" name="attr_SpecDef3" value="" />
-                    <input type="text" class="def2" name="attr_SpecDef3D" value="" />
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_flaw2" value="" />
                 </div>
             </div>
         </div>
-        <div class="sheet-section" style="min-height:19em;">
+        <div class="sheet-section" style="min-height:10em;">
             <div class="sheet-section-title">Kit</div>
             <div class="sheet-subsection">
                 <div class="line">
-                    <div class="mv1" style="font-weight:bold">Type</div>
-                    <div class="mv2" style="font-weight:bold">Combat</div>
-                    <div class="mv2" style="font-weight:bold">Noncombat</div>
-                </div>
-                <div class="line">
-                    <div class="mv1">Run (6")</div>
-                    <input type="number" class="mv2" name="attr_Run_Combat" value="6" />
-                    <input type="number" class="mv2" Name="attr_Run_Noncombat" value="12" />
-                </div>
-                <div class="line">
-                    <div class="mv1">Swim (2")</div>
-                    <input type="number" class="mv2" name="attr_Swim_Combat" value="2" />
-                    <input type="number" class="mv2" name="attr_Swim_Noncombat" value="4" />
-                </div>
-                <div class="line">
-                    <div class="mv1">H. Leap (2")</div>
-		    <input type="number" class="mv2" style="font-weight:bold" name="attr_HLeap_Combat" value="round(@{STR}/5)" disabled="true" />
-                    <input type="number" class="mv2" style="font-weight:bold" name="attr_HLeap_Noncombat" value="round(@{STR}/5)*2"&quot; disabled="true" />
-
-                </div>
-                <div class="line">
-                    <div class="mv1">V. Leap (1")</div>
-                    <input type="number" class="mv2" style="font-weight:bold" name="attr_VLeap_Combat" value="round((round(@{STR}/5)+0)/2)" disabled="true"  />
-                    <input type="number" class="mv2" style="font-weight:bold" name="attr_VLeap_Noncombat" value="round(@{STR}/5)" disabled="true" />
-                </div>
-                <div class="line">
-                    <input type="text" class="mv1" name="attr_Spec_Move1" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move1_Combat" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move1_Noncombat" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="mv1" name="attr_Spec_Move2" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move2_Combat" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move2_Noncombat" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="mv1" name="attr_Spec_Move3" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move3_Combat" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move3_Noncombat" value="" />
-                </div>
-                <div class="line">
-                    <input type="text" class="mv1" name="attr_Spec_Move3" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move3_Combat" value="" />
-                    <input type="number" class="mv2" name="attr_Spec_Move3_Noncombat" value="" />
-                </div>
+                    <input type="text" class="pts1" style="font-weight:bold" name="attr_kit" value="" />
+               </div>
+               <div class="input">
+                    <textarea name="attr_kit_detail" value="The Recluse"></textarea>
+               </div>
             </div>
         </div>
         <!--
@@ -557,7 +470,7 @@
         -->
     </div>
 </div>
-    <div style="width:66%; float:left">
+    <div style="width:100%; float:left">
         <div class="sheet-section" style="min-height:56em; margin-right:0; margin-bottom:1.em">
             <div class="sheet-section-title">Spells</div>
             <div class="sheet-subsection">

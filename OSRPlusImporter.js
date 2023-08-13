@@ -1,5 +1,5 @@
 /*
- * Version 0.0.3
+ * Version 0.0.5
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -145,6 +145,9 @@
         // good that we write these when all the stats are done
         let repeating_attributes = {};
 
+        // First attempt to write items to the non-character sheet values of the object
+        let character_attributes = {};
+
         object = null;
   
         // Remove characters with the same name if overwrite is enabled.
@@ -171,15 +174,7 @@
             });
         }
 
-        // base class, if set
-        if (character.object_class && (character.object_class.length > 0)) {
-            Object.assign(single_attributes, {
-                'class': character.object_class.post_title
-            });
-        }
   
-        let total_level = character.level;
-      
         //TODO: Need to validate this against OSR+ exploding dice rules
         //let weapon_critical_range = 20;
         //let critical_range = 20;
@@ -191,16 +186,30 @@
  *
  */
 
-          let other_attributes = {
+
+        // Check for maleficence
+        // TODO: Secondary Maleficence
+        if (character.has_maleficence = true) {
+
+            Object.assign(single_attributes, {
+
+            'maleficence' : character.object_maleficence.post_title,
+            'maleficence_description': character.object_maleficence.post_content
+            })
+        }
+
+            let other_attributes = {
             // Base Info
             'character_quote':character.catchphrase,
             'origin':character.object_origin.post_title,
             'class':character.object_class.post_title,
             'kit':character.object_kit.post_title,
+            'kit_detail':character.object_kit.post_content,
             'ethos': character.object_ethos.post_title,
             'culture':character.object_culture.post_title,
             'faction':character.object_faction.post_title,
             'archetype':character.object_archetype.post_title,
+            'level': character.level,
             
             // Ability Scores
             'might': character.might_modified_sheet,
@@ -227,7 +236,9 @@
             'conflict': character.object_conflict.post_title,
             'conflict_detail': character.object_conflict.post_content,
             'flaw': character.object_flaw.post_title,
-            'flaw_detail':character.object_flaw.post_content
+            'flaw_detail':character.object_flaw.post_content,
+
+
             /*
             // Bio Info
             'age': (character.age || ''),
@@ -311,7 +322,7 @@
 
         // make work queue
         let items = createSingleWriteQueue(single_attributes);
-        processItem(character, items, single_attributes, repeating_attributes, total_level)
+        processItem(character, items, single_attributes, repeating_attributes)
     });
 // End of on chat-msg process
 
