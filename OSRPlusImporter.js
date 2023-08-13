@@ -204,8 +204,17 @@
                 attributes["Skill_"+character.object_skills[i].post_title+"_Prof"] = "2"
             }            
         }
-        //sendChat(script_name, 'Skills detail: '+toString(attributes), null, {noarchive:true});
         Object.assign(single_attributes, attributes)
+
+        // Conflict Tag Loop
+       // let conflicts{};
+        if (character.used_story_tags = true){
+
+            var tagcount = character.used_story_tags.length;
+            sendChat(script_name, 'Used Story Tag length: '+tagcount, null, {noarchive:true});
+
+
+        }
 
         // Static or single value attributes
             let other_attributes = {

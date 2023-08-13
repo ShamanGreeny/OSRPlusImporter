@@ -360,7 +360,7 @@ div.sheet-es1, input[type=text].sheet-es1
 
 
 /* Conflict Tags*/
-div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=checkbox].sheet-pts2
+div.sheet-pts1, div.sheet-pts2, input[type=text].sheet-pts1, input[type=checkbox].sheet-pts2, div.sheet-pts3
 {
     margin-bottom: .5em;
     font-size:100%;
@@ -375,7 +375,7 @@ div.sheet-pts1, div.sheet-pts2
 div.sheet-pts1, input[type=text].sheet-pts1
 {
     float:left; 
-    width:60%;
+    width:80%;
     text-align:left;
     border-bottom: .1em solid transparent;
 }
@@ -386,6 +386,14 @@ div.sheet-pts2, input[type=checkbox].sheet-pts2
     width:15%;
     text-align:center;
     
+}
+
+div.sheet-pts3, input[type=text].sheet-pts3
+{
+    font-size: 90%;
+    border-bottom: .1em solid transparent;
+    width: 80%;
+    text-align: left;
 }
 
 
