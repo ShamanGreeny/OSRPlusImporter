@@ -478,7 +478,7 @@
     </div>
 </div>
     <div style="width:100%; float:left">
-        <div class="sheet-section" style="min-height:56em; margin-right:0; margin-bottom:1.em">
+        <div class="sheet-section" style="min-height:20em; margin-right:0; margin-bottom:1.em">
             <div class="sheet-section-title">Spells</div>
             <div class="sheet-subsection">
                 <div class="line">
@@ -491,121 +491,61 @@
                     <input class="pow1" type="checkbox" name="attr_spell1_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell1" value="" />
                     <input class="pow3" type="text" name="attr_spell1_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell1" value="&{template:rolls} {{title=@{spell1}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell1" value="&{template:rolls} {{title=@{spell1} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell1_attribute_mod}[@{spell1_attribute_name}]+@{spell1_proficiency_mod}[@{spell1_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell2_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell2" value="" />
                     <input class="pow3" type="text" name="attr_spell2_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell2" value="&{template:rolls} {{title=@{spell2}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell2" value="&{template:rolls} {{title=@{spell2} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell2_attribute_mod}[@{spell2_attribute_name}]+@{spell2_proficiency_mod}[@{spell2_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell3_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell3" value="" />
                     <input class="pow3" type="text" name="attr_spell3_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell3" value="&{template:rolls} {{title=@{spell3}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell3" value="&{template:rolls} {{title=@{spell3} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell3_attribute_mod}[@{spell3_attribute_name}]+@{spell3_proficiency_mod}[@{spell3_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell4_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell4" value="" />
                     <input class="pow3" type="text" name="attr_spell4_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell4" value="&{template:rolls} {{title=@{spell4}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell4" value="&{template:rolls} {{title=@{spell4} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell4_attribute_mod}[@{spell4_attribute_name}]+@{spell4_proficiency_mod}[@{spell4_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell5_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell5" value="" />
                     <input class="pow3" type="text" name="attr_spell5_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell5" value="&{template:rolls} {{title=@{spell5}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell5" value="&{template:rolls} {{title=@{spell5} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell5_attribute_mod}[@{spell5_attribute_name}]+@{spell5_proficiency_mod}[@{spell5_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell6_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell6" value="" />
                     <input class="pow3" type="text" name="attr_spell6_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell6" value="&{template:rolls} {{title=@{spell6}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell6" value="&{template:rolls} {{title=@{spell6} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell6_attribute_mod}[@{spell6_attribute_name}]+@{spell6_proficiency_mod}[@{spell6_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell7_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell7" value="" />
                     <input class="pow3" type="text" name="attr_spell7_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell7" value="&{template:rolls} {{title=@{spell7}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell7" value="&{template:rolls} {{title=@{spell7} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell7_attribute_mod}[@{spell7_attribute_name}]+@{spell7_proficiency_mod}[@{spell7_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell8_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell8" value="" />
                     <input class="pow3" type="text" name="attr_spell8_desc" value="" />
-                    <button type="roll" class="sheet-d6-dice" name="roll_spell8" value="&{template:rolls} {{title=@{spell8}}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell8" value="&{template:rolls} {{title=@{spell8} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell8_attribute_mod}[@{spell8_attribute_name}]+@{spell8_proficiency_mod}[@{spell8_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell9_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell9" value="" />
                     <input class="pow3" type="text" name="attr_spell9_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END9" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell9" value="&{template:rolls} {{title=@{spell9} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell9_attribute_mod}[@{spell9_attribute_name}]+@{spell9_proficiency_mod}[@{spell9_proficiency_name}]]]}}"> </button>
                 </div>
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell10_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell10" value="" />
                     <input class="pow3" type="text" name="attr_spell10_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END10" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell11_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell11" value="" />
-                    <input class="pow3" type="text" name="attr_spell11_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END11" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell12_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell12" value="" />
-                    <input class="pow3" type="text" name="attr_spell12_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END12" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell13_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell13" value="" />
-                    <input class="pow3" type="text" name="attr_spell13_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END13" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell14_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell14" value="" />
-                    <input class="pow3" type="text" name="attr_spell14_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END14" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell15_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell15" value="" />
-                    <input class="pow3" type="text" name="attr_spell15_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END15" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell16_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell16" value="" />
-                    <input class="pow3" type="text" name="attr_spell16_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END16" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell17_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell17" value="" />
-                    <input class="pow3" type="text" name="attr_spell17_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END17" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell18_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell18" value="" />
-                    <input class="pow3" type="text" name="attr_spell18_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END18" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell19_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell19" value="" />
-                    <input class="pow3" type="text" name="attr_spell19_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END19" value="" />
-                </div>
-                <div class="line">
-                    <input class="pow1" type="checkbox" name="attr_spell20_proficiency_mod" value="2" />
-                    <input class="pow2" style="font-weight:bold" type="text" name="attr_spell20" value="" />
-                    <input class="pow3" type="text" name="attr_spell20_desc" value="" />
-                    <input class="pow4" type="text" name="attr_Pow_END20" value="" />
+                    <button type="roll" class="sheet-d6-dice" name="roll_spell10" value="&{template:rolls} {{title=@{spell10} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell10_attribute_mod}[@{spell10_attribute_name}]+@{spell10_proficiency_mod}[@{spell10_proficiency_name}]]]}}"> </button>
                 </div>
             </div>
         </div>
