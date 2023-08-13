@@ -480,7 +480,21 @@
     <div style="width:100%; float:left">
         <div class="sheet-section" style="min-height:20em; margin-right:0; margin-bottom:1.em">
             <div class="sheet-section-title">Spells</div>
-            <div class="sheet-subsection">
+            <div class="sheet-subsection-flex">
+            <div class="line">
+                <div class="pow2" style="font-weight: bold;">Name</div>
+                <div class="pow3" style="font-weight: bold;">Description</div>
+                <div class="pow1" style="font-weight: bold;">Show</div>
+                <div class="pow4" style="font-weight: bold;">Roll</div>
+            </div>
+            <div class="line">
+                <input class="pow2" style="font-weight:bold" type="text" name="attr_spell1" value="" />
+                <input class="pow3" type="text" name="attr_spell1_desc" value="" />
+                <input class="pow1" type="checkbox" name="spell_desc_show" />
+                <div class="spell-body">You found me!</div>
+                <button type="roll" class="sheet-d6-dice" name="roll_spell1" value="&{template:rolls} {{title=@{spell1} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell1_attribute_mod}[@{spell1_attribute_name}]+@{spell1_proficiency_mod}[@{spell1_proficiency_name}]]]}}"> </button>
+            </div>
+            <!-- Single Line Version Below  
                 <div class="line">
                     <div class="pow1" style="font-weight:bold">Prof</div>
                     <div class="pow2" style="font-weight:bold; text-align:left">Name</div>
@@ -493,12 +507,15 @@
                     <input class="pow3" type="text" name="attr_spell1_desc" value="" />
                     <button type="roll" class="sheet-d6-dice" name="roll_spell1" value="&{template:rolls} {{title=@{spell1} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell1_attribute_mod}[@{spell1_attribute_name}]+@{spell1_proficiency_mod}[@{spell1_proficiency_name}]]]}}"> </button>
                 </div>
+            -->
+
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell2_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell2" value="" />
                     <input class="pow3" type="text" name="attr_spell2_desc" value="" />
                     <button type="roll" class="sheet-d6-dice" name="roll_spell2" value="&{template:rolls} {{title=@{spell2} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell2_attribute_mod}[@{spell2_attribute_name}]+@{spell2_proficiency_mod}[@{spell2_proficiency_name}]]]}}"> </button>
                 </div>
+                <!--
                 <div class="line">
                     <input class="pow1" type="checkbox" name="attr_spell3_proficiency_mod" value="2" />
                     <input class="pow2" style="font-weight:bold" type="text" name="attr_spell3" value="" />
@@ -547,6 +564,8 @@
                     <input class="pow3" type="text" name="attr_spell10_desc" value="" />
                     <button type="roll" class="sheet-d6-dice" name="roll_spell10" value="&{template:rolls} {{title=@{spell10} }} {{subtitle=@{character_name} }} {{roll= [[d6+@{spell10_attribute_mod}[@{spell10_attribute_name}]+@{spell10_proficiency_mod}[@{spell10_proficiency_name}]]]}}"> </button>
                 </div>
+                
+                End single line version -->
             </div>
         </div>
 </div>
