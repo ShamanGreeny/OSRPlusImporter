@@ -206,15 +206,19 @@
         }
         Object.assign(single_attributes, attributes)
 
-        // Conflict Tag Loop
-       // let conflicts{};
-        if (character.used_story_tags = true){
-
-            var tagcount = character.used_story_tags.length;
-            sendChat(script_name, 'Used Story Tag length: '+tagcount, null, {noarchive:true});
-
-
+        // Equipped Weapons and Armor
+        var Armor = character.object_equipped.Armor.length;
+        for (var i=0; i<Armor; i++){
+                    attributes["armor_equipped"] = character.object_equipped.Armor[i].post_title
         }
+        var Weapon = character.object_equipped.Weapons.length
+        for (var i=0; i<Weapon; i++){
+            var row = i+1
+            attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
+        }
+
+        Object.assign(single_attributes, attributes);
+
 
         // Static or single value attributes
             let other_attributes = {
@@ -270,7 +274,7 @@
             'flaw2desc': character.flaw_tags[1].desc,
 
             // Equipped Armor and Weapons 
-            'armor_equipped': character.object_equipped.Armor.post_title
+            'armor_equipped': character.object_equipped.Armor[0].post_title
 
         };
 
