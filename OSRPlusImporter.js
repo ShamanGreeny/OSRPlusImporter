@@ -1,5 +1,5 @@
 /*
- * Version 0.0.7
+ * Version 0.0.8
  *
  * Made By Kris Parsons
  * Discord: kris0918
@@ -195,16 +195,21 @@
 
         // Skills loop
         let attributes = {};
-        if (character.skills_bonus.skll_object = true){
-                attributes["Skill_"+character.skills_bonus.skill_object.post_title+"_Prof"] = "2"
-        }
-        for (var i=0; i<character.object_skills.length; i++){
-            //sendChat(script_name, 'Skills length: '+character.object_skills.length, null, {noarchive:true});
+    
+        var skills = character.object_skills.length
+        for (var i=0; i<skills; i++){
+            //sendChat(script_name, 'Skills length: '+skills, null, {noarchive:true});
             for (var id in character.object_skills[i]){
                 attributes["Skill_"+character.object_skills[i].post_title+"_Prof"] = "2"
             }            
-        }
-        Object.assign(single_attributes, attributes)
+        };
+        
+        
+        if (character.skills_bonus.skill_object){
+                attributes["Skill_"+character.skills_bonus.skill_object.post_title+"_Prof"] = "2"
+        };
+        
+        //Object.assign(single_attributes, attributes);
 
         // Equipped Weapons and Armor
         var Armor = character.object_equipped.Armor.length;
@@ -218,7 +223,6 @@
         }
 
         Object.assign(single_attributes, attributes);
-
 
         // Static or single value attributes
             let other_attributes = {
