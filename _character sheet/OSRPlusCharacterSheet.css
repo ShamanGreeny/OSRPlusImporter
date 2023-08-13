@@ -161,13 +161,13 @@ div.sheet-cha3
 }
 
 /* Skills */ 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, input[type=number].sheet-sk1, input[type=text].sheet-sk2, input[type=text].sheet-sk3, div.sheet-sk4
 {
     margin-bottom: .5em;
     font-size:100%;
 }
 
-div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4
+div.sheet-sk1, div.sheet-sk2, div.sheet-sk3, div.sheet-sk4, input[type=text].sheet-sk2
 {
     border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
@@ -186,8 +186,6 @@ div.sheet-sk2, input[type=text].sheet-sk2
     float:left; 
     width:50%;
     text-align:left;
-    border-bottom: .1em solid transparent;
-    border-top: .1em solid transparent;
     font-size: 95%;
 }
 

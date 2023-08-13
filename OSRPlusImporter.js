@@ -267,7 +267,10 @@
             'flaw1': character.flaw_tags[0].name,
             'flaw1desc': character.flaw_tags[0].desc,
             'flaw2': character.flaw_tags[1].name,
-            'flaw2desc': character.flaw_tags[1].desc
+            'flaw2desc': character.flaw_tags[1].desc,
+
+            // Equipped Armor and Weapons 
+            'armor_equipped': character.object_equipped.Armor.post_title
 
         };
 
