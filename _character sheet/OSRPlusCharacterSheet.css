@@ -253,7 +253,6 @@ div.sheet-vs1
 
 div.sheet-vs2, input[type=text].sheet-vs2 
 {
-    border-bottom: .1em solid transparent;
     border-top: .1em solid transparent;
     margin-bottom: .5em;
 }
@@ -261,14 +260,13 @@ div.sheet-vs2, input[type=text].sheet-vs2
 div.sheet-vs2, input[type=text].sheet-vs2 
 {
     margin-bottom: .5em;
+    width: 80%;
 }
 
 .repeating_equipment {
     padding: 0;
     margin-top: 3.5em;
-    border: .1em solid transparent;
     background-color: transparent;
-    box-shadow: none;
     font-size:90%; 
     text-align: center;
     border-bottom:.1em solid black;
