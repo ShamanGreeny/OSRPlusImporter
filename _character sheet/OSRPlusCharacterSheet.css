@@ -281,15 +281,19 @@ div.sheet-vs2, input[type=text].sheet-vs2
     font-size: 0.5em;
     padding: 3px 7px 2px;
   }
+
 .repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_move {
     font-size: 0.5em;
     padding: 3px 7px;
 }
 
 .itemcontrol {
-    z-index: 100;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 100%;
+    height: 100%;
+  }
 
-}
 
 /* Maleficence */
 div.sheet-es1, input[type=text].sheet-es1
