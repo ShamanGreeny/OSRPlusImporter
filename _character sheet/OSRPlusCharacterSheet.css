@@ -265,7 +265,7 @@ div.sheet-vs2, input[type=text].sheet-vs2
 
 .repeating_equipment {
     padding: 0;
-    margin:0;
+    margin-top: 3.5em;
     border: .1em solid transparent;
     background-color: transparent;
     box-shadow: none;
@@ -276,6 +276,20 @@ div.sheet-vs2, input[type=text].sheet-vs2
     font-weight: 400;
 }
 
+.repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_del {
+    font-family: "Pictos";
+    font-size: 0.5em;
+    padding: 3px 7px 2px;
+  }
+.repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_move {
+    font-size: 0.5em;
+    padding: 3px 7px;
+}
+
+.itemcontrol {
+    z-index: 100;
+
+}
 
 /* Maleficence */
 div.sheet-es1, input[type=text].sheet-es1
