@@ -6,23 +6,6 @@
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
 
-.sheet-subsection-flex {
-    display: flex;
-    padding-top: 0em;
-    padding-left:.5em;
-    padding-right: .5em;
-    padding-bottom: 0;
-    padding-top:0em;
-  }
-.sheet-subsection-flex > * {
-    flex: 1;
-  }
-  
-input.spell_desc_show:not(:checked) ~ div.spell-body
- {
-      display: none;
-  }
-
 
 button[type=roll].sheet-d6-dice::before {
     font-family: 'dicefontd6';
@@ -431,7 +414,7 @@ div.sheet-pow1, div.sheet-pow2, div.sheet-pow3, div.sheet-pow4
     border-top: .1em solid transparent;
 }
 
-div.sheet-pow1 /*, input[type=checkbox].sheet-pow1*/
+div.sheet-pow1, input[type=checkbox].sheet-pow1
 {
     float:left; 
     width:10%;
@@ -452,7 +435,7 @@ div.sheet-pow3, input[type=text].sheet-pow3
     width:60%;
     text-align:left;
     border-bottom: .1em solid transparent;
-    text-overflow: ellipsis;
+    word-break: break-all;
 
 }
 
