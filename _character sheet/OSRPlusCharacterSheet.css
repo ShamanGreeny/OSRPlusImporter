@@ -237,7 +237,7 @@ div.sheet-cs3, input[type=number].sheet-cs3
 }
 
 /* Equipment */
-div.sheet-vs1, input[type=text].sheet-vs1
+div.sheet-vs1, input[type=text].sheet-vs1, div.sheet-vs2, input[type=text].sheet-vs2, div.sheet-vs3, input[type=text].sheet-vs3
 {
     float:left;
     text-align:left;
@@ -251,6 +251,30 @@ div.sheet-vs1
     border-top: .1em solid transparent;
 }
 
+div.sheet-vs2, input[type=text].sheet-vs2 
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+    margin-bottom: .5em;
+}
+
+div.sheet-vs2, input[type=text].sheet-vs2 
+{
+    margin-bottom: .5em;
+}
+
+.repeating_equipment {
+    padding: 0;
+    margin:0;
+    border: .1em solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    font-size:90%; 
+    text-align: center;
+    border-bottom:.1em solid black;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
 
 
 /* Maleficence */
