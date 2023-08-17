@@ -1,5 +1,10 @@
-/* OSR+ 3 col basic v0.8 */
+/* OSR+ 3 col basic v0.9 */
 /* based on Chris's revamp of the 6th Ed 3 col */
+/*   --header-bg-color: #a83521;
+  --header-text-color: #F5F1E1;
+  background: #F5F1E1;
+  border: 3px solid #1E1918;
+  --header-bg-color, #7B3518); */
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
 
@@ -19,7 +24,7 @@ input[type=number]
     box-shadow: none;
     font-size:100%; 
     text-align: center;
-    border-bottom: .1em solid black;
+    border-bottom: .1em solid #1E1918;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     font-weight: 400;
 
@@ -34,7 +39,7 @@ input[type=text]
     box-shadow: none;
     font-size:100%; 
     text-align: center;
-    border-bottom:.1em solid black;
+    border-bottom:.1em solid #1E1918;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     font-weight: 400;
 }
@@ -48,7 +53,8 @@ textarea
     resize: none;
     font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     font-weight: 400;
-
+    background-color: #F5F1E1;
+    text-overflow: ellipsis;
 }
 
 input[type=number]::-webkit-inner-spin-button, 
@@ -66,7 +72,8 @@ div.sheet-single-col {
 }
 
 div.sheet-section {
-    border: .2em solid black;
+    border: .2em solid #7B3518;
+    background-color: #F5F1E1;
     border-radius: 1em;
     /* font-size: 85%; */
     margin-bottom: 1em;
@@ -80,13 +87,14 @@ div.sheet-subsection {
     padding-right: .5em;
     padding-bottom: 0;
     padding-top:0em;
+    background-color: #F5F1E1;
 }
 
 div.sheet-section-title {
     text-align: center;
     font-weight: 800;
     width: 100%;
-    border-bottom: .2em solid black;
+    border-bottom: .2em solid #1E1918;
     margin-bottom: 1em;
     font-family: 'Eczar', Arial, Helvetica, sans-serif;
 
@@ -267,7 +275,6 @@ div.sheet-vs2, input[type=text].sheet-vs2
 
 .repeating_equipment {
     padding: 0;
-    background-color: transparent;
     font-size:90%; 
     text-align: center;
     border-bottom:.1em solid black;
@@ -277,13 +284,13 @@ div.sheet-vs2, input[type=text].sheet-vs2
 
 .repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_del {
     font-family: "Pictos";
-    font-size: 0.5em;
-    padding: 3px 7px 2px;
+    font-size: 1em;
+    padding: 3px 5px;
   }
 
 .repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_move {
-    font-size: 0.5em;
-    padding: 3px 7px;
+    font-size: 1em;
+    padding: 3px 5px;
 }
 
 
@@ -438,3 +445,4 @@ div.sheet-pow4, input[type=button].sheet-pow4
   .sheet-rolltemplate-rolls .sheet-content :nth-child(4n) {
     background: #F5F1E1;
   }
+
