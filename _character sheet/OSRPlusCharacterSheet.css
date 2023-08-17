@@ -242,7 +242,6 @@ div.sheet-cs3, input[type=number].sheet-cs3
 /* Equipment */
 div.sheet-vs1, input[type=text].sheet-vs1, div.sheet-vs2, input[type=text].sheet-vs2, div.sheet-vs3, input[type=text].sheet-vs3
 {
-    float:left;
     text-align:left;
     margin-bottom: .8em;
     font-size:90%;
@@ -268,7 +267,6 @@ div.sheet-vs2, input[type=text].sheet-vs2
 
 .repeating_equipment {
     padding: 0;
-    margin-top: 3.5em;
     background-color: transparent;
     font-size:90%; 
     text-align: center;
@@ -288,12 +286,6 @@ div.sheet-vs2, input[type=text].sheet-vs2
     padding: 3px 7px;
 }
 
-.itemcontrol {
-    margin-top: 10%;
-    margin-bottom: 10%;
-    width: 100%;
-    height: 100%;
-  }
 
 
 /*  Column 3        */
@@ -379,7 +371,7 @@ div.sheet-pow3, input[type=text].sheet-pow3
     width:60%;
     text-align:left;
     border-bottom: .1em solid transparent;
-    word-break: break-all;
+    text-overflow: ellipsis;
 
 }
 
