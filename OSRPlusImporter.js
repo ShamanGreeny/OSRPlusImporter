@@ -217,6 +217,8 @@
             var row = i+1
             attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
         }
+               
+
 
         // Spells
         let spells = character.spellbook.length;
@@ -285,10 +287,9 @@
             'flaw1': character.flaw_tags[0].name,
             'flaw1desc': character.flaw_tags[0].desc,
             'flaw2': character.flaw_tags[1].name,
-            'flaw2desc': character.flaw_tags[1].desc,
+            'flaw2desc': character.flaw_tags[1].desc
 
-            // Equipped Armor and Weapons 
-            'armor_equipped': character.object_equipped.Armor[0].post_title
+
 
         };
 
@@ -320,7 +321,7 @@
             }
         }
         if (illegal.length > 0) {
-            log(`beyond: errors during import: the following imported attributes had undefined or null values: ${illegal}`);
+            log(`OSRPlus Import: errors during import: the following imported attributes had undefined or null values: ${illegal}`);
         }
 
         // make work queue
@@ -368,7 +369,7 @@
                 continue;
             }
             items.push([trigger, value]);
-            log('beyond: trigger attribute ' + trigger);
+            log('OSRPlus: trigger attribute ' + trigger);
             delete attributes[trigger];
         }
         return items;
@@ -389,7 +390,7 @@
             // configure HP, because we now know our CON score
             //loadHitPoints(character, total_level);
 
-            if(class_spells.length > 0 && state[state_name][beyond_caller.id].config.imports.class_spells) {
+            if(class_spells.length > 0 && state[state_name][osrp_caller.id].config.imports.class_spells) {
                 sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is almost ready.<br />Class spells are being imported over time.</div>', null, {noarchive:true});
 
                 // this is really just artificially asynchronous, we are not currently using a worker, so it will happen as soon as we return
@@ -439,7 +440,7 @@
                 // set Timeout for async iteration
                 onSheetWorkerCompleted(doChunk);
             } else {
-                log('beyond: spells imported, updating spell attack proficiency');
+                log('OSRPlus: spells imported, updating spell attack proficiency');
                 onSheetWorkerCompleted(() => { 
                     updateSpellAttackProf(character, 0); 
                 });
@@ -456,7 +457,6 @@
         let suffixButton = makeButton(suffix, '!osrplus --config suffix|?{Suffix}', buttonStyle);
         let overwriteButton = makeButton(state[state_name][playerid].config.overwrite, '!osrplus --config overwrite|'+!state[state_name][playerid].config.overwrite, buttonStyle);
         let debugButton = makeButton(state[state_name][playerid].config.debug, '!osrplus --config debug|'+!state[state_name][playerid].config.debug, buttonStyle);
-        // let silentSpellsButton = makeButton(state[state_name][playerid].config.silentSpells, '!beyond --config silentSpells|'+!state[state_name][playerid].config.silentSpells, buttonStyle);
 
         let listItems = [
             '<span style="float: left; margin-top: 6px;">Overwrite:</span> '+overwriteButton+'<br /><small style="clear: both; display: inherit;">This option will overwrite an existing character sheet with a matching character name. I recommend making a backup copy just in case.</small>',
@@ -521,7 +521,6 @@
     };
 
     const sendHelpMenu = (player, first) => {
-        // let configButton = makeButton('Config', '!beyond --config', buttonStyle+' margin: auto; width: 90%; display: block; float: none;');
 
         let listItems = [
             '<span style="text-decoration: underline; font-size: 90%;">!osrplus --help</span><br />Shows this menu.',
@@ -572,7 +571,7 @@
 
     const getRepeatingRowIds = (section, attribute, matchValue, index) => {
         let ids = [];
-        if(state[state_name][beyond_caller.id].config.overwrite) {
+        if(state[state_name][osrp_caller.id].config.overwrite) {
             let matches = findObjs({ type: 'attribute', characterid: object.id })
                 .filter((attr) => {
                     return attr.get('name').indexOf('repeating_'+section) !== -1 && attr.get('name').indexOf(attribute) !== -1 && attr.get('current') == matchValue;
@@ -727,7 +726,7 @@
             if (modifier.bonus !== undefined) {
                 mod = modifier.bonus;
             }
-            log(`beyond: final modifier ${basename} (${modifier.friendly}) proficiency ${modifier.proficiency} bonus ${modifier.bonus}`)
+            log(`OSRPlus: final modifier ${basename} (${modifier.friendly}) proficiency ${modifier.proficiency} bonus ${modifier.bonus}`)
             if (all_skills.indexOf(basename) !== -1) {
                 switch (modifier.proficiency) {
                     case 0:
