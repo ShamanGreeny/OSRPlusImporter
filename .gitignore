@@ -1,2 +1,4 @@
 .DS_Store
 testjavascript.js
+testjson.json
+.vscode/launch.json
