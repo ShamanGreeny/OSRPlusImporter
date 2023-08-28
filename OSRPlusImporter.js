@@ -128,7 +128,7 @@
   
         let json = importData;
         let character = JSON.parse(json).data;
-        if(debug) { sendChat(script_name, script_name + ' Past JSON import!', null, {noarchive:true}); }
+
         //Roll20 specific function - report to chat
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is starting.</div>', null, {noarchive:true});
 
@@ -207,19 +207,6 @@
         };
         
 
-        // Equipped Weapons and Armor
-        var Armor = character.object_equipped.Armor.length;
-        for (var i=0; i<Armor; i++){
-                    attributes["armor_equipped"] = character.object_equipped.Armor[i].post_title
-        }
-        var Weapon = character.object_equipped.Weapons.length
-        for (var i=0; i<Weapon; i++){
-            var row = i+1
-            attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
-        }
-               
-
-
         // Spells
         let spells = character.spellbook.length;
         for (var i=0; i<spells; i++){
@@ -234,6 +221,19 @@
             }
         }
 
+        // Equipped Weapons and Armor
+        var Armor = character.object_equipped.Armor.length;
+        for (var i=0; i<Armor; i++){
+                    attributes["armor_equipped"] = character.object_equipped.Armor[i].post_title
+        }
+        var Weapon = character.object_equipped.Weapons.length
+        for (var i=0; i<Weapon; i++){
+            var row = i+1
+            attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
+        }
+
+
+        // Add the iterated values thus far
         Object.assign(single_attributes, attributes);
 
         // Static or single value attributes
@@ -304,6 +304,11 @@
             'l1mancer_status': 'complete',
             'mancer_cancel': 'on'
         });
+
+        // Inventory loop and repeating items
+
+        let reapeatingItems ={}
+
 
         // check for bad attribute values and change them to empty strings, because these will cause a crash otherwise
         // ('Error: Firebase.update failed: First argument contains undefined in property 'current'')
