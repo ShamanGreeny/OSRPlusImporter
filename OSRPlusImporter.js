@@ -1,11 +1,13 @@
 /*
- * Version 0.0.8
+ * Version 0.9
  *
  * Made By Kris Parsons
  * Discord: kris0918
  * Github: 
  * Paypal.me: https://www.paypal.me/kristianparsons
  *
+ *  To use - search for "data-hero" in view page source:
+ * 
  *  Fodel: https://osrplus.com/api/roll20/?id=10350
  *  Englebert: https://osrplus.com/api/roll20/?id=16693
  *  Barbara: https://osrplus.com/api/roll20/?id=17806
