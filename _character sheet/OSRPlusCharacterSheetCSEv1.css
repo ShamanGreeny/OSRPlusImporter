@@ -1,0 +1,456 @@
+/* OSR+ 3 col basic v0.9 */
+/* based on Chris's revamp of the 6th Ed 3 col */
+/*   --header-bg-color: #a83521;
+  --header-text-color: #F5F1E1;
+  background: #F5F1E1;
+  border: 3px solid #1E1918;
+  --header-bg-color, #7B3518); */
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
+
+/*  Inital Character Sheet Setup */
+button[type=roll].d6-dice::before {
+    font-family: 'dicefontd6';
+    content: 'F ';
+    text-align: right;
+}
+
+input[type=number]
+{
+    padding: 0;
+    margin:0;
+    border: .1em solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    font-size:100%; 
+    text-align: center;
+    border-bottom: .1em solid #1E1918;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+
+}
+
+input[type=text]
+{
+    padding: 0;
+    margin:0;
+    border: .1em solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    font-size:100%; 
+    text-align: center;
+    border-bottom:.1em solid #1E1918;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+textarea
+{
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+    font-size: 9px;
+    resize: none;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    background-color: #F5F1E1;
+    text-overflow: ellipsis;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button 
+{ 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+div.single-col {
+    padding:none; 
+    margin:none;
+    width:21.5em;
+    float:left;
+}
+
+div.section {
+    border: .2em solid #7B3518;
+    background-color: #F5F1E1;
+    border-radius: 1em;
+    /* font-size: 85%; */
+    margin-bottom: 1em;
+    margin-left:.5em;
+    margin-right: .5em;
+}
+
+div.subsection {
+    padding-top: 0em;
+    padding-left:.5em;
+    padding-right: .5em;
+    padding-bottom: 0;
+    padding-top:0em;
+    background-color: #F5F1E1;
+}
+
+div.section-title {
+    text-align: center;
+    font-weight: 800;
+    width: 100%;
+    border-bottom: .2em solid #1E1918;
+    margin-bottom: 1em;
+    font-family: 'Eczar', Arial, Helvetica, sans-serif;
+
+}
+
+div.line
+{
+    border:none; 
+    padding:0; 
+    clear: left;
+    margin-top: -.5em;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+/*  Header                      */
+/*  Main Character Information  */
+.head1, .input[type=text].head1
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+    margin-bottom: .175em;
+    font-size:100%;
+    font-weight: 700;
+    
+}
+
+div.head1, input[type=text].head1
+{
+    margin:0; 
+    padding:0; 
+    float:left; 
+    text-align:left;
+}
+
+/*  Attributes        */
+/*  Top Row          */
+.attrType {
+    float:center; 
+    width: 20%;
+    text-align:center;
+    font-size: 200%;
+}
+
+/*  Column 1            */
+/*  Statistics          */
+.cha1, .cha2, .cha3, .cha4, input[type=number].cha1, input[type=number].cha3,
+    input[type=number].cha4
+{
+    margin-bottom: .175em;
+    margin-right: 1em;
+    font-size:100%;
+}
+
+.cha1, .cha2, .cha3
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.cha1, input[type=number].cha1
+{
+    float:left; 
+    width: 20%;
+    text-align:center;
+}
+
+div.cha2
+{
+    float:left; 
+    width: 40%;
+    text-align:center;
+    font-weight:bold;
+}
+
+div.cha3
+{
+    float:left; 
+    width:20%; 
+    text-align:center;
+}
+
+/*  Skills      */ 
+div.sk1, div.sk2, div.sk3, input[type=number].sk1, input[type=text].sk2, input[type=text].sk3, div.sk4
+{
+    margin-bottom: .5em;
+    font-size:100%;
+}
+
+div.sk1, div.sk2, div.sk3, div.sk4, input[type=text].sk2
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.sk1, input[type=checkbox].sk1
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+    
+}
+
+div.sk2, input[type=text].sk2
+{
+    float:left; 
+    width:50%;
+    text-align:left;
+    font-size: 95%;
+}
+
+div.sk3, input[type=text].sk3
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+}
+
+div.sk4
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+}
+
+
+/*  Column 2         */
+/*  Current Status   */
+div.cs1, div.cs2,  input[type=text].cs2
+{
+    margin-bottom: .4em;
+    font-size:100%;
+}
+
+div.cs1, div.cs2, div.cs3
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.cs1
+{
+    float:left; 
+    width:40%;
+    text-align:left;
+}
+
+div.cs2, input[type=number].cs2
+{
+    float:left; 
+    width:30%;
+    text-align:center;
+}
+
+div.cs3, input[type=number].cs3
+{
+    float:left; 
+    width:30%;
+    text-align:center;
+}
+
+/* Equipment */
+div.vs1, input[type=text].vs1, div.vs2, input[type=text].vs2, div.vs3, input[type=text].vs3
+{
+    text-align:left;
+    margin-bottom: .8em;
+    font-size:90%;
+}
+
+div.vs1
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.vs2, input[type=text].vs2 
+{
+    border-top: .1em solid transparent;
+    margin-bottom: .5em;
+}
+
+div.vs2, input[type=text].vs2 
+{
+    margin-bottom: .5em;
+    width: 80%;
+}
+
+.repeating_equipment {
+    padding: 0;
+    font-size:90%; 
+    text-align: center;
+    border-bottom:.1em solid black;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+.repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_del {
+    font-family: "Pictos";
+    font-size: 1em;
+    padding: 3px 5px;
+  }
+
+.repcontainer[data-groupname=repeating_equipment] > .repitem .repcontrol_move {
+    font-size: 1em;
+    padding: 3px 5px;
+}
+
+
+
+/*  Column 3        */
+/*  Conflict Tags   */
+div.pts1, div.pts2, input[type=text].pts1, input[type=checkbox].pts2, div.pts3
+{
+    margin-bottom: .5em;
+    font-size:100%;
+}
+
+div.pts1, div.pts2
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.pts1, input[type=text].pts1
+{
+    float:left; 
+    width:80%;
+    text-align:left;
+    border-bottom: .1em solid transparent;
+}
+
+div.pts2, input[type=checkbox].pts2
+{
+    float:left; 
+    width:15%;
+    text-align:center;
+    
+}
+
+div.pts3, input[type=text].pts3
+{
+    font-size: 90%;
+    border-bottom: .1em solid transparent;
+    width: 80%;
+    text-align: left;
+}
+
+/*  Maleficence     */
+div.es1, input[type=text].es1
+{
+    margin-bottom: .5em;
+    font-size:100%;
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.es1, input[type=text].es1
+{
+    float:left; 
+    width:60%;
+    text-align:left;
+}
+
+/*  Footer      */
+/*  Spells      */
+div.pow1, div.pow2, div.pow3, div.pow4
+{
+    border-bottom: .1em solid transparent;
+    border-top: .1em solid transparent;
+}
+
+div.pow1, input[type=checkbox].pow1
+{
+    float:left; 
+    width:10%;
+    text-align:center;
+}
+
+div.pow2, input[type=text].pow2
+{
+    float:left; 
+    width:20%;
+    text-align:left;
+    border-bottom: .1em solid transparent;
+}
+
+div.pow3, input[type=text].pow3
+{
+    float:left; 
+    width:60%;
+    text-align:left;
+    border-bottom: .1em solid transparent;
+    text-overflow: ellipsis;
+
+}
+
+div.pow4, input[type=button].pow4
+{
+    float:left; 
+    width:10%;
+    text-align:center;
+}
+
+
+
+/* ------------------------------------------------------- */
+/*                                                         */
+/*    ROLL20 DICE CHAT TEMPLATE(S)                         */
+/*                                                         */
+/* ------------------------------------------------------- */
+
+.sheet-rolltemplate-rolls {
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+  }
+  .sheet-rolltemplate-rolls .sheet-container {
+    border: 3px solid #1E1918;
+    border-radius: 3px;
+  }
+  .sheet-rolltemplate-rolls .sheet-header {
+    background-color: var(--header-bg-color, #7B3518);
+    color: var(--header-text-color, #F5F1E1);
+    text-align: left;
+    text-transform: capitalize;
+    padding: 5px;
+    border-bottom: 2px solid #1E1918;
+    font-family: 'Eczar', Arial, Helvetica, sans-serif;
+  }
+  .sheet-rolltemplate-rolls .sheet-title,
+  .sheet-rolltemplate-rolls .sheet-name {
+    font-size: 1.4em;
+    font-weight: bold;
+  }
+  .sheet-rolltemplate-rolls .sheet-subtitle {
+    font-size: 1em;
+  }
+  .sheet-rolltemplate-rolls .sheet-container {
+    --header-bg-color: #a83521;
+    --header-text-color: #F5F1E1;
+  }
+  
+  .sheet-rolltemplate-rolls .sheet-content {
+    display: grid;
+    background: #F5F1E1;
+    grid-template-columns: auto auto;
+    line-height: 1.4em;
+  }
+  .sheet-rolltemplate-rolls .sheet-content > div {
+    padding: 5px;
+  }
+  .sheet-rolltemplate-rolls .sheet-content .sheet-key {
+    font-weight: bold;
+    padding-right: 10px;
+    text-align: right;
+  }
+  .sheet-rolltemplate-rolls .sheet-content :nth-child(4n+3),
+  .sheet-rolltemplate-rolls .sheet-content :nth-child(4n) {
+    background: #F5F1E1;
+  }
