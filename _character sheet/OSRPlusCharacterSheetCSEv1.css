@@ -1,5 +1,6 @@
-/* OSR+ 3 col basic v0.9 */
+/* OSR+ 3 Column Basic v1.0 */
 /* based on Chris's revamp of the 6th Ed 3 col */
+/* Adjusted to address changes as part of Roll20 CSE updates */
 /*   --header-bg-color: #a83521;
   --header-text-color: #F5F1E1;
   background: #F5F1E1;
@@ -135,9 +136,9 @@ div.head1, input[type=text].head1
 .attrType {
     float:center; 
     width: 20%;
-    text-align:center;
-    font-size: 200%;
+    text-align:center
 }
+
 
 /*  Column 1            */
 /*  Statistics          */
