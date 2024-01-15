@@ -21,10 +21,13 @@
             <div class="head1" style="width:20%">Level:</div>
             <input type="text" class="head1" name="attr_level" value="" style="width:25%;  text-align: center"/> 
         </div>
+        <div class="line">
+            <div class="head1" style="width:20%">Kit:</div>
+            <input type="text" class="head1" name="attr_kit" value="" style="width:25%;  text-align: center"/> 
+        </div>
     </div>
     <div style="width:33%; float:left; text-align:middle; vertical-align:middle; min-height:10em;">
         <img src="https://raw.githubusercontent.com/ShamanGreeny/OSRPlusImporter/main/_character%20sheet/logo-rectangle.jpg" style="width:180px;height:70px;">
-        <div><br</div>
     </div>
 </div>
 <!-- Attributes Blocks -->
@@ -59,36 +62,83 @@
             </div>
         </div>
     </div>
-</div>        
-<!-- First Column - Statistics, Skills  -->
+</div>
+<!-- Secondary Attributes - HP, AP, MP -->
 <div style="clear:left; width:64.52em;">
     <div class="single-col">
-        <div class="section" style="min-height:16em;">
-            <div class="section-title">Statistics</div>
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Hit Points</div>
             <div class="subsection">
                 <div class="line">
-                    <div class="cha1" style="font-weight: bold">Val</div>
-                    <div class="cha2" style="font-weight: bold">Char</div>
-                    <div class="cha3" style="font-weight: bold">Roll</div>
+                    <input type="number" class="attrType" name="attr_hp_current" value="0" style="font-size: large; font-weight: 700">
+                    /
+                    <input type="number" class="attrType" name="attr_hp" value="0" style="font-size: large; font-weight: 700">
                 </div>
-                <div class="line">
-                    <input type="number" class="cha1" name="attr_init" value="0">
-                    <div class="cha2">Initiative</div>
-                    <button type="roll" class="d6-dice" name="roll_init" value="&{template:rolls} {{title=Initiative}} {{subtitle=@{character_name} }} {{roll= [[d6+(@{init}[init]) &{tracker}]]}}"> </button>
-                </div>    
-                <div class="line">
-                    <input type="number" class="cha1" name="attr_defense" value="10">
-                    <div class="cha2">Defense</div>
-                </div>  
-                <div class="line">
-                    <input type="number" class="cha1" name="attr_soak" value="10">
-                    <div class="cha2">Soak</div>
-                </div>            
             </div>
         </div>
-    <div style="clear:left; width:64.52em; padding-right:none">
-        <div class="single-col">
-            <div class="section" style="min-height:40em;">
+    </div>
+    <div class="single-col">
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Armor Points</div>
+            <div class="subsection">
+                <div class="line">
+                    <input type="number" class="attrType" name="attr_ap_current" value="0" style="font-size: large; font-weight: 700">
+                    /
+                    <input type="number" class="attrType" name="attr_ap" value="0" style="font-size: large; font-weight: 700">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-col">
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Magic Points</div>
+            <div class="subsection">
+                <div class="line">
+                    <input type="number" class="attrType" name="attr_mp_current" value="0" style="font-size: large; font-weight: 700">
+                    /
+                    <input type="number" class="attrType" name="attr_mp" value="0" style="font-size: large; font-weight: 700">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Secondary Attributes - Defense, Initiative, Soak-->
+<div style="clear:left; width:64.52em;">
+    <div class="single-col">
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Defense</div>
+            <div class="subsection">
+                <div class="line">
+                    +<input type="number" class="attrType" name="attr_defense" value="0" style="font-size: large; font-weight: 700">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-col">
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Initiative</div>
+            <div class="subsection">
+                <div class="line">
+                    +<input type="number" class="attrType" name="attr_init" value="0" style="font-size: large; font-weight: 700">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="single-col">
+        <div class="section" style="min-height:6em; text-align: center;">
+            <div class="section-title" style="font-size: large;">Soak</div>
+            <div class="subsection">
+                <div class="line">
+                    <input type="number" class="attrType" name="attr_soak" value="0" style="font-size: large; font-weight: 700">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Column 1  - Statistics, Skills  -->
+<div style="clear:left; width:64.52em;">
+    <div class="single-col">
+        <div class="section" style="min-height:40em;">
             <div class="section-title">Skills</div>
             <div class="subsection">
                 <div class="line">
@@ -190,70 +240,21 @@
             </div>
         </div>
     </div>
-</div>
-<!-- Second Column - Status, Equipment -->
-</div>
+
+<!-- Second Column - Armor, Abilities -->
     <div class="single-col">
-        <div class="section" style="min-height:12em;">
-            <div class="section-title">Current Status</div>
-            <div class="subsection">
-                <div class="line">
-                    <div class="cs1">&nbsp;</div>
-                    <div class="cs2" style="font-weight:bold">Current</div>
-                    <div class="cs3" style="font-weight:bold">Maximum</div>
-                </div>
-                <div class="line">
-                    <div class="cs1">Hit Points</div>
-                    <input type="number" class="cs2" name="attr_hp_current" value="0" />
-                    <input type="number" class="cs3" style="font-weight:bold" name="attr_hp" value="0" />
-                </div>
-                <div class="line">
-                    <div class="cs1">Armor Points</div>
-                    <input type="number" class="cs2" name="attr_ap_current" value="0" />
-                    <input type="number" class="cs3" style="font-weight:bold" name="attr_ap" value="0" />
-                </div>
-                <div class="line">
-                    <div class="cs1">Magic Points</div>
-                    <input type="number" class="cs2" name="attr_mp_current" value="0" />
-                    <input type="number" class="cs3" style="font-weight:bold" name="attr_mp" value="" />
-                </div>
-                <div class="line">
-                    <div class="cs1">Fate Points</div>
-                    <input type="number" class="cs2" name="attr_fp_current" value="0" />
-                    <input type="number" class="cs3" style="font-weight:bold" name="attr_fp" value="3" />
-                </div>
+        <div class="section" style="min-height:40em;">
+            <div class="section-title">Equiment and Abilities</div>
+            <div class="line">
+                <div class="vs1" style="width:80%; font-weight:bold">Inventory</div>
             </div>
+            <fieldset class="repeating_equipment" >
+                <div class="line">
+                    <input type="text" class="vs2" name="attr_equip_spacer" value="" style="width: 9%; border-bottom: transparent;">
+                    <input type="text" class="vs2" name="attr_equipment" value="">
+                </div>
+            </fieldset>
         </div>
-        <div class="section" style="min-height:44em;">
-            <div class="section-title">Equipment</div>
-             <div class="subsection">
-                <div class="line">
-                    <div class="vs1" style="width:20%; font-weight:bold">Armor</div>
-                    <input type="text" class="vs1" name="attr_armor_equipped" style="width:80%; text-align:left; border-bottom:none" value=""  />
-                </div>
-                <div class="line">
-                    <div class="vs1" style="width:20%; font-weight:bold">Shield</div>
-                    <input type="text" class="vs1" name="attr_shield_equipped" style="width:80%; text-align:left; border-bottom:none" value="None"  />
-                </div>
-                <div><br></div>
-                <div class="line">
-                    <div class="vs1" style="width:100%; font-weight:bold">Weapons</div>
-                    <input type="text" class="vs2" name="attr_weapon1_equipped" style="width:80%; text-align:left; border-bottom:none" value="None"  />
-                    <input type="text" class="vs2" name="attr_weapon2_equipped" style="width:80%; text-align:left; border-bottom:none" value="None"  />
-                </div>
-                <div><br</div>
-                <div class="line">
-                    <div class="vs1" style="width:80%; font-weight:bold">Inventory</div>
-                </div>
-                <fieldset class="repeating_equipment" >
-                    <div class="line">
-                        <input type="text" class="vs2" name="attr_equip_spacer" value="" style="width: 9%; border-bottom: transparent;">
-                        <input type="text" class="vs2" name="attr_equipment" value="">
-                    </div>
-                </fieldset>
-        </div>
-        </div>
-    </div>
     </div>
 <!-- Third Column - Conflict/Flaw Tags, Maleficence -->
     <div class="single-col">
@@ -294,29 +295,7 @@
                     <input type="text" class="pts3" name="attr_flaw2" value="" />
                 </div>
             </div>
-        </div>
-        <div class="section" style="min-height:10em;">
-            <div class="section-title">Kit</div>
-            <div class="subsection">
-                <div class="line">
-                    <input type="text" class="pts1" style="font-weight:bold" name="attr_kit" value="" />
-               </div>
-               <div class="input">
-                    <textarea name="attr_kit_detail" value="The Recluse"></textarea>
-               </div>
-            </div>
-        </div>
-        <div class="section" style="min-height:11.7em;">
-            <div class="section-title">Maleficence</div>
-            <div class="subsection">
-                <div class="line">
-                    <input type="text" class="es1" style="font-weight:bold" name="attr_maleficence" value="" />
-                 </div>
-                <div class="input">
-                    <textarea name="attr_maleficence_description" value="The Recluse"></textarea>
-                </div>
-            </div>
-        </div>
+        </div>           
     </div>
 </div>
 <!-- Bottom of sheet - Spells   -->
