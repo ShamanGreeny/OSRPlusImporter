@@ -10,9 +10,8 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
 
 /*  Inital Character Sheet Setup */
-input[type=button].d6-dice {
-    background-image: none;
-    font-family: dicefontd6;
+.d6-dice, input[type=button].d6-dice {
+    font-family: 'dicefontd6';
     content: "l"; 
 }
 
