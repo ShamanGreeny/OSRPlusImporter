@@ -134,6 +134,7 @@
             <div class="section-title" style="font-size: large;">Soak</div>
             <div class="subsection">
                 <div class="line">
+                    <span style="font-family: 'Pictos';font-size: large;">&</span>
                     <input type="number" class="attrType" name="attr_soak" value="0" style="font-size: large; font-weight: 700">
                 </div>
             </div>
@@ -143,124 +144,46 @@
 <!-- Column 1  - Statistics, Skills  -->
 <div style="clear:left; width:64.52em;">
     <div class="single-col">
-        <div class="section" style="min-height:40em;">
+        <div class="section" style="min-height:20em;">
             <div class="section-title">Skills</div>
             <div class="subsection">
                 <div class="line">
                     <div class="sk1" style="font-weight:bold">Prof</div>
                     <div class="sk2" style="font-weight:bold">Skill</div>
                     <div class="sk3" style="font-weight:bold">Mod</div>
-                    <div class="sk4" style="font-weight:bold">Roll</div>
                 </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Athletics_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Athletics" value="Athletics" />
-                    <input class="sk3" type="text" name="attr_Skill_Athletics_Mod" value="M" />
-                    <button type="roll" class="d6-dice" name="roll_athletics" value="&{template:rolls} {{title=Athletics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Athletics_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Crafting_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Crafting" value="Crafting" />
-                    <input class="sk3" type="text" name="attr_Skill_Crafting_Mod" value="S" />
-                    <button type="roll" class="d6-dice" name="roll_crafting" value="&{template:rolls} {{title=Crafting}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skills_Crafting_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Culture_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Culture" value="Culture" />
-                    <input class="sk3" type="text" name="attr_Skill_Culture_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_culture" value="&{template:rolls} {{title=Culture}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Culture_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Domain_Knowledge_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Domain_Knowledge" value="Domain Knowledge" />
-                    <input class="sk3" type="text" name="attr_Skill_Domain_Knowledge_Mod" value="S" />
-                    <button type="roll" class="d6-dice" name="roll_domain_knowledge" value="&{template:rolls} {{title=Domain Knowledge}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Domain_Knowledge_Prof}[Proficiency]]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Influence_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Influence" value="Influence" />
-                    <input class="sk3" type="text" name="attr_Skill_Influence_Mod" value="M" />
-                    <button type="roll" class="d6-dice" name="roll_influence" value="&{template:rolls} {{title=Influence}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Influence_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Lore_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Lore" value="Lore" />
-                    <input class="sk3" type="text" name="attr_Skill_Lore_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_lore" value="&{template:rolls} {{title=Lore}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Lore_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Nature_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Nature" value="Nature" />
-                    <input class="sk3" type="text" name="attr_Skill_Nature_Mod" value="S" />
-                    <button type="roll" class="d6-dice" name="roll_nature" value="&{template:rolls} {{title=Nature}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Nature_Prof}[Proficiency]]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Perception_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Perception" value="Perception" />
-                    <input class="sk3" type="text" name="attr_Skill_Perception_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_perception" value="&{template:rolls} {{title=Perception}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Perception_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Performance_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Perfomance" value="Performance" />
-                    <input class="sk3" type="text" name="attr_Skill_Peformance_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_performance" value="&{template:rolls} {{title=Performance}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Performance_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Psionics_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Psionics" value="Psionics" />
-                    <input class="sk3" type="text" name="attr_Skill_Psionics_Mod" value="M" />
-                    <button type="roll" class="d6-dice" name="roll_psionics" value="&{template:rolls} {{title=Psionics}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Psionics_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Reflexes_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Reflexes" value="Reflexes" />
-                    <input class="sk3" type="text" name="attr_Skill_Reflexes_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_reflexes" value="&{template:rolls} {{title=Reflexes}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Reflexes_Prof}[Proficiency]]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Sorcery_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Sorcery" value="Sorcery" />
-                    <input class="sk3" type="text" name="attr_Skill_Sorcery_Mod" value="S" />
-                    <button type="roll" class="d6-dice" name="roll_sorcery" value="&{template:rolls} {{title=Sorcery}} {{subtitle=@{character_name} }} {{roll= [[d6+@{smart}[Smart]+@{Skill_Sorcery_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Survival_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Survival" value="Survival" />
-                    <input class="sk3" type="text" name="attr_Skill_Survival_Mod" value="M" />
-                    <button type="roll" class="d6-dice" name="roll_survival" value="&{template:rolls} {{title=Survival}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Survival_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Thaumaturgy_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Thaumaturgy" value="Thaumaturgy" />
-                    <input class="sk3" type="text" name="attr_Skill_Thaumaturgy_Mod" value="D" />
-                    <button type="roll" class="d6-dice" name="roll_thaumaturgy" value="&{template:rolls} {{title=Thaumaturgy}} {{subtitle=@{character_name} }} {{roll= [[d6+@{deft}[Deft]+@{Skill_Thaumaturgy_Prof}[Proficiency] ]]}}"> </button>
-                </div>
-                <div class="line">
-                    <input class="sk1" type="checkbox" name="attr_Skill_Weapon_Prof" value="2" />
-                    <input class="sk2" type="text" name="attr_Skill_Weapon" value="Weapon" />
-                    <input class="sk3" type="text" name="attr_Skill_Weapon_Mod" value="M" />
-                    <button type="roll" class="d6-dice" name="roll_weapon" value="&{template:rolls} {{title=Weapon}} {{subtitle=@{character_name} }} {{roll= [[d6+@{mighty}[mighty]+@{Skill_Weapon_Prof}[Proficiency] ]]}}"> </button>
-                </div>
+                <fieldset class="repeating_skills" >
+                    <div class="line">
+                        <input class="sk1" type="checkbox" name="attr_Skill_Prof" value="2" />
+                        <input class="sk2" type="text" name="attr_Skill" value="" />
+                        <input class="sk3" type="text" name="attr_Skill_Mod" value="M" />
+                    </div>
+                </fieldset>    
             </div>
         </div>
     </div>
 
 <!-- Second Column - Armor, Abilities -->
     <div class="single-col">
-        <div class="section" style="min-height:40em;">
+        <div class="section" style="min-height:20em;">
             <div class="section-title">Equipment and Abilities</div>
-            <div class="line">
-                <div class="vs1" style="width:80%; font-weight:bold">Inventory</div>
-            </div>
-            <fieldset class="repeating_equipment" >
+            <div class="subsection">
                 <div class="line">
-                    <input type="text" class="vs2" name="attr_equip_spacer" value="" style="width: 9%; border-bottom: transparent;">
-                    <input type="text" class="vs2" name="attr_equipment" value="">
+                    <div class="vs1" style="font-weight:bold">Prof</div>
+                    <div class="vs2" style="font-weight:bold">Item/Action</div>
+                    <div class="vs3" style="font-weight:bold">Mod</div>
                 </div>
-            </fieldset>
+                <fieldset class="repeating_equipment" >
+                    <div class="line">
+                        <input class="vs1" type="checkbox" name="attr_equip_prof" value="2" />
+                        <input class="vs2" type="text" name="attr_equipment" value="" />
+                        <input class="vs3" type="text" name="attr_equipment_mod" value="+2" />
+                    </div>
+                </fieldset>    
+            </div>
         </div>
-    </div>
+    </div>    
+
 <!-- Third Column - Conflict/Flaw Tags, Maleficence -->
     <div class="single-col">
         <div class="section" style="min-height:15em;">
