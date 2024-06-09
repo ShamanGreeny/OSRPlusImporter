@@ -1,0 +1,87 @@
+/* OSR+ Shorthand for NPC's and Monsters v0.1 */
+
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
+
+/* Flex Column Setup */
+.row {
+    display: flex;
+}
+  
+.column {
+    flex: 50%;
+    padding: 10px;
+}
+
+/*  Inital Character Sheet Setup */
+.d6-dice, input[type=button].d6-dice {
+    font-family: 'dicefontd6';
+    content: "l"; 
+}
+
+input[type=number]
+{
+    padding: 0;
+    margin:0;
+    border: .1em solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    font-size:100%; 
+    text-align: center;
+    border-bottom: .1em solid #1E1918;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+
+}
+
+input[type=text]
+{
+    padding: 0;
+    margin:0;
+    border: .1em solid transparent;
+    background-color: transparent;
+    box-shadow: none;
+    font-size:100%; 
+    text-align: center;
+    border-bottom:.1em solid #1E1918;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+}
+
+textarea
+{
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+    font-size: 9px;
+    resize: none;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    background-color: #F5F1E1;
+    text-overflow: ellipsis;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button 
+{ 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+/*  Header                      */
+/*  Main Character Information  */
+.head1, .input[type=text].head1
+{
+    border: none;
+    margin-bottom: .175em;
+    font-size:100%;
+    font-weight: 700;
+    
+}
+
+div.head1, input[type=text].head1
+{
+    margin:0; 
+    padding:0; 
+    float:left; 
+    text-align:left;
+}
