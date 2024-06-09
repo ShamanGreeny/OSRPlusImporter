@@ -12,39 +12,9 @@
     padding: 10px;
 }
 
-/*  Inital Character Sheet Setup */
-.d6-dice, input[type=button].d6-dice {
-    font-family: 'dicefontd6';
-    content: "l"; 
-}
-
-input[type=number]
-{
-    padding: 0;
-    margin:0;
-    border: .1em solid transparent;
-    background-color: transparent;
-    box-shadow: none;
-    font-size:100%; 
-    text-align: center;
-    border-bottom: .1em solid #1E1918;
-    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
-    font-weight: 400;
-
-}
-
-input[type=text]
-{
-    padding: 0;
-    margin:0;
-    border: .1em solid transparent;
-    background-color: transparent;
-    box-shadow: none;
-    font-size:100%; 
-    text-align: center;
-    border-bottom:.1em solid #1E1918;
-    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
-    font-weight: 400;
+hr.break1 {
+    margin-top: 25px;
+    border: .1em solid #7B3518;
 }
 
 textarea
@@ -60,28 +30,39 @@ textarea
     text-overflow: ellipsis;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button 
-{ 
-    -webkit-appearance: none; 
-    margin: 0; 
+div.line 
+{
+    border:none; 
+    padding:0; 
+    clear: left;
+    margin-top: -.5em;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
+    font-weight: 400;
 }
+
 
 /*  Header                      */
 /*  Main Character Information  */
-.head1, .input[type=text].head1
+.name1
 {
-    border: none;
-    margin-bottom: .175em;
-    font-size:100%;
-    font-weight: 700;
-    
-}
-
-div.head1, input[type=text].head1
-{
-    margin:0; 
-    padding:0; 
+    text-align: left;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     float:left; 
     text-align:left;
+    font-size:200%; 
+    font-weight: 800;
+}
+
+.head1
+{
+    text-align: left;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    float:left; 
+    text-align:left;
+    font-size:100%; 
+    font-weight: 900;
+    display: inline; 
+    margin-right: 5px
 }
