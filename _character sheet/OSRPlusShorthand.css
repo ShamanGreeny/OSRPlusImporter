@@ -40,14 +40,15 @@ div.line
     font-weight: 400;
 }
 
-table, td {
+td {
     border: .1em solid #7B3518;
     padding: 10px;
     border-top: 5px solid #7B3518;
 }
 
-table {
-    border-spacing: 25px;
+#tableAttr {
+    border-collapse: separate;
+    border-spacing: 25px 0px;
 }
 
 
