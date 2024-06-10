@@ -77,21 +77,16 @@ td {
     margin-right: 0px;
 }
 
-.tableStyle {
+.stat1,input[type=text].stat1
+{
     text-align: left;
-    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: 'Merriweather', Arial, Helvetica, sans-serif;
     font-size:100%; 
-    font-weight: 900;
+    font-weight: 400;
     display: inline; 
     margin-right: 0px;
-    border: .1em solid #7B3518;
-    padding: 10px;
-    border-top: 5px solid #7B3518;
-    border-spacing: 25px;
-
+    border: none;
+    background: none;
 }
-
 
 
