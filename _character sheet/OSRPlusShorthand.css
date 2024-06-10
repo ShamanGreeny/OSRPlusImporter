@@ -40,6 +40,17 @@ div.line
     font-weight: 400;
 }
 
+table, td {
+    border: .1em solid #7B3518;
+    padding: 10px;
+    border-top: 5px solid #7B3518;
+}
+
+table {
+    border-spacing: 25px;
+}
+
+
 
 /*  Header                      */
 /*  Main Character Information  */
@@ -59,10 +70,27 @@ div.line
     font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
-    float:left; 
-    text-align:left;
     font-size:100%; 
     font-weight: 900;
     display: inline; 
-    margin-right: 5px
+    margin-right: 0px;
 }
+
+.tableStyle {
+    text-align: left;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size:100%; 
+    font-weight: 900;
+    display: inline; 
+    margin-right: 0px;
+    border: .1em solid #7B3518;
+    padding: 10px;
+    border-top: 5px solid #7B3518;
+    border-spacing: 25px;
+
+}
+
+
+
