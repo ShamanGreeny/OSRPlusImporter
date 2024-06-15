@@ -118,7 +118,7 @@
         let character = JSON.parse(json).data;
 
         //Roll20 specific function - report to chat
-        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is starting.</div>', null, {noarchive:true});
+        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is starting.</div>', null, {noarchive:true});
 
         class_spells = [];
 
@@ -140,7 +140,7 @@
         if(state[state_name][osrp_caller.id].config.overwrite) {
             let objects = findObjs({
                 _type: "character",
-                name: state[state_name][osrp_caller.id].config.prefix + character.name + state[state_name][osrp_caller.id].config.suffix
+                name: state[state_name][osrp_caller.id].config.prefix + character.shorthand.name + state[state_name][osrp_caller.id].config.suffix
             }, {caseInsensitive: true});
 
             if(objects.length > 0) {
@@ -154,46 +154,45 @@
         if(!object) {
             // Create character object
             object = createObj("character", {
-                name: state[state_name][osrp_caller.id].config.prefix + character.name + state[state_name][osrp_caller.id].config.suffix,
+                name: state[state_name][osrp_caller.id].config.prefix + character.shorthand.name + state[state_name][osrp_caller.id].config.suffix,
                 inplayerjournals: playerIsGM(msg.playerid) ? state[state_name][osrp_caller.id].config.inplayerjournals : msg.playerid,
                 controlledby: playerIsGM(msg.playerid) ? state[state_name][osrp_caller.id].config.controlledby : msg.playerid
             });
         }
 
+        let attributes = {};   
+
+
         // Check for maleficence
         // TODO: Secondary Maleficence
-        // NEED API TO RETURN THIS DETAIL
-        /*
-        if (character.has_maleficence = true) {
+        if (character.model.has_maleficence = true) {
 
             Object.assign(single_attributes, {
-
-            'maleficence' : character.object_maleficence.post_title,
-            'maleficence_description': character.object_maleficence.post_content
+            'maleficence' : character.model.object_maleficence.post_title,
+            'maleficence_description': character.model.object_maleficence.post_content
             })
         }
-        */
 
         // Abilities and NPC Perks
+        // Languages
+        // Take existing object and create comma separated string
 
-
-        /*
+         /*
         // Skills loop
-        let attributes = {};   
-        var skills = character.object_skills.length
+        var skills = character.model.object_skills.length
         for (var i=0; i<skills; i++){
             //sendChat(script_name, 'Skills length: '+skills, null, {noarchive:true});
-            for (var id in character.object_skills[i]){
-                attributes["Skill_"+character.object_skills[i].post_title+"_Prof"] = "2"
+            for (var id in character.model.object_skills[i]){
+                attributes["Skill_"+character.model.object_skills[i].post_title+"_Prof"] = "2"
             }            
         };
 
         // Add bonus skills if they exist
-        if (character.skills_bonus.skill_object){
+        if (character.model.skills_bonus.skill_object){
                 attributes["Skill_"+character.skills_bonus.skill_object.post_title+"_Prof"] = "2"
         };
         
-
+      
         // Spells
         let spells = character.spellbook.length;
         for (var i=0; i<spells; i++){
@@ -231,27 +230,29 @@
             //'Skill_Athletics_Prof': 'yes',
 
             // Base Info
-            'character_quote':character.catchphrase,
-            'monster_type':character.monster_type,
-            //'equipped_armor':character.equipped_armor.label,
-            'ethos': character.ethos,
-            'morale':character.morale,
-            'npc_attack_pattern': character.npc_attack_pattern,
+            'character_quote':character.model.catchphrase,
+            'monster_type':character.shorthand.monster_type,
+            'equipped_armor':character.shorthand.equipped_armor.label,
+            'ethos': character.shorthand.ethos,
+            'morale':character.shorthand.morale,
+            'npc_attack_pattern': character.shorthand.npc_attack_pattern,
+            'level': character.model.level,
+
             
             // Ability Scores
-            'mighty': character.mighty,
-            'deft': character.deft,
-            'smart': character.smart,
+            'mighty': character.shorthand.mighty,
+            'deft': character.shorthand.deft,
+            'smart': character.shorthand.smart,
             
             // Modifiers
-            'defense': character.def,
-            'soak': character.soak,
+            'defense': character.shorthand.def,
+            'soak': character.shorthand.soak,
             
             // Current Status
-            'hp': character.hp,
-            'ap': character.ap,
-            'mp': character.mp,
-            'fp': character.fp
+            'hp': character.shorthand.hp,
+            'ap': character.shorthand.ap,
+            'mp': character.shorthand.mp,
+            'fp': character.shorthand.fp
 
 
 
@@ -360,7 +361,7 @@
             //loadHitPoints(character, total_level);
 
             if(class_spells.length > 0 && state[state_name][osrp_caller.id].config.imports.class_spells) {
-                sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is almost ready.<br />Class spells are being imported over time.</div>', null, {noarchive:true});
+                sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is almost ready.<br />Class spells are being imported over time.</div>', null, {noarchive:true});
 
                 // this is really just artificially asynchronous, we are not currently using a worker, so it will happen as soon as we return
                 onSheetWorkerCompleted(() => {
@@ -388,7 +389,7 @@
         // TODO this is nonsense.  we aren't actually done importing, because notifications in the character sheet are firing for quite a while
         // after we finish changing things (especially on first import) and we have no way (?) to wait for it to be done.   These are not sheet workers
         // on which we can wait.
-        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
+        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
     }
     
     const importSpells = (character, spells) => {
