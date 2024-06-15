@@ -175,10 +175,18 @@
         // Abilities and NPC Perks
         // Languages
         // Take existing object and create comma separated string
+        var langList = ""
         for (const langKey in character.shorthand.languages){
-            const langItemObj = character.shorthand.languages[langKey];
-            
-        }
+            const langObject = character.shorthand.languages[langKey];
+            for (const langName in langObject){
+                if (langName == "post_title"){ 
+                    //sendChat(script_name, 'Language: '+langObject[langName], null, {noarchive:true});
+                    langList = langList.concat(langObject[langName])+", "
+                }                
+            }            
+        };  
+        langList = langList.substring(0, (langList.length-2));
+
 
          /*
         // Skills loop
@@ -255,7 +263,10 @@
             'hp': character.shorthand.hp,
             'ap': character.shorthand.ap,
             'mp': character.shorthand.mp,
-            'fp': character.shorthand.fp
+            'fp': character.shorthand.fp,
+
+            // Comma separated lists
+            'languageGrouping': langList
 
 
 
