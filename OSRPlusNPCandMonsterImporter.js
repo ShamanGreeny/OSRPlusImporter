@@ -166,7 +166,6 @@
         // Check for maleficence
         // TODO: Secondary Maleficence
         if (character.model.has_maleficence = true) {
-
             Object.assign(single_attributes, {
             'maleficence' : character.model.object_maleficence.post_title,
             'maleficence_description': character.model.object_maleficence.post_content
@@ -176,6 +175,10 @@
         // Abilities and NPC Perks
         // Languages
         // Take existing object and create comma separated string
+        for (const langKey in character.shorthand.languages){
+            const langItemObj = character.shorthand.languages[langKey];
+            
+        }
 
          /*
         // Skills loop
