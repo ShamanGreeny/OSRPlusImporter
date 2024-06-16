@@ -25,7 +25,8 @@
     const state_name = 'OSRPLUSNPCANDMONSTERIMPORTER';
     const debug = true;
     var spellTargetInAttacks = true;
-  
+
+ 
     // Roll 20 specific actions - chat functions
     on('ready', function() {
         checkInstall();
@@ -114,6 +115,9 @@
             return;
         }
   
+
+        // BEGIN JSON IMPORT PROCESS
+
         let json = importData;
         let character = JSON.parse(json).data;
 
@@ -170,11 +174,10 @@
             'maleficence' : character.model.object_maleficence.post_title,
             'maleficence_description': character.model.object_maleficence.post_content
             })
-        }
+        };
 
         // Abilities and NPC Perks
         // Languages
-        // Take existing object and create comma separated string
         var langList = ""
         for (const langKey in character.shorthand.languages){
             const langObject = character.shorthand.languages[langKey];
@@ -187,23 +190,21 @@
         };  
         langList = langList.substring(0, (langList.length-2));
 
-
-         /*
-        // Skills loop
-        var skills = character.model.object_skills.length
-        for (var i=0; i<skills; i++){
-            //sendChat(script_name, 'Skills length: '+skills, null, {noarchive:true});
-            for (var id in character.model.object_skills[i]){
-                attributes["Skill_"+character.model.object_skills[i].post_title+"_Prof"] = "2"
+        // Skills
+        var skillsList = ""
+        for (const skillKey in character.model.object_skills){
+            const skillObject = character.model.object_skills[skillKey];
+            for (const skillName in skillObject){
+                if (skillName == "post_title"){ 
+                    //sendChat(script_name, 'Language: '+langObject[langName], null, {noarchive:true});
+                    skillsList = skillsList.concat(skillObject[skillName])+", "
+                }                
             }            
-        };
+        };  
+        skillsList = skillsList.substring(0, (skillsList.length-2));
 
-        // Add bonus skills if they exist
-        if (character.model.skills_bonus.skill_object){
-                attributes["Skill_"+character.skills_bonus.skill_object.post_title+"_Prof"] = "2"
-        };
-        
-      
+       
+        /*
         // Spells
         let spells = character.spellbook.length;
         for (var i=0; i<spells; i++){
@@ -248,6 +249,7 @@
             'morale':character.shorthand.morale,
             'npc_attack_pattern': character.shorthand.npc_attack_pattern,
             'level': character.model.level,
+            'sheet_image' : character.model.avatar_local,
 
             
             // Ability Scores
@@ -258,6 +260,7 @@
             // Modifiers
             'defense': character.shorthand.def,
             'soak': character.shorthand.soak,
+            'init': character.model.modifier_initiative,
             
             // Current Status
             'hp': character.shorthand.hp,
@@ -265,11 +268,9 @@
             'mp': character.shorthand.mp,
             'fp': character.shorthand.fp,
 
-            // Comma separated lists
-            'languageGrouping': langList
-
-
-
+            // Comma separated values
+            'languageGrouping': langList,
+            'skillsGrouping': skillsList
         };
 
         Object.assign(single_attributes, other_attributes);
@@ -544,33 +545,7 @@
         return list;
     };
 
-    const replaceChars = (text) => {
-        text = text.replace('\&rsquo\;', '\'').replace('\&mdash\;','—').replace('\ \;',' ').replace('\&hellip\;','…');
-        text = text.replace('\&nbsp\;', ' ');
-        text = text.replace('\û\;','û').replace('’', '\'').replace(' ', ' ');
-        text = text.replace(/<li[^>]+>/gi,'• ').replace(/<\/li>/gi,'');
-        text = text.replace(/\r\n(\r\n)+/gm,'\r\n');
-        return text;
-    };
 
-    const getRepeatingRowIds = (section, attribute, matchValue, index) => {
-        let ids = [];
-        if(state[state_name][osrp_caller.id].config.overwrite) {
-            let matches = findObjs({ type: 'attribute', characterid: object.id })
-                .filter((attr) => {
-                    return attr.get('name').indexOf('repeating_'+section) !== -1 && attr.get('name').indexOf(attribute) !== -1 && attr.get('current') == matchValue;
-                });
-            for(let i in matches) {
-                let row = matches[i].get('name').replace('repeating_'+section+'_','').replace('_'+attribute,'');
-                ids.push(row);
-            }
-            if(ids.length == 0) ids.push(generateRowID());
-        }
-        else ids.push(generateRowID());
-
-        if(index == null) return ids;
-        else return ids[index] == null && index >= 0 ? generateRowID() : ids[index];
-    }
 
        //return an array of objects according to key, value, or key and value matching, optionally ignoring objects in array of names
     const getObjects = (obj, key, val, except) => {
@@ -627,11 +602,6 @@
     const generateRowID = function() {
         "use strict";
         return generateUUID().replace(/_/g, "Z");
-    };
-
-    const regexIndexOf = (str, regex, startpos) => {
-        let indexOf = str.substring(startpos || 0).search(regex);
-        return (indexOf >= 0) ? (indexOf + (startpos || 0)) : indexOf;
     };
 
     const checkInstall = function() {
@@ -698,92 +668,7 @@
         });
     };
 
-    const emitAttributesForModifiers = (single_attributes, repeating_attributes, modifiers, total_level) => {
-        let basenames = Object.keys(modifiers);
-        basenames.sort();
-        // for half proficiency types, we have to set a constant that is only valid for the current level, because
-        // the 5e OGL sheet does not understand these types of proficiency
-        let proficiency_bonus = (Math.floor((total_level - 1) / 4) + 2);
-        for (let basename of basenames) {
-            let modifier = modifiers[basename];
-            let mod = 0;
-            if (modifier.bonus !== undefined) {
-                mod = modifier.bonus;
-            }
-            log(`OSRPlus: final modifier ${basename} (${modifier.friendly}) proficiency ${modifier.proficiency} bonus ${modifier.bonus}`)
-            if (all_skills.indexOf(basename) !== -1) {
-                switch (modifier.proficiency) {
-                    case 0:
-                        // no proficiency
-                        break;
-                    case 1:
-                        single_attributes[`${basename}_prof`] = '';
-                        single_attributes[`${basename}_flat`] = mod+ Math.floor(proficiency_bonus / 2);
-                        break;
-                    case 2:
-                        single_attributes[`${basename}_prof`] = '';
-                        single_attributes[`${basename}_flat`] = mod + Math.ceil(proficiency_bonus / 2);
-                        break;
-                    case 3:
-                        single_attributes[`${basename}_prof`] = `(@{pb}*@{${basename}_type})`;
-                        if (mod !== 0) {
-                            single_attributes[`${basename}_flat`] = mod;
-                        }
-                        break;
-                    case 4:
-                        single_attributes[`${basename}_prof`] = `(@{pb}*@{${basename}_type})`;
-                        single_attributes[`${basename}_type`] = 2;
-                        if (mod !== 0) {
-                            single_attributes[`${basename}_flat`] = mod;
-                        }
-                        break;                        
-                }
-            } else if (saving_throws.indexOf(basename) !== -1) {
-                switch (modifier.proficiency) {
-                    case 0:
-                        // no proficiency
-                        break;
-                    case 1:
-                        single_attributes[`${basename}_prof`] = '';
-                        single_attributes[`${basename}_mod`] = mod+ Math.floor(proficiency_bonus / 2);
-                        break;
-                    case 2:
-                        single_attributes[`${basename}_prof`] = '';
-                        single_attributes[`${basename}_mod`] = mod + Math.ceil(proficiency_bonus / 2);
-                        break;
-                    case 3:
-                        single_attributes[`${basename}_prof`] = `(@{pb})`;
-                        if (mod !== 0) {
-                            single_attributes[`${basename}_mod`] = mod;
-                        }
-                        break;
-                    case 4:
-                        // this case probably does not exist in the 5e rules, but we can at least support
-                        // it in the constant for current level style
-                        single_attributes[`${basename}_prof`] = '(@{pb})';
-                        single_attributes[`${basename}_mod`] = proficiency_bonus + mod;
-                        break;                        
-                } 
-            } else if (modifier.proficiency > 0) {
-                // general proficiency 
-                let type = 'OTHER';
-                if (basename.includes('weapon')) {
-                    type = 'WEAPON';
-                } else if (basename.includes('armor')) {
-                    type = 'ARMOR';
-                } else if (basename.includes('shield')) {
-                    type = 'ARMOR';
-                } else if (weapons.indexOf(modifier.friendly) !== -1) {
-                    type = 'WEAPON';
-                }
-                let row = getRepeatingRowIds('proficiencies', 'name', modifier.friendly)[0];
-                repeating_attributes["repeating_proficiencies_" + row + "_name"] = modifier.friendly;
-                repeating_attributes["repeating_proficiencies_" + row + "_prof_type"] = type; 
-                repeating_attributes["repeating_proficiencies_" + row + "_options-flag"] = '0'; // XXX why is this set as string?
-            }
-            // XXX implement passive-perception bonus ('passiveperceptionmod') etc.
-        }
-    }; 
+   
     
     
 
