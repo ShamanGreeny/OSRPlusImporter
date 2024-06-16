@@ -190,18 +190,18 @@
         };  
         langList = langList.substring(0, (langList.length-2));
 
-        // Skills
-        var skillsList = ""
-        for (const skillKey in character.model.object_skills){
-            const skillObject = character.model.object_skills[skillKey];
-            for (const skillName in skillObject){
-                if (skillName == "post_title"){ 
-                    //sendChat(script_name, 'Language: '+langObject[langName], null, {noarchive:true});
-                    skillsList = skillsList.concat(skillObject[skillName])+", "
-                }                
-            }            
-        };  
-        skillsList = skillsList.substring(0, (skillsList.length-2));
+        // Skills loop
+        for (const skillKey in character.shorthand.skills){
+            const skillObj = character.shorthand.skills[skillKey]
+            for (const skillID in skillObj){
+                const skillItemObj = skillObj[skillID]
+                for (const skillItemTitle in skillItemObj){
+                    if (skillItemObj[skillItemTitle] = 'post_title'){
+                        sendChat(script_name, 'post_title: '+skillItemTitle, null, {noarchive:true});
+                    }
+                }
+            }
+        };
 
        
         /*
@@ -269,8 +269,8 @@
             'fp': character.shorthand.fp,
 
             // Comma separated values
-            'languageGrouping': langList,
-            'skillsGrouping': skillsList
+            'languageGrouping': langList
+            //'skillsGrouping': skillsList
         };
 
         Object.assign(single_attributes, other_attributes);
