@@ -26,6 +26,9 @@
     const debug = true;
     var spellTargetInAttacks = true;
 
+    var MightSymbol = '\u{24C2}';
+    var SmartSymbol = '\u{24C8}';
+    var DeftSymbol = '\u{24B9}';
  
     // Roll 20 specific actions - chat functions
     on('ready', function() {
@@ -191,19 +194,28 @@
         langList = langList.substring(0, (langList.length-2));
 
         // Skills loop
+        var skillList = "";
+        var skillTitle = "";
+        var skillMod = "";
+        var skillAttr = "";
+
         for (const skillKey in character.shorthand.skills){
-            const skillObj = character.shorthand.skills[skillKey]
-            for (const skillID in skillObj){
-                const skillItemObj = skillObj[skillID]
-                for (const skillItemTitle in skillItemObj){
-                    if (skillItemObj[skillItemTitle] = 'post_title'){
-                        sendChat(script_name, 'post_title: '+skillItemTitle, null, {noarchive:true});
-                    }
+            const skillObject = character.shorthand.skills[skillKey];
+            for (const skillName in skillObject){
+                if (skillName =="post_title"){
+                    skillTitle == skillObject[skillName];
                 }
+                if (skillName =="modifier"){
+                    skillMod == skillObject[skillName];
+                }
+                if (skillName =="attribute"){
+                    skillAttr == skillObject[skillName];
+                }
+                skillList = skillList.concat(skillTitle+"  +"+skillMod)+", "
             }
         };
-
-       
+        skillList = skillList.substring(0, (skillList.length-2));
+      
         /*
         // Spells
         let spells = character.spellbook.length;
@@ -266,11 +278,10 @@
             'hp': character.shorthand.hp,
             'ap': character.shorthand.ap,
             'mp': character.shorthand.mp,
-            'fp': character.shorthand.fp,
 
             // Comma separated values
-            'languageGrouping': langList
-            //'skillsGrouping': skillsList
+            'languageGrouping': langList,
+            'skillsGrouping': skillList
         };
 
         Object.assign(single_attributes, other_attributes);
