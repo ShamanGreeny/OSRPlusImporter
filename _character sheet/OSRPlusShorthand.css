@@ -17,6 +17,12 @@ hr.break1 {
     border: .1em solid #7B3518;
 }
 
+hr.break2 {
+    border: none;
+    margin: 0.3em;
+}
+
+
 textarea
 {
     width: 100%;
