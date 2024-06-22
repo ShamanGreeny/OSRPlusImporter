@@ -26,9 +26,15 @@
     const debug = true;
     var spellTargetInAttacks = true;
 
-    var MightSymbol = '\u{24C2}';
-    var SmartSymbol = '\u{24C8}';
-    var DeftSymbol = '\u{24B9}';
+    const MightSymbol = '\u{24C2}';
+    const SmartSymbol = '\u{24C8}';
+    const DeftSymbol = '\u{24B9}';
+    
+    const attributeSymbols = {
+      'mighty': MightSymbol,
+      'smart': SmartSymbol,
+      'deft': DeftSymbol
+    };
  
     // Roll 20 specific actions - chat functions
     on('ready', function() {
@@ -179,70 +185,27 @@
             })
         };
 
-        // Abilities and NPC Perks
+        // Ethos
+        var ethosString = extractSingleObjectDetails(character.shorthand.ethos, ['post_title'], '[post_title]');
+
         // Languages
-        var langList = ""
-        for (const langKey in character.shorthand.languages){
-            const langObject = character.shorthand.languages[langKey];
-            for (const langName in langObject){
-                if (langName == "post_title"){ 
-                    //sendChat(script_name, 'Language: '+langObject[langName], null, {noarchive:true});
-                    langList = langList.concat(langObject[langName])+", "
-                }                
-            }            
-        };  
-        langList = langList.substring(0, (langList.length-2));
+        var langList = extractDetails(character.shorthand.languages, ['post_title'],'[post_title]');
 
-        // Skills loop
-        var skillList = "";
-        var skillTitle = "";
-        var skillMod = "";
-        var skillAttr = "";
+        // Skills 
+        var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
 
-        for (const skillKey in character.shorthand.skills){
-            const skillObject = character.shorthand.skills[skillKey];
-            for (const skillName in skillObject){
-                if (skillName =="post_title"){
-                    skillTitle == skillObject[skillName];
-                }
-                if (skillName =="modifier"){
-                    skillMod == skillObject[skillName];
-                }
-                if (skillName =="attribute"){
-                    skillAttr == skillObject[skillName];
-                }
-                skillList = skillList.concat(skillTitle+"  +"+skillMod)+", "
-            }
-        };
-        skillList = skillList.substring(0, (skillList.length-2));
-      
-        /*
         // Spells
-        let spells = character.spellbook.length;
-        for (var i=0; i<spells; i++){
-            for (var id in character.spellbook[i]){
-            var row = i+1;
-            attributes["spell"+row] = character.spellbook[i].post_title,
-            attributes["spell"+row+"_desc"] = character.spellbook[i].post_content,
-            attributes["spell"+row+"_attribute_name"] = character.spellbook[i].attribute_name,
-            attributes["spell"+row+"_attribute_mod"] = character.spellbook[i].attribute_modifier,
-            attributes["spell"+row+"_proficiency_name"] = character.spellbook[i].spell_category.name,
-            attributes["spell"+row+"_proficiency_mod"] = character.spellbook[i].skill_modifier
-            }
-        }
+        var spellList = extractDetails(character.shorthand.all_spells, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
+          
+        // Stances
+        var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
+      
+        // Abilities and NPC Perks
+        // TODO
 
-        // Equipped Weapons and Armor
-        var Armor = character.equipped_armor.Armor.length;
-        for (var i=0; i<Armor; i++){
-                    attributes["armor_equipped"] = character.object_equipped.Armor[i].post_title
-        }
-        var Weapon = character.object_equipped.Weapons.length
-        for (var i=0; i<Weapon; i++){
-            var row = i+1
-            attributes["weapon"+row+"_equipped"] = character.object_equipped.Weapons[i].post_title
-        }
+        // Attacks
+        // TODO
 
-        */
 
         // Add the iterated values thus far
         Object.assign(single_attributes, attributes);
@@ -257,8 +220,8 @@
             'character_quote':character.model.catchphrase,
             'monster_type':character.shorthand.monster_type,
             'equipped_armor':character.shorthand.equipped_armor.label,
-            'ethos': character.shorthand.ethos,
-            'morale':character.shorthand.morale,
+            'ethos': ethosString,
+            'morale':character.model.morale,
             'npc_attack_pattern': character.shorthand.npc_attack_pattern,
             'level': character.model.level,
             'sheet_image' : character.model.avatar_local,
@@ -281,7 +244,9 @@
 
             // Comma separated values
             'languageGrouping': langList,
-            'skillsGrouping': skillList
+            'skillsGrouping': skillList,
+            'stanceGrouping': stanceList,
+            'spellGrouping': spellList
         };
 
         Object.assign(single_attributes, other_attributes);
@@ -327,6 +292,42 @@
 // End of on chat-msg process
 
 // Begin remaining const declarations
+    const extractDetails = (data, items, format) => {
+    let details = [];
+
+    const processObject = (obj) => {
+        let formattedString = format;
+        items.forEach(item => {
+        let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
+        formattedString = formattedString.replace(`[${item}]`, value);
+        });
+        return formattedString;
+    };
+
+    if (Array.isArray(data)) {
+        data.forEach(obj => details.push(processObject(obj)));
+    } else if (typeof data === 'object' && data !== null) {
+        for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (typeof data[key] === 'object' && !Array.isArray(data[key])) {
+            details.push(processObject(data[key]));
+            }
+        }
+        }
+    }
+
+    return details.join(', ');
+    };
+
+    const extractSingleObjectDetails = (obj, items, format) => {
+        let formattedString = format;
+        items.forEach(item => {
+          let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
+          formattedString = formattedString.replace(`[${item}]`, value);
+        });
+        return formattedString;
+    };
+      
     const createSingleWriteQueue = (attributes) => {
         // this is the list of trigger attributes that will trigger class recalculation, as of 5e OGL 2.5 October 2018
         // (see on... handler that calls update_class in sheet html)
@@ -418,6 +419,7 @@
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
     }
     
+
     const importSpells = (character, spells) => {
         // set this to whatever number of items you can process at once
         // return attributes;
@@ -583,46 +585,13 @@
         return objects;
     };
 
-    const generateUUID = (function() {
-        let a = 0, b = [];
-        return function() {
-            let c = (new Date()).getTime() + 0, d = c === a;
-            a = c;
-            for (var e = new Array(8), f = 7; 0 <= f; f--) {
-                e[f] = "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".charAt(c % 64);
-                c = Math.floor(c / 64);
-            }
-            c = e.join("");
-            if (d) {
-                for (f = 11; 0 <= f && 63 === b[f]; f--) {
-                    b[f] = 0;
-                }
-                b[f]++;
-            } else {
-                for (f = 0; 12 > f; f++) {
-                    b[f] = Math.floor(64 * Math.random());
-                }
-            }
-            for (f = 0; 12 > f; f++){
-                c += "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".charAt(b[f]);
-            }
-            return c;
-        };
-    }());
-
-    const generateRowID = function() {
-        "use strict";
-        return generateUUID().replace(/_/g, "Z");
-    };
-
     const checkInstall = function() {
         if(!_.has(state, state_name)){
             state[state_name] = state[state_name] || {};
         }
         setDefaults();
     };
-
-    const setDefaults = (reset) => {
+     const setDefaults = (reset) => {
         const defaults = {
             overwrite: true,
             debug: false,
@@ -679,7 +648,7 @@
         });
     };
 
-   
+  
     
     
 
