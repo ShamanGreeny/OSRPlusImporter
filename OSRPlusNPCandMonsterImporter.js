@@ -293,30 +293,30 @@
 
 // Begin remaining const declarations
     const extractDetails = (data, items, format) => {
-    let details = [];
+        let details = [];
 
-    const processObject = (obj) => {
-        let formattedString = format;
-        items.forEach(item => {
-        let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
-        formattedString = formattedString.replace(`[${item}]`, value);
-        });
-        return formattedString;
-    };
+        const processObject = (obj) => {
+            let formattedString = format;
+            items.forEach(item => {
+            let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
+            formattedString = formattedString.replace(`[${item}]`, value);
+            });
+            return formattedString;
+        };
 
-    if (Array.isArray(data)) {
-        data.forEach(obj => details.push(processObject(obj)));
-    } else if (typeof data === 'object' && data !== null) {
-        for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-            if (typeof data[key] === 'object' && !Array.isArray(data[key])) {
-            details.push(processObject(data[key]));
+        if (Array.isArray(data)) {
+            data.forEach(obj => details.push(processObject(obj)));
+        } else if (typeof data === 'object' && data !== null) {
+            for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+                if (typeof data[key] === 'object' && !Array.isArray(data[key])) {
+                details.push(processObject(data[key]));
+                }
+            }
             }
         }
-        }
-    }
 
-    return details.join(', ');
+        return details.join(', ');
     };
 
     const extractSingleObjectDetails = (obj, items, format) => {
@@ -384,19 +384,8 @@
             // do one giant write for all the repeating attributes
             setAttrs(object.id, repeating_attributes);
 
-            // configure HP, because we now know our CON score
-            //loadHitPoints(character, total_level);
-
-            if(class_spells.length > 0 && state[state_name][osrp_caller.id].config.imports.class_spells) {
-                sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is almost ready.<br />Class spells are being imported over time.</div>', null, {noarchive:true});
-
-                // this is really just artificially asynchronous, we are not currently using a worker, so it will happen as soon as we return
-                onSheetWorkerCompleted(() => {
-                    importSpells(character, class_spells);
-                })
-            } else {
                 reportReady(character);
-            }
+
             return
         }
 
@@ -419,33 +408,6 @@
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
     }
     
-
-    const importSpells = (character, spells) => {
-        // set this to whatever number of items you can process at once
-        // return attributes;
-        spellAttacks = [];
-        let chunk = 5;
-        let index = 0;
-        function doChunk() {
-            let cnt = chunk;
-            let attributes = {};
-            while (cnt-- && index < spells.length) {
-                Object.assign(attributes, importSpell(character, spells, index, true));
-                ++index;
-            }
-            setAttrs(object.id, attributes);
-            if (index < spells.length) {
-                // set Timeout for async iteration
-                onSheetWorkerCompleted(doChunk);
-            } else {
-                log('OSRPlus: spells imported, updating spell attack proficiency');
-                onSheetWorkerCompleted(() => { 
-                    updateSpellAttackProf(character, 0); 
-                });
-            }
-        }
-        doChunk();
-    };  
 
     const sendConfigMenu = (player, first) => {
         let playerid = player.id;
@@ -557,7 +519,6 @@
         list += '</ul>';
         return list;
     };
-
 
 
        //return an array of objects according to key, value, or key and value matching, optionally ignoring objects in array of names
