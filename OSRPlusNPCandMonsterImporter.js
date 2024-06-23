@@ -29,6 +29,7 @@
     const MightSymbol = '\u{24C2}';
     const SmartSymbol = '\u{24C8}';
     const DeftSymbol = '\u{24B9}';
+    const bulletSymbol ='\u{25CF}';
     
     const attributeSymbols = {
       'mighty': MightSymbol,
@@ -201,7 +202,18 @@
         var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
       
         // Abilities and NPC Perks
-        // TODO
+        // Kit
+        var kitItem = ''+bulletSymbol+' '+character.model.object_kit.post_title+' (Kit)'
+
+        // Class Technique
+        // TODO: Need example
+
+        // Perks
+        // TODO: May need to include this in the iteration portion, writing to attributes
+
+        // Custom Perks
+        // TODO: May need to include this in the iteration portion, writing to attributes
+        // if character.model.custom_perks_raw == 'true'
 
         // Attacks
         // TODO
@@ -608,10 +620,6 @@
             }
         });
     };
-
-  
-    
-    
 
 })();
 
