@@ -9,7 +9,7 @@
  *  To use - search for "data-hero" in view page source:
  * 
  *  NPC Example (Caster): https://osrplus.com/api/roll20_shorthand/?id=43116
- *  NPC Example (Martial):
+ *  NPC Example (Martial): https://osrplus.com/api/roll20_shorthand/?id=45320
  * 
  */
 

@@ -2,7 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:800,900|Eczar:400,500,600,700,800|Merriweather:400,700,900&display=swap a');
 
-/* Flex Column Setup */
+/* Column Setup */
 .row {
     display: flex;
 }
@@ -57,7 +57,16 @@ td {
     border-spacing: 25px 0px;
 }
 
+/* Repeating Section */
 
+.skill-section {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.skill-title {
+    font-weight: bold;
+}
 
 /*  Header                      */
 /*  Main Character Information  */
