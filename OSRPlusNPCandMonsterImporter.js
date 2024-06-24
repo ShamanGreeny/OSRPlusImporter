@@ -204,18 +204,18 @@
         let row = 1
 
         if (object_kit && object_kit.post_title) {
-            attributes["repeating_abilities_"+row+"_name"] = ''+bulletSymbol+' '+object_kit.post_title+' (Kit)';
+            attributes["repeating_abilities_"+row+"_abilityname"] = ''+bulletSymbol+' '+object_kit.post_title+' (Kit)';
         }
         if (object_kit && object_kit.post_content) {
-            attributes["repeating_abilities_"+row+"_desc"] = object_kit.post_content;
+            attributes["repeating_abilities_"+row+"_abilitydesc"] = object_kit.post_content;
         }
         
         row=row+1
       
         if (object_perks && Array.isArray(object_perks)) {
             object_perks.forEach(perk => {
-            if (perk.post_title) {
-              attributes["repeating_abilities_"+row+"_name"] = ''+bulletSymbol+' '+object_perks.post_title+' (Perk)';
+              if (perk.post_title) {
+              attributes["repeating_abilities_"+row+"_abilityname"] = ''+bulletSymbol+' '+perk.post_title+' (Perk)';
             }
             row=row+1
           });
@@ -291,9 +291,6 @@
             'mancer_cancel': 'on'
         });
 
-        // Inventory loop and repeating items
-
-        let reapeatingItems ={}
 
 
         // check for bad attribute values and change them to empty strings, because these will cause a crash otherwise
