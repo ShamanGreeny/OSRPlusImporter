@@ -174,9 +174,6 @@
             });
         }
 
-        let attributes = {};   
-
-
         // Check for maleficence
         // TODO: Secondary Maleficence
         if (character.model.has_maleficence = true) {
@@ -202,8 +199,29 @@
         var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
       
         // Abilities and NPC Perks
-        // Kit
-        var kitItem = ''+bulletSymbol+' '+character.model.object_kit.post_title+' (Kit)'
+        const { object_kit, object_perks } = character.model;
+        let attributes = {}
+        let row = 1
+
+        if (object_kit && object_kit.post_title) {
+            attributes["repeating_abilities_"+row+"_name"] = ''+bulletSymbol+' '+object_kit.post_title+' (Kit)';
+        }
+        if (object_kit && object_kit.post_content) {
+            attributes["repeating_abilities_"+row+"_desc"] = object_kit.post_content;
+        }
+        
+        row=row+1
+      
+        if (object_perks && Array.isArray(object_perks)) {
+            object_perks.forEach(perk => {
+            if (perk.post_title) {
+              attributes["repeating_abilities_"+row+"_name"] = ''+bulletSymbol+' '+object_perks.post_title+' (Perk)';
+            }
+            row=row+1
+          });
+        };
+        Object.assign(repeating_attributes, attributes);
+
 
         // Class Technique
         // TODO: Need example
