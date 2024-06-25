@@ -194,11 +194,9 @@
         var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
 
         // Spells
-        //var spellList = extractDetails(character.shorthand.all_spells, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
-        
-        const objectName = 'object_spells';
-        const objectArray = character.model[objectName];
-        let row=1
+        var objectName = 'object_spells';
+        var objectArray = character.model[objectName];
+        var row=1
 
         if (objectArray && Array.isArray(objectArray)) {
             for (let index = 0; index < objectArray.length; index++) {
@@ -217,7 +215,26 @@
         };   
 
         // Stances
-        var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
+        //var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
+        var objectName = 'object_stances';
+        var objectArray = character.model[objectName];
+        var row=1
+
+        if (objectArray && Array.isArray(objectArray)) {
+            for (let index = 0; index < objectArray.length; index++) {
+
+                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title]');
+                if (formattedString) {
+                    attributes["repeating_stances_"+row+"_stancename"] = formattedString;
+                }
+
+                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                if (formattedDesc) {
+                    attributes["repeating_stances_"+row+"_stancedesc"] = formattedDesc;
+                }
+                row=row+1
+            }
+        };   
       
         // Abilities and NPC Perks
         const { object_kit, object_perks } = character.model;
@@ -294,8 +311,8 @@
 
             // Comma separated values
             'languageGrouping': langList,
-            'skillsGrouping': skillList,
-            'stanceGrouping': stanceList
+            'skillsGrouping': skillList
+            //'stanceGrouping': stanceList
             //'spellGrouping': spellList
         };
 
