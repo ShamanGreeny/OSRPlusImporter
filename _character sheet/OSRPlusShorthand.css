@@ -104,4 +104,45 @@ td {
     background: none;
 }
 
+/* Tooltip text */
+.ability_bar {
+    display:none;
+    }
+.ability_foo:checked ~ .ability_bar {
+    display:flex;
+}
 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #1E1918;
+    color: #F5F1E1;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position above the input */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  /* Tooltip arrow */
+  .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1E1918 transparent transparent transparent;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
