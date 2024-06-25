@@ -144,6 +144,7 @@
         // NOTE: changing any stats after all these are imported would create a lot of updates, so it is
         // good that we write these when all the stats are done
         let repeating_attributes = {};
+        let attributes = {};
 
         // First attempt to write items to the non-character sheet values of the object
         // let character_attributes = {};
@@ -194,17 +195,16 @@
 
         // Spells
         var spellList = extractDetails(character.shorthand.all_spells, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
-          
+     
         // Stances
         var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
       
         // Abilities and NPC Perks
         const { object_kit, object_perks } = character.model;
-        let attributes = {}
         let row = 1
 
         if (object_kit && object_kit.post_title) {
-            attributes["repeating_abilities_"+row+"_abilityname"] = ''+bulletSymbol+' '+object_kit.post_title+' (Kit)';
+            attributes["repeating_abilities_"+row+"_abilityname"] = object_kit.post_title+' (Kit)';
         }
         if (object_kit && object_kit.post_content) {
             attributes["repeating_abilities_"+row+"_abilitydesc"] = object_kit.post_content;
@@ -214,13 +214,16 @@
       
         if (object_perks && Array.isArray(object_perks)) {
             object_perks.forEach(perk => {
-              if (perk.post_title) {
-              attributes["repeating_abilities_"+row+"_abilityname"] = ''+bulletSymbol+' '+perk.post_title+' (Perk)';
-            }
-            row=row+1
+                if (perk.post_title) {
+                    attributes["repeating_abilities_"+row+"_abilityname"] = perk.post_title+' (Perk)';
+                }
+                if (perk.post_content){
+                    attributes["repeating_abilities_"+row+"_abilitydesc"] = perk.post_content;
+                }
+
+                row=row+1
           });
         };
-        Object.assign(repeating_attributes, attributes);
 
 
         // Class Technique
@@ -239,6 +242,7 @@
 
         // Add the iterated values thus far
         Object.assign(single_attributes, attributes);
+        Object.assign(repeating_attributes, attributes);
 
         // Static or single value attributes
             let other_attributes = {
@@ -354,7 +358,8 @@
         });
         return formattedString;
     };
-      
+ 
+
     const createSingleWriteQueue = (attributes) => {
         // this is the list of trigger attributes that will trigger class recalculation, as of 5e OGL 2.5 October 2018
         // (see on... handler that calls update_class in sheet html)
