@@ -29,7 +29,7 @@
     const MightSymbol = '\u{24C2}';
     const SmartSymbol = '\u{24C8}';
     const DeftSymbol = '\u{24B9}';
-    const bulletSymbol ='\u{25CF}';
+    //const bulletSymbol ='\u{25CF}';
     
     const attributeSymbols = {
       'mighty': MightSymbol,
@@ -194,14 +194,34 @@
         var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
 
         // Spells
-        var spellList = extractDetails(character.shorthand.all_spells, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
-     
+        //var spellList = extractDetails(character.shorthand.all_spells, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
+        
+        const objectName = 'object_spells';
+        const objectArray = character.model[objectName];
+        let row=1
+
+        if (objectArray && Array.isArray(objectArray)) {
+            for (let index = 0; index < objectArray.length; index++) {
+
+                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title] +[modifier] [attribute]');
+                if (formattedString) {
+                    attributes["repeating_spells_"+row+"_spellname"] = formattedString;
+                }
+
+                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                if (formattedDesc) {
+                    attributes["repeating_spells_"+row+"_spelldesc"] = formattedDesc;
+                }
+                row=row+1
+            }
+        };   
+
         // Stances
         var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
       
         // Abilities and NPC Perks
         const { object_kit, object_perks } = character.model;
-        let row = 1
+        row = 1
 
         if (object_kit && object_kit.post_title) {
             attributes["repeating_abilities_"+row+"_abilityname"] = object_kit.post_title+' (Kit)';
@@ -229,9 +249,6 @@
         // Class Technique
         // TODO: Need example
 
-        // Perks
-        // TODO: May need to include this in the iteration portion, writing to attributes
-
         // Custom Perks
         // TODO: May need to include this in the iteration portion, writing to attributes
         // if character.model.custom_perks_raw == 'true'
@@ -241,8 +258,7 @@
 
 
         // Add the iterated values thus far
-        Object.assign(single_attributes, attributes);
-        Object.assign(repeating_attributes, attributes);
+        Object.assign(repeating_attributes, attributes)
 
         // Static or single value attributes
             let other_attributes = {
@@ -279,8 +295,8 @@
             // Comma separated values
             'languageGrouping': langList,
             'skillsGrouping': skillList,
-            'stanceGrouping': stanceList,
-            'spellGrouping': spellList
+            'stanceGrouping': stanceList
+            //'spellGrouping': spellList
         };
 
         Object.assign(single_attributes, other_attributes);
@@ -359,6 +375,28 @@
         return formattedString;
     };
  
+    const getFormattedObjectString = (json, objectName, index, format) => {
+        const objectArray = json[objectName];
+      
+        if (objectArray && Array.isArray(objectArray) && objectArray[index]) {
+          const obj = objectArray[index];
+          let formattedString = format;
+      
+            // Replace placeholders with actual values from the object
+            formattedString = formattedString.replace(/\[([^\]]+)\]/g, (_, key) => {
+                if (key === 'attribute' && obj[key]) {
+                    return attributeSymbols[obj[key]] || obj[key];
+                }
+                return obj[key] || '';
+            });
+        
+            return formattedString;
+            
+            }
+      
+        return null;
+      };
+      
 
     const createSingleWriteQueue = (attributes) => {
         // this is the list of trigger attributes that will trigger class recalculation, as of 5e OGL 2.5 October 2018
