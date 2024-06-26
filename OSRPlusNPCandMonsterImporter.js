@@ -29,6 +29,9 @@
     const MightSymbol = '\u{24C2}';
     const SmartSymbol = '\u{24C8}';
     const DeftSymbol = '\u{24B9}';
+    const BrokenHeart = '\u{1F494}';
+    const NotProficient = '\u{2B58}';
+    const Proficient = '\u{23FA}';
     //const bulletSymbol ='\u{25CF}';
     
     const attributeSymbols = {
@@ -175,18 +178,8 @@
             });
         };
 
-        // Check for maleficence
-        // TODO: Secondary Maleficence
-        if (character.has_maleficence = true) {
-            Object.assign(single_attributes, {
-            'maleficence' : character.object_maleficence.post_title,
-            'maleficence_description': character.object_maleficence.post_content
-            })
-        };
-
         // Ethos
         var ethosString = extractSingleObjectDetails(character.ethos, ['post_title'], '[post_title]');
-
 
         // Languages        
         var langList = extractDetails(character.object_languages, ['post_title'],'[post_title]');
@@ -220,7 +213,7 @@
         if (objectArray && Array.isArray(objectArray)) {
             for (let index = 0; index < objectArray.length; index++) {
 
-                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] +[attribute_modifier] [attribute_name]');
+                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] +[modifier] [attribute]');
                 if (formattedString) {
                     attributes["repeating_spells_"+row+"_spellname"] = formattedString;
                 }
@@ -289,7 +282,39 @@
         // if character.model.custom_perks_raw == 'true'
 
         // Attacks
-        // TODO
+        let attacks = character.all_attacks;
+        row = 1;
+
+        if (attacks.equipped_weapons && attacks.equipped_weapons.length > 0) {
+            attacks.equipped_weapons.forEach(weapon => {
+                attributes["repeating_attacks_"+row+"_attackname"] = `${weapon.title} +${weapon.attack_modifier} : ${weapon.damage}${BrokenHeart} ${weapon.is_proficient ? Proficient : NotProficient}\n`;
+                row=row+1;
+            });
+        }
+
+        if (attacks.unarmed) {
+            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.unarmed.title} +${attacks.unarmed.attack_modifier} : ${attacks.unarmed.damage}${BrokenHeart} ${attacks.unarmed.is_proficient ? Proficient : NotProficient}\n`;
+            row=row+1;
+        }
+
+        // Custom Attacks - validate
+        if (attacks.custom_attacks && attacks.custom_attacks.length > 0) {
+            attacks.custom_attacks.forEach(custom => {
+                attributes["repeating_attacks_"+row+"_attackname"] = `${custom.title} +${custom.attack_modifier} : ${custom.damage}${BrokenHeart} ${custom.is_proficient ? Proficient : NotProficient}\n`;
+                row=row+1;
+            });
+        }
+
+        if (attacks.maleficence_primary) {
+            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.maleficence_primary.title} Maleficence +${attacks.maleficence_primary.maleficence_bonus} : 1d6${BrokenHeart}\n`;
+            row=row+1;
+        }
+    
+        if (attacks.maleficence_secondary) {
+            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.maleficence_secondary.title} Maleficence +${attacks.maleficence_secondary.maleficence_bonus}: 1d6${BrokenHeart}\n`;
+            row=row+1
+        }
+    
 
 
         // Add the iterated values thus far
