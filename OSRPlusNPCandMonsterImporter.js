@@ -8,9 +8,9 @@
  *
  *  To use - search for "data-hero" in view page source:
  * 
- *  NPC Example (Caster): https://osrplus.com/api/roll20_shorthand/?id=43116
- *  NPC Example (Martial): https://osrplus.com/api/roll20_shorthand/?id=45320
- * 
+ *  NPC Example (Caster): https://osrplus.com/api/roll20/?id=43116
+ *  NPC Example (Martial): https://osrplus.com/api/roll20/?id=45320
+ *  
  */
 
 (function() {
@@ -132,7 +132,7 @@
         let character = JSON.parse(json).data;
 
         //Roll20 specific function - report to chat
-        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is starting.</div>', null, {noarchive:true});
+        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is starting.</div>', null, {noarchive:true});
 
         class_spells = [];
 
@@ -155,7 +155,7 @@
         if(state[state_name][osrp_caller.id].config.overwrite) {
             let objects = findObjs({
                 _type: "character",
-                name: state[state_name][osrp_caller.id].config.prefix + character.shorthand.name + state[state_name][osrp_caller.id].config.suffix
+                name: state[state_name][osrp_caller.id].config.prefix + character.name + state[state_name][osrp_caller.id].config.suffix
             }, {caseInsensitive: true});
 
             if(objects.length > 0) {
@@ -169,42 +169,42 @@
         if(!object) {
             // Create character object
             object = createObj("character", {
-                name: state[state_name][osrp_caller.id].config.prefix + character.shorthand.name + state[state_name][osrp_caller.id].config.suffix,
+                name: state[state_name][osrp_caller.id].config.prefix + character.name + state[state_name][osrp_caller.id].config.suffix,
                 inplayerjournals: playerIsGM(msg.playerid) ? state[state_name][osrp_caller.id].config.inplayerjournals : msg.playerid,
                 controlledby: playerIsGM(msg.playerid) ? state[state_name][osrp_caller.id].config.controlledby : msg.playerid
             });
-        }
+        };
 
         // Check for maleficence
         // TODO: Secondary Maleficence
-        if (character.model.has_maleficence = true) {
+        if (character.has_maleficence = true) {
             Object.assign(single_attributes, {
-            'maleficence' : character.model.object_maleficence.post_title,
-            'maleficence_description': character.model.object_maleficence.post_content
+            'maleficence' : character.object_maleficence.post_title,
+            'maleficence_description': character.object_maleficence.post_content
             })
         };
 
         // Ethos
-        var ethosString = extractSingleObjectDetails(character.shorthand.ethos, ['post_title'], '[post_title]');
+        var ethosString = extractSingleObjectDetails(character.ethos, ['post_title'], '[post_title]');
 
-        // Languages
-        var langList = extractDetails(character.shorthand.languages, ['post_title'],'[post_title]');
+
+        // Languages        
+        var langList = extractDetails(character.object_languages, ['post_title'],'[post_title]');
 
         // Skills 
-        //var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
         var objectName = 'object_skills';
-        var objectArray = character.model[objectName];
+        var objectArray = character[objectName];
         var row=1
 
         if (objectArray && Array.isArray(objectArray)) {
             for (let index = 0; index < objectArray.length; index++) {
 
-                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title] +[modifier] [attribute]');
+                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] +[modifier] [attribute]');
                 if (formattedString) {
                     attributes["repeating_skills_"+row+"_skillname"] = formattedString;
                 }
 
-                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
                 if (formattedDesc) {
                     attributes["repeating_skills_"+row+"_skilldesc"] = formattedDesc;
                 }
@@ -213,19 +213,19 @@
         };   
 
         // Spells
-        var objectName = 'object_spells';
-        var objectArray = character.model[objectName];
+        var objectName = 'spellbook';
+        var objectArray = character[objectName];
         var row=1
 
         if (objectArray && Array.isArray(objectArray)) {
             for (let index = 0; index < objectArray.length; index++) {
 
-                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title] +[modifier] [attribute]');
+                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] +[attribute_modifier] [attribute_name]');
                 if (formattedString) {
                     attributes["repeating_spells_"+row+"_spellname"] = formattedString;
                 }
 
-                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
                 if (formattedDesc) {
                     attributes["repeating_spells_"+row+"_spelldesc"] = formattedDesc;
                 }
@@ -234,29 +234,28 @@
         };   
 
         // Stances
-        //var stanceList = extractDetails(character.shorthand.all_stances, ['post_title'],'[post_title]');
         var objectName = 'object_stances';
-        var objectArray = character.model[objectName];
+        var objectArray = character[objectName];
         var row=1
 
         if (objectArray && Array.isArray(objectArray)) {
             for (let index = 0; index < objectArray.length; index++) {
 
-                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title]');
+                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] ([stance_type])');
                 if (formattedString) {
                     attributes["repeating_stances_"+row+"_stancename"] = formattedString;
                 }
 
-                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
                 if (formattedDesc) {
                     attributes["repeating_stances_"+row+"_stancedesc"] = formattedDesc;
                 }
                 row=row+1
             }
         };   
-      
+
         // Abilities and NPC Perks
-        const { object_kit, object_perks } = character.model;
+        const { object_kit, object_perks } = character;
         row = 1
 
         if (object_kit && object_kit.post_title) {
@@ -303,36 +302,33 @@
             //'Skill_Athletics_Prof': 'yes',
 
             // Base Info
-            'character_quote':character.model.catchphrase,
-            'monster_type':character.shorthand.monster_type,
-            'equipped_armor':character.shorthand.equipped_armor.label,
+            'character_quote':character.catchphrase,
+            'monster_type':character.monster_type_label,
+            'equipped_armor':character.modifier_ap_armor.label,
             'ethos': ethosString,
-            'morale':character.model.morale,
-            'npcattackpattern': character.shorthand.npc_attack_pattern,
-            'level': character.model.level,
-            'sheet_image' : character.model.avatar_local,
+            'morale':character.morale.label,
+            'npcattackpattern': character.npc_attack_pattern,
+            'level': character.level,
+            'sheet_image' : character.avatar_local,
 
             
             // Ability Scores
-            'mighty': character.shorthand.mighty,
-            'deft': character.shorthand.deft,
-            'smart': character.shorthand.smart,
+            'mighty': character.mighty_modified,
+            'deft': character.deft_modified,
+            'smart': character.smart_modified,
             
             // Modifiers
-            'defense': character.shorthand.def,
-            'soak': character.shorthand.soak,
-            'init': character.model.modifier_initiative,
+            'defense': character.defense,
+            'soak': character.soak,
+            'init': character.modifier_initiative,
             
             // Current Status
-            'hp': character.shorthand.hp,
-            'ap': character.shorthand.ap,
-            'mp': character.shorthand.mp,
+            'hp': character.hp,
+            'ap': character.ap,
+            'mp': character.mp,
 
             // Comma separated values
             'languageGrouping': langList
-            //'skillsGrouping': skillList
-            //'stanceGrouping': stanceList
-            //'spellGrouping': spellList
         };
 
         Object.assign(single_attributes, other_attributes);
@@ -409,7 +405,7 @@
           formattedString = formattedString.replace(`[${item}]`, value);
         });
         return formattedString;
-    };
+      };
  
     const getFormattedObjectString = (json, objectName, index, format) => {
         const objectArray = json[objectName];
@@ -511,7 +507,7 @@
         // TODO this is nonsense.  we aren't actually done importing, because notifications in the character sheet are firing for quite a while
         // after we finish changing things (especially on first import) and we have no way (?) to wait for it to be done.   These are not sheet workers
         // on which we can wait.
-        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.shorthand.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
+        sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is ready at https://journal.roll20.net/character/' + object.id +'</div>', null, {noarchive:true});
     }
     
 

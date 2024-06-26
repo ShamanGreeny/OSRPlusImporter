@@ -68,6 +68,12 @@ td {
     font-weight: bold;
 }
 
+div[data-groupname=repeating_skills].repcontrol,
+div[data-groupname=repeating_stances].repcontrol, 
+div[data-groupname=repeating_spells].repcontrol{
+    display:none;
+}
+
 /*  Header                      */
 /*  Main Character Information  */
 .name1
