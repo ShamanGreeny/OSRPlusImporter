@@ -48,7 +48,7 @@
         <hr class="break1" style="margin-top: 10px;">
         <div class="line" style="display: block">
             <span class="head1" style="margin-right: 0.2em;">ATTACK PATTERN:</span>
-            <span class="stat1">( Spell || Weapon )</span> 
+            <span class="stat1" name="attr_npcattackpattern"></span> 
         </div>
         <hr class="break1" style="margin-top: 10px;">
         <div class="line" style="display: block">
@@ -60,7 +60,13 @@
             <span class="head1" style="margin-right: 0.2em;">SKILLS:</span>
             <hr class="break2">
             <div class="line" style="display: block;">
-                <span class="stat1" name="attr_skillsGrouping"></span> 
+                <fieldset class="repeating_skills">
+                    <input type="checkbox" class="details_foo">
+                    <input type="text" class="stat1" name="attr_skillname">     
+                    <div class="details_bar">
+                        <span name="attr_skilldesc"></span>
+                    </div> 
+                </fieldset>     
             </div>
         </div>
     </div>
@@ -93,7 +99,6 @@
             <span class="head1" style="margin-right: 0.2em;">SPELLS:</span>
             <hr class="break2">
             <div class="line" style="display: block;">
-                <!-- <span class="stat1" name="attr_spellGrouping"></span> -->
                 <fieldset class="repeating_spells">
                     <input type="checkbox" class="details_foo">
                     <input type="text" class="stat1" name="attr_spellname">     
@@ -108,7 +113,6 @@
             <span class="head1" style="margin-right: 0.2em;">STANCES:</span>
             <hr class="break2">
             <div class="line" style="display: block;">
-               <!-- <span class="stat1" name="attr_stanceGrouping"></span> -->
                <fieldset class="repeating_stances">
                 <input type="checkbox" class="details_foo">
                 <input type="text" class="stat1" name="attr_stancename">     

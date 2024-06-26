@@ -191,7 +191,26 @@
         var langList = extractDetails(character.shorthand.languages, ['post_title'],'[post_title]');
 
         // Skills 
-        var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
+        //var skillList = extractDetails(character.shorthand.skills, ['post_title', 'modifier', 'attribute'], '[post_title] +[modifier] [attribute]');
+        var objectName = 'object_skills';
+        var objectArray = character.model[objectName];
+        var row=1
+
+        if (objectArray && Array.isArray(objectArray)) {
+            for (let index = 0; index < objectArray.length; index++) {
+
+                const formattedString = getFormattedObjectString(character.model, objectName, index, '[post_title] +[modifier] [attribute]');
+                if (formattedString) {
+                    attributes["repeating_skills_"+row+"_skillname"] = formattedString;
+                }
+
+                const formattedDesc = getFormattedObjectString(character.model, objectName, index, '[post_content]');
+                if (formattedDesc) {
+                    attributes["repeating_skills_"+row+"_skilldesc"] = formattedDesc;
+                }
+                row=row+1
+            }
+        };   
 
         // Spells
         var objectName = 'object_spells';
@@ -289,7 +308,7 @@
             'equipped_armor':character.shorthand.equipped_armor.label,
             'ethos': ethosString,
             'morale':character.model.morale,
-            'npc_attack_pattern': character.shorthand.npc_attack_pattern,
+            'npcattackpattern': character.shorthand.npc_attack_pattern,
             'level': character.model.level,
             'sheet_image' : character.model.avatar_local,
 
@@ -310,8 +329,8 @@
             'mp': character.shorthand.mp,
 
             // Comma separated values
-            'languageGrouping': langList,
-            'skillsGrouping': skillList
+            'languageGrouping': langList
+            //'skillsGrouping': skillList
             //'stanceGrouping': stanceList
             //'spellGrouping': spellList
         };
