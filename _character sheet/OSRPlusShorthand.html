@@ -16,15 +16,15 @@
         <table id="tableAttr">
             <tr >
             <td>
-                <span class="head1" >&#x24c2; +</span>
+                <span class="head1" >&#x24c2;  +</span>
                 <span class="head1" name="attr_mighty" value="?"></span>
             </td>
             <td>
-                <span class="head1" >&#x24b9; +</span>
+                <span class="head1" >&#x24b9;  +</span>
                 <span class="head1" name="attr_deft" value="?"></span>
             </td>
             <td>
-                <span class="head1" >&#x24c8; +</span>
+                <span class="head1" >&#x24c8;  +</span>
                 <span class="head1" name="attr_smart" value="?"></span>
             </td>
             </tr>
@@ -69,6 +69,14 @@
                 </fieldset>     
             </div>
         </div>
+        <hr class="break1" style="margin-top: 10px;">
+        <div class="line" style="display: block">
+            <span class="head1" style="margin-right: 0.2em;">DEEDS:</span>
+            <span class="head1">&#x24c2; +</span><input type="text" class="deed1" name="attr_deedsMighty">
+            <span class="head1">&#x24b9; +</span><input type="text" class="deed1" name="attr_deedsDeft">
+            <span class="head1">&#x24c8; +</span><input type="text" class="deed1" name="attr_deedsSmart">
+        </div>
+        <hr class="break1" style="margin-top: 10px;">
     </div>
 
     <div class="column">
@@ -123,29 +131,7 @@
                 </div> 
             </fieldset>       
             </div>
+            <hr class="break1" style="margin-top: 10px;">
         </div>
     </div>
 </div>
-
-
-<!-- Sheetworker for Spell/Deeds visibility handling -->
-<script type="text/worker">
-    on('change:hasDeeds sheet:opened', function() {
-      getAttrs(['hasDeeds'], function(values) {
-        const hasDeeds = values.hasDeeds === '1';
-        const deedsSection = document.querySelector('fieldset.repeating_deeds');
-        const spellsSection = document.querySelector('fieldset.repeating_spells');
-        
-        if (deedsSection && spellsSection) {
-          if (hasDeeds) {
-            deedsSection.classList.remove('hidden');
-            spellsSection.classList.add('hidden');
-          } else {
-            deedsSection.classList.add('hidden');
-            spellsSection.classList.remove('hidden');
-          }
-        }
-      });
-    });
-  </script>
-  

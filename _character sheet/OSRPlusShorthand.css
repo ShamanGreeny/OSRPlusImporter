@@ -22,7 +22,6 @@ hr.break2 {
     margin: 0.3em;
 }
 
-
 textarea
 {
     width: 100%;
@@ -56,6 +55,7 @@ td {
     border-collapse: separate;
     border-spacing: 25px 0px;
 }
+
 
 /* Repeating Section */
 
@@ -112,10 +112,24 @@ div[data-groupname=repeating_attacks].repcontrol {
     width: 90%;
 }
 
-/* Tooltip text */
+.deed1,input[type=text].deed1 {
+    text-align: center;
+    font-family: 'Fira Sans', Arial, Helvetica, sans-serif;
+    font-size:100%; 
+    font-weight: 400;
+    display: inline; 
+    margin-right: 0px;
+    border: none;
+    background: none;
+    width: 25px;
+}
+
+/* Details/Tooltip text */
 .details_bar {
     display:none;
     }
 .details_foo:checked ~ .details_bar {
     display:flex;
 }
+
+/* Show Hide Sheetworker CSS */

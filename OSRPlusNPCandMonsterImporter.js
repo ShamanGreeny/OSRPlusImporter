@@ -358,9 +358,9 @@
     
         // Deeds check
         if (character.deeds != null && typeof character.deeds === 'object'){
-            var hasDeeds = true
+            var hasDeeds = 1
         }
-        else {var hasDeeds = false};
+        else {var hasDeeds = 0};
 
         // Add the iterated values thus far
         Object.assign(repeating_attributes, attributes)
