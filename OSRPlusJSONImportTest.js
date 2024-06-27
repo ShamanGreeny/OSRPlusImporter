@@ -21,26 +21,11 @@
     const style = "margin-left: 0px; overflow: hidden; background-color: #fff; border: 1px solid #000; padding: 5px; border-radius: 5px;";
     const buttonStyle = "background-color: #000; border: 1px solid #292929; border-radius: 3px; padding: 5px; color: #fff; text-align: center; float: right;"
     
-    const script_name = 'OSRPlusNPCandMonsterImporter';
-    const state_name = 'OSRPLUSNPCANDMONSTERIMPORTER';
+    const script_name = 'OSRPlusJSONTest';
+    const state_name = 'OSRPLUSJSONTEST';
     const debug = true;
-    var spellTargetInAttacks = true;
 
-    const MightSymbol = '\u{24C2}';
-    const SmartSymbol = '\u{24C8}';
-    const DeftSymbol = '\u{24B9}';
-    const BrokenHeart = '\u{1F494}';
-    const NotProficient = '\u{2B58}';
-    const Proficient = '\u{23FA}';
-    //const bulletSymbol ='\u{25CF}';
-    
-    const attributeSymbols = {
-      'mighty': MightSymbol,
-      'smart': SmartSymbol,
-      'deft': DeftSymbol
-    };
- 
-    // Roll 20 specific actions - chat functions
+     // Roll 20 specific actions - chat functions
     on('ready', function() {
         checkInstall();
         log(script_name + ' Ready! Command: !osrplus');
@@ -63,8 +48,6 @@
         if(args.length < 1) { sendHelpMenu(osrp_caller); return; }
 
         let config = state[state_name][osrp_caller.id].config;
-        let initTiebreaker = config.initTieBreaker;
-        let languageGrouping = config.languageGrouping;
         
         // if not set, we default to true even without a config reset
         if (config.hasOwnProperty('spellTargetInAttacks')) {
@@ -130,9 +113,9 @@
   
 
         // BEGIN JSON IMPORT PROCESS
-
+        
         let json = importData;
-        let character = JSON.parse(json).data;
+        let character = fetchDataAndParse(json).data;
 
         //Roll20 specific function - report to chat
         sendChat(script_name, '<div style="'+style+'">Import of <b>' + character.name + '</b> is starting.</div>', null, {noarchive:true});
@@ -147,7 +130,6 @@
         // NOTE: changing any stats after all these are imported would create a lot of updates, so it is
         // good that we write these when all the stats are done
         let repeating_attributes = {};
-        let attributes = {};
 
         // First attempt to write items to the non-character sheet values of the object
         // let character_attributes = {};
@@ -178,226 +160,7 @@
             });
         };
 
-        // BEGIN CHARACTER PROCESSING
-        // Defenses
-        //'equipped_armor':character.modifier_ap_armor.label,
-        let armor = character.modifier_ap_armor.label;
-        if(character.has_equipped_shield){
-            armor = armor +', '+character.modifier_shield.label+' +'+character.modifier_shield.modifier
-        }
-
-        // Ethos
-        var ethosString = extractSingleObjectDetails(character.ethos, ['post_title'], '[post_title]');
-
-        // Languages        
-        var langList = extractDetails(character.object_languages, ['post_title'],'[post_title]');
-
-        // Skills 
-        var objectName = 'object_skills';
-        var objectArray = character[objectName];
-        var row=1
-
-        if (objectArray && Array.isArray(objectArray)) {
-            for (let index = 0; index < objectArray.length; index++) {
-
-                if (objectArray[index].is_weapon){
-                    var weaponFormat = 'Weapon ([post_title]) +[modifier] [attribute]'
-                }
-                else {
-                    var weaponFormat = '[post_title] +[modifier] [attribute]'
-                }
-
-                const formattedString = getFormattedObjectString(character, objectName, index, weaponFormat);
-                if (formattedString) {
-                    attributes["repeating_skills_"+row+"_skillname"] = formattedString;
-                }
-
-                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
-                if (formattedDesc) {
-                    attributes["repeating_skills_"+row+"_skilldesc"] = formattedDesc;
-                }
-                row=row+1
-            }
-        };   
-
-        // Spells
-        var objectName = 'spellbook';
-        var objectArray = character[objectName];
-        var row=1
-
-        if (objectArray && Array.isArray(objectArray)) {
-            for (let index = 0; index < objectArray.length; index++) {
-
-                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] +[modifier] [attribute]');
-                if (formattedString) {
-                    attributes["repeating_spells_"+row+"_spellname"] = formattedString;
-                }
-
-                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
-                if (formattedDesc) {
-                    attributes["repeating_spells_"+row+"_spelldesc"] = formattedDesc;
-                }
-                row=row+1
-            }
-        };   
-
-        // Stances
-        var objectName = 'object_stances';
-        var objectArray = character[objectName];
-        var row=1
-
-        if (objectArray && Array.isArray(objectArray)) {
-            for (let index = 0; index < objectArray.length; index++) {
-
-                const formattedString = getFormattedObjectString(character, objectName, index, '[post_title] ([stance_type])');
-                if (formattedString) {
-                    attributes["repeating_stances_"+row+"_stancename"] = formattedString;
-                }
-
-                const formattedDesc = getFormattedObjectString(character, objectName, index, '[post_content]');
-                if (formattedDesc) {
-                    attributes["repeating_stances_"+row+"_stancedesc"] = formattedDesc;
-                }
-                row=row+1
-            }
-        };   
-
-        // Abilities and NPC Perks
-        const { object_kit, object_perks, custom_perks_raw, object_class, object_origin } = character;
-        row = 1
-        // Kit ability
-        if (object_kit && object_kit.post_title) {
-            attributes["repeating_abilities_"+row+"_abilityname"] = object_kit.post_title+' (Kit)';
-        }
-        if (object_kit && object_kit.post_content) {
-            attributes["repeating_abilities_"+row+"_abilitydesc"] = object_kit.post_content;
-        }        
-        row=row+1
-
-        // Class (Technique) ability
-        if (object_class.technique && object_class.technique.post_title){
-            attributes["repeating_abilities_"+row+"_abilityname"] = object_class.technique.post_title+' (Technique)';
-        }
-        if (object_class.technique && object_class.technique.post_content){
-            attributes["repeating_abilities_"+row+"_abilitydesc"] = object_class.technique.post_content;
-        }
-        row=row+1
-
-        // Origin (Talent) ability
-        if (object_origin.talent && object_origin.talent.post_title){
-            attributes["repeating_abilities_"+row+"_abilityname"] = object_origin.talent.post_title+' (Talent)';
-        }
-        if (object_origin.talent && object_origin.talent.post_content){
-            attributes["repeating_abilities_"+row+"_abilitydesc"] = object_origin.talent.post_content;
-        }
-        row=row+1
-        
-        // Perks (defined)
-        if (object_perks && Array.isArray(object_perks)) {
-            object_perks.forEach(perk => {
-                if (perk.post_title) {
-                    var perkType = perk.perk_type.name
-                    attributes["repeating_abilities_"+row+"_abilityname"] = perk.post_title+' ('+perkType+')';
-                }
-                if (perk.post_content){
-                    attributes["repeating_abilities_"+row+"_abilitydesc"] = perk.post_content;
-                }
-
-                row=row+1
-          });
-        }
-
-        // Perks (custom)
-        if (custom_perks_raw && Array.isArray(custom_perks_raw)) {
-            custom_perks_raw.forEach(cperk => {
-                if (cperk.title) {
-                    var cperkType = cperk.type.name
-                    attributes["repeating_abilities_"+row+"_abilityname"] = cperk.title+' ('+cperkType+')';
-                }
-                if (cperk.desc){
-                    attributes["repeating_abilities_"+row+"_abilitydesc"] = cperk.desc;
-                }
-
-                row=row+1
-          });
-        };
-
-        // Attacks
-        let attacks = character.all_attacks;
-        row = 1;
-
-        if (attacks.equipped_weapons && attacks.equipped_weapons.length > 0) {
-            attacks.equipped_weapons.forEach(weapon => {
-                attributes["repeating_attacks_"+row+"_attackname"] = `${weapon.title} +${weapon.attack_modifier} : ${weapon.damage}${BrokenHeart} ${weapon.is_proficient ? Proficient : NotProficient}\n`;
-                row=row+1;
-            });
-        }
-
-        if (attacks.unarmed) {
-            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.unarmed.title} +${attacks.unarmed.attack_modifier} : ${attacks.unarmed.damage}${BrokenHeart} ${attacks.unarmed.is_proficient ? Proficient : NotProficient}\n`;
-            row=row+1;
-        }
-
-        // Custom Attacks - validate
-        if (attacks.custom_attacks && attacks.custom_attacks.length > 0) {
-            attacks.custom_attacks.forEach(custom => {
-                attributes["repeating_attacks_"+row+"_attackname"] = `${custom.title} +${custom.attack_modifier} : ${custom.damage}${BrokenHeart} ${custom.is_proficient ? Proficient : NotProficient}\n`;
-                row=row+1;
-            });
-        }
-
-        if (attacks.maleficence_primary) {
-            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.maleficence_primary.title} Maleficence +${attacks.maleficence_primary.maleficence_bonus} : 1d6${BrokenHeart}\n`;
-            row=row+1;
-        }
-    
-        if (attacks.maleficence_secondary) {
-            attributes["repeating_attacks_"+row+"_attackname"] = `${attacks.maleficence_secondary.title} Maleficence +${attacks.maleficence_secondary.maleficence_bonus}: 1d6${BrokenHeart}\n`;
-            row=row+1
-        }
-    
-
-
-        // Add the iterated values thus far
-        Object.assign(repeating_attributes, attributes)
-
-        // Static or single value attributes
-            let other_attributes = {
-            
-            // TEST AREA 
-            //'Skill_Athletics_Prof': 'yes',
-
-            // Base Info
-            'character_quote':character.catchphrase,
-            'monster_type':character.monster_type_label,
-            'equipped_armor':armor,
-            'ethos': ethosString,
-            'morale':character.morale.label,
-            'npcattackpattern': character.npc_attack_pattern,
-            'level': character.level,
-            'sheet_image' : character.avatar_local,
-
-            
-            // Ability Scores
-            'mighty': character.mighty_modified,
-            'deft': character.deft_modified,
-            'smart': character.smart_modified,
-            
-            // Modifiers
-            'defense': character.defense,
-            'soak': character.soak,
-            'init': character.modifier_initiative,
-            
-            // Current Status
-            'hp': character.hp,
-            'ap': character.ap,
-            'mp': character.mp,
-
-            // Comma separated values
-            'languageGrouping': langList
-        };
-
-        Object.assign(single_attributes, other_attributes);
+   
 
         // these do not need to be written carefully, because they aren't looked at until the sheet is opened
         Object.assign(single_attributes, {
@@ -437,64 +200,35 @@
 // End of on chat-msg process
 
 // Begin remaining const declarations
-    const extractDetails = (data, items, format) => {
-        let details = [];
-
-        const processObject = (obj) => {
-            let formattedString = format;
-            items.forEach(item => {
-            let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
-            formattedString = formattedString.replace(`[${item}]`, value);
-            });
-            return formattedString;
-        };
-
-        if (Array.isArray(data)) {
-            data.forEach(obj => details.push(processObject(obj)));
-        } else if (typeof data === 'object' && data !== null) {
-            for (let key in data) {
-            if (data.hasOwnProperty(key)) {
-                if (typeof data[key] === 'object' && !Array.isArray(data[key])) {
-                details.push(processObject(data[key]));
-                }
-            }
-            }
+    const getAsync = async (url) => {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            log('Error:', error);
         }
-
-        return details.join(', ');
     };
 
-    const extractSingleObjectDetails = (obj, items, format) => {
-        let formattedString = format;
-        items.forEach(item => {
-          let value = item === 'attribute' && attributeSymbols[obj[item]] ? attributeSymbols[obj[item]] : obj[item];
-          formattedString = formattedString.replace(`[${item}]`, value);
-        });
-        return formattedString;
-      };
- 
-    const getFormattedObjectString = (json, objectName, index, format) => {
-        const objectArray = json[objectName];
-      
-        if (objectArray && Array.isArray(objectArray) && objectArray[index]) {
-          const obj = objectArray[index];
-          let formattedString = format;
-      
-            // Replace placeholders with actual values from the object
-            formattedString = formattedString.replace(/\[([^\]]+)\]/g, (_, key) => {
-                if (key === 'attribute' && obj[key]) {
-                    return attributeSymbols[obj[key]] || obj[key];
-                }
-                return obj[key] || '';
-            });
-        
-            return formattedString;
+    const fetchDataAndParse = async (url) => {
+        try {
+            const data = await getAsync(url);
+            log(data); // Log the JSON object
             
-            }
-      
-        return null;
-      };
-      
+            // Convert to string and parse again (for demonstration purposes)
+            const jsonString = JSON.stringify(data);
+            const parsedData = JSON.parse(jsonString);
+            
+            log(parsedData); // Log the parsed JSON object again
+            
+            // Use parsedData as needed
+        } catch (error) {
+            log('Fetch and parse error:', error);
+        }
+    };
+
+
+
 
     const createSingleWriteQueue = (attributes) => {
         // this is the list of trigger attributes that will trigger class recalculation, as of 5e OGL 2.5 October 2018
