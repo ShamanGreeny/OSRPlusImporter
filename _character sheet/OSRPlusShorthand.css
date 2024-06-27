@@ -133,3 +133,10 @@ div[data-groupname=repeating_attacks].repcontrol {
 }
 
 /* Show Hide Sheetworker CSS */
+.hidden {
+    display: none;
+}
+.charsheet input.sheet-toggle-show:not(:checked) ~ div.sheet-body,
+.charsheet input.sheet-toggle-hide:checked ~ div.sheet-body {
+    display: none;
+}
