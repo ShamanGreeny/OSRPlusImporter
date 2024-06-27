@@ -356,7 +356,11 @@
             row=row+1
         }
     
-
+        // Deeds check
+        if (character.deeds != null && typeof character.deeds === 'object'){
+            var hasDeeds = true
+        }
+        else {var hasDeeds = false};
 
         // Add the iterated values thus far
         Object.assign(repeating_attributes, attributes)
@@ -392,6 +396,12 @@
             'hp': character.hp,
             'ap': character.ap,
             'mp': character.mp,
+
+            // Deeds
+            'hasDeeds' : hasDeeds,
+            'deedsMighty': character.deeds_mighty_max,
+            'deedsDeft' : character.deeds_deft_max,
+            'deedsSmart' : character.deeds_smart_max,
 
             // Comma separated values
             'languageGrouping': langList

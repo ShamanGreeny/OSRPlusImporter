@@ -126,3 +126,26 @@
         </div>
     </div>
 </div>
+
+
+<!-- Sheetworker for Spell/Deeds visibility handling -->
+<script type="text/worker">
+    on('change:hasDeeds sheet:opened', function() {
+      getAttrs(['hasDeeds'], function(values) {
+        const hasDeeds = values.hasDeeds === '1';
+        const deedsSection = document.querySelector('fieldset.repeating_deeds');
+        const spellsSection = document.querySelector('fieldset.repeating_spells');
+        
+        if (deedsSection && spellsSection) {
+          if (hasDeeds) {
+            deedsSection.classList.remove('hidden');
+            spellsSection.classList.add('hidden');
+          } else {
+            deedsSection.classList.add('hidden');
+            spellsSection.classList.remove('hidden');
+          }
+        }
+      });
+    });
+  </script>
+  
